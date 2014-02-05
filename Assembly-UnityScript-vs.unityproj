@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraController.js" />
+     <Compile Include="Assets\CrosshairController.js" />
      <Compile Include="Assets\ZedAnimator.js" />
      <Compile Include="Assets\ZedController.js" />
   </ItemGroup>
