@@ -16,6 +16,12 @@ var accelerationX : float;
 @HideInInspector
 var accelerationY : float;
 
+@HideInInspector
+var forwards : boolean;
+
+@HideInInspector
+var standing : boolean;
+
 
 function Start () {	
 	
@@ -56,6 +62,22 @@ function Update () {
 		moveSpeedX += accelerationX*Time.deltaTime;
 	}
 	
+	// Max speed is not really max speed diagonally
+	if (Mathf.Abs(moveSpeedX) > maxSpeed) {
+		moveSpeedX = maxSpeed * Mathf.Sign(moveSpeedX);
+	}
+	if (Mathf.Abs(moveSpeedY) > maxSpeed) {
+		moveSpeedY = maxSpeed * Mathf.Sign(moveSpeedY);
+	}
+	
 	transform.position.x += moveSpeedX*Time.deltaTime;
 	transform.position.y += moveSpeedY*Time.deltaTime;
+	
+	if (moveSpeedX == 0 && moveSpeedY == 0) {
+		standing = true;
+	} else {
+		standing = false;
+	}
+	
+	
 }
