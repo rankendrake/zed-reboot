@@ -1,10 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ZedRotator.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BulletHit.js">
     <Files>
-      <File FileName="Assets\ZedRotator.js" Line="14" Column="35" />
-      <File FileName="Assets\ZedMover.js" Line="7" Column="1" />
-      <File FileName="Assets\CrosshairController.js" Line="17" Column="82" />
+      <File FileName="Assets\ZombieAnimator.js" Line="28" Column="23" />
+      <File FileName="Assets\ZedRotator.js" Line="1" Column="1" />
+      <File FileName="Assets\ZedMover.js" Line="48" Column="13" />
+      <File FileName="Assets\CrosshairController.js" Line="1" Column="1" />
+      <File FileName="Assets\ZedAnimator.js" Line="1" Column="1" />
+      <File FileName="Assets\ZombieMover.js" Line="1" Column="1" />
+      <File FileName="Assets\FpsHud.js" Line="1" Column="1" />
+      <File FileName="Assets\bulletSpawner.js" Line="11" Column="33" />
+      <File FileName="Assets\bulletMover.js" Line="7" Column="2" />
+      <File FileName="Assets\BulletHit.js" Line="10" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

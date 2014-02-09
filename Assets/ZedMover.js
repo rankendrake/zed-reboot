@@ -16,6 +16,7 @@ var accelerationX : float;
 @HideInInspector
 var accelerationY : float;
 
+// currently not used
 @HideInInspector
 var forwards : boolean;
 
@@ -43,7 +44,9 @@ function Update () {
 	 		moveSpeedY -= Mathf.Min(Mathf.Abs(moveSpeedY), deceleration*Time.deltaTime);
 	 	}	
  	}
-
+	
+	
+	
 	// Acceleration according to key pressed
 	if (Input.GetKey("w")) {
 		accelerationY = maxAcceleration;

@@ -46,12 +46,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BulletHit.js" />
      <Compile Include="Assets\CameraController.js" />
      <Compile Include="Assets\CrosshairController.js" />
      <Compile Include="Assets\CrosshairCursor.js" />
+     <Compile Include="Assets\FpsHud.js" />
      <Compile Include="Assets\ZedAnimator.js" />
      <Compile Include="Assets\ZedMover.js" />
      <Compile Include="Assets\ZedRotator.js" />
+     <Compile Include="Assets\ZombieAnimator.js" />
+     <Compile Include="Assets\ZombieMover.js" />
+     <Compile Include="Assets\bulletMover.js" />
+     <Compile Include="Assets\bulletSpawner.js" />
+     <Compile Include="Assets\triggerTestScript.js" />
+     <None Include="Assets\NewComputeShader.compute" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
