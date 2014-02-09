@@ -13,5 +13,6 @@ function Update () {
 	var positionDifference : Vector3 = mouseWorldPosition - transform.position;
 	var angle : float = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
+	//rigidbody2D
 	transform.eulerAngles = new Vector3(0, 0, angle);
 }

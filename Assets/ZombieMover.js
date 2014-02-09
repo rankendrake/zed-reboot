@@ -37,6 +37,13 @@ function Update () {
 	
 	transform.eulerAngles = new Vector3(0, 0, angle);
 	var relativeSpeed : float = Time.deltaTime*speed;
-	transform.position += new Vector3(relativeSpeed*Mathf.Cos(Mathf.Deg2Rad*angle), relativeSpeed*Mathf.Sin(Mathf.Deg2Rad*angle));
+	//transform.position += new Vector3(relativeSpeed*Mathf.Cos(Mathf.Deg2Rad*angle), relativeSpeed*Mathf.Sin(Mathf.Deg2Rad*angle));
+	
+//	rigidbody2D.velocity = Vector2.right;
+	
+	rigidbody2D.velocity = new Vector2(
+			relativeSpeed*Mathf.Cos(Mathf.Deg2Rad*angle), 
+			relativeSpeed*Mathf.Sin(Mathf.Deg2Rad*angle));			
+				
 	
 }

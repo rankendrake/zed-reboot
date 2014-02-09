@@ -73,8 +73,9 @@ function Update () {
 		moveSpeedY = maxSpeed * Mathf.Sign(moveSpeedY);
 	}
 	
-	transform.position.x += moveSpeedX*Time.deltaTime;
-	transform.position.y += moveSpeedY*Time.deltaTime;
+	rigidbody2D.velocity = new Vector2(moveSpeedX, moveSpeedY);
+//	transform.position.x += moveSpeedX*Time.deltaTime;
+//	transform.position.y += moveSpeedY*Time.deltaTime;
 	
 	if (moveSpeedX == 0 && moveSpeedY == 0) {
 		standing = true;
