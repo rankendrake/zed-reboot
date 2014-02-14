@@ -1,9 +1,5 @@
 ﻿#pragma strict
 
-function Start () {
-	
-}
-
 function Update () {
 	// getting the mouse position relative to the world
 	var mouseScreenPosition : Vector3 = Input.mousePosition;

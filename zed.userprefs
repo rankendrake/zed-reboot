@@ -1,18 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BulletHit.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ZombieMover.js">
     <Files>
-      <File FileName="Assets\ZombieAnimator.js" Line="28" Column="23" />
-      <File FileName="Assets\ZedRotator.js" Line="17" Column="2" />
-      <File FileName="Assets\ZedMover.js" Line="76" Column="61" />
-      <File FileName="Assets\CrosshairController.js" Line="1" Column="1" />
-      <File FileName="Assets\ZedAnimator.js" Line="1" Column="1" />
-      <File FileName="Assets\ZombieMover.js" Line="39" Column="50" />
-      <File FileName="Assets\FpsHud.js" Line="1" Column="1" />
-      <File FileName="Assets\bulletSpawner.js" Line="11" Column="33" />
-      <File FileName="Assets\bulletMover.js" Line="5" Column="19" />
-      <File FileName="Assets\BulletHit.js" Line="17" Column="3" />
-      <File FileName="Assets\triggerTestScript.js" Line="10" Column="2" />
+      <File FileName="Assets\bulletSpawner.js" Line="1" Column="1" />
+      <File FileName="Assets\BulletDestroyer.js" Line="16" Column="24" />
+      <File FileName="Assets\ZombieMover.js" Line="17" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

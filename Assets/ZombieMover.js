@@ -5,13 +5,14 @@ var speed : float;
 @HideInInspector
 var standing : boolean;
 
-//@HideInInspector
-//var angle : float;
-
-
+@HideInInspector
 var zed : Transform;
+
 var angle : float;
+
 function Start () {
+	zed = GameObject.Find("zed").transform;
+
 	var zedPosition : Vector3 = zed.position;
 	var positionDifference : Vector3 = zedPosition - transform.position;
 	angle = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
@@ -37,13 +38,8 @@ function Update () {
 	
 	transform.eulerAngles = new Vector3(0, 0, angle);
 	var relativeSpeed : float = Time.deltaTime*speed;
-	//transform.position += new Vector3(relativeSpeed*Mathf.Cos(Mathf.Deg2Rad*angle), relativeSpeed*Mathf.Sin(Mathf.Deg2Rad*angle));
-	
-//	rigidbody2D.velocity = Vector2.right;
-	
+
 	rigidbody2D.velocity = new Vector2(
 			relativeSpeed*Mathf.Cos(Mathf.Deg2Rad*angle), 
 			relativeSpeed*Mathf.Sin(Mathf.Deg2Rad*angle));			
-				
-	
 }

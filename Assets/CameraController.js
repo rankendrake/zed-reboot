@@ -3,10 +3,6 @@
 var target : Transform;
 var weight : float;
 
-function Start () {
- 	
-}
-
 function Update () {
 	var zedPosition : Vector3 = target.position;
 	var camPosition : Vector3 = transform.position;

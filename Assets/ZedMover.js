@@ -23,11 +23,6 @@ var forwards : boolean;
 @HideInInspector
 var standing : boolean;
 
-
-function Start () {	
-	
-}
-
 function Update () {
 	// Deceleration at every frame
  	if (moveSpeedX != 0) {
@@ -44,8 +39,6 @@ function Update () {
 	 		moveSpeedY -= Mathf.Min(Mathf.Abs(moveSpeedY), deceleration*Time.deltaTime);
 	 	}	
  	}
-	
-	
 	
 	// Acceleration according to key pressed
 	if (Input.GetKey("w")) {
@@ -74,14 +67,10 @@ function Update () {
 	}
 	
 	rigidbody2D.velocity = new Vector2(moveSpeedX, moveSpeedY);
-//	transform.position.x += moveSpeedX*Time.deltaTime;
-//	transform.position.y += moveSpeedY*Time.deltaTime;
 	
 	if (moveSpeedX == 0 && moveSpeedY == 0) {
 		standing = true;
 	} else {
 		standing = false;
 	}
-	
-	
 }
