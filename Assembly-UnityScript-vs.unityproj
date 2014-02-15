@@ -46,20 +46,28 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BulletDestroyer.js" />
-     <Compile Include="Assets\BulletHit.js" />
-     <Compile Include="Assets\CameraController.js" />
-     <Compile Include="Assets\CrosshairController.js" />
-     <Compile Include="Assets\CrosshairCursor.js" />
-     <Compile Include="Assets\FpsHud.js" />
-     <Compile Include="Assets\ZedAnimator.js" />
-     <Compile Include="Assets\ZedMover.js" />
-     <Compile Include="Assets\ZedRotator.js" />
-     <Compile Include="Assets\ZombieAnimator.js" />
-     <Compile Include="Assets\ZombieMover.js" />
-     <Compile Include="Assets\bulletMover.js" />
-     <Compile Include="Assets\bulletSpawner.js" />
-     <Compile Include="Assets\triggerTestScript.js" />
+     <Compile Include="Assets\GetWeapon.js" />
+     <Compile Include="Assets\Scripts\BulletDestroyer.js" />
+     <Compile Include="Assets\Scripts\BulletHit.js" />
+     <Compile Include="Assets\Scripts\BulletSpawners\AssaultRifleBulletSpawner.js" />
+     <Compile Include="Assets\Scripts\BulletSpawners\bulletSpawner.js" />
+     <Compile Include="Assets\Scripts\CameraController.js" />
+     <Compile Include="Assets\Scripts\CrosshairController.js" />
+     <Compile Include="Assets\Scripts\CrosshairCursor.js" />
+     <Compile Include="Assets\Scripts\FpsHud.js" />
+     <Compile Include="Assets\Scripts\StatsManagement.js" />
+     <Compile Include="Assets\Scripts\ZedAnimator.js" />
+     <Compile Include="Assets\Scripts\ZedMover.js" />
+     <Compile Include="Assets\Scripts\ZedRotator.js" />
+     <Compile Include="Assets\Scripts\ZedStats.js" />
+     <Compile Include="Assets\Scripts\ZombieAnimator.js" />
+     <Compile Include="Assets\Scripts\ZombieHealthController.js" />
+     <Compile Include="Assets\Scripts\ZombieMover.js" />
+     <Compile Include="Assets\Scripts\ZombieSpawner.js" />
+     <Compile Include="Assets\Scripts\ZombieStats.js" />
+     <Compile Include="Assets\Scripts\bulletMover.js" />
+     <Compile Include="Assets\Scripts\triggerTestScript.js" />
+     <Compile Include="Assets\ShotgunBulletSpawner.js" />
      <None Include="Assets\NewComputeShader.compute" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
