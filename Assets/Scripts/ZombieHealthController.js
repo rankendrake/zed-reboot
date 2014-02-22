@@ -19,7 +19,6 @@ function Update() {
 		GetComponent(Collider2D).enabled = false;
 				
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
-		Debug.Log(gameObject.transform.eulerAngles.z);
 	}
 }
 

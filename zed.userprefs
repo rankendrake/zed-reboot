@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ZombieStats.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GetWeapon.js">
     <Files>
-      <File FileName="Assets/GetWeapon.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ZombieStats.js" Line="13" Column="13" />
+      <File FileName="Assets\Scripts\BulletDestroyer.js" Line="15" Column="2" />
+      <File FileName="Assets\GetWeapon.js" Line="9" Column="27" />
+      <File FileName="Assets\Scripts\ZombieStats.js" Line="13" Column="13" />
+      <File FileName="Assets\BulletOutOfBounds.js" Line="11" Column="11" />
+      <File FileName="Assets\Scripts\ZombieHealthController.js" Line="21" Column="94" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

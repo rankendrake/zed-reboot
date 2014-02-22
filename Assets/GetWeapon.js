@@ -19,8 +19,9 @@ function Update () {
 
 function removePreviousWeapons() {
 	if (transform.childCount > 0) {
-		for (var children : Transform in transform) {
-		    Destroy(children.gameObject);
+		for (var children : Object in transform) {
+			var child : Transform = children as Transform;
+		    Destroy(child.gameObject);
 		}
 	}
 }
