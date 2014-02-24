@@ -1,12 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GetWeapon.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Laser.js">
     <Files>
-      <File FileName="Assets\Scripts\BulletDestroyer.js" Line="15" Column="2" />
-      <File FileName="Assets\GetWeapon.js" Line="9" Column="27" />
-      <File FileName="Assets\Scripts\ZombieStats.js" Line="13" Column="13" />
-      <File FileName="Assets\BulletOutOfBounds.js" Line="11" Column="11" />
-      <File FileName="Assets\Scripts\ZombieHealthController.js" Line="21" Column="94" />
+      <File FileName="Assets\ShotgunBulletSpawner.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BulletSpawners\AssaultRifleBulletSpawner.js" Line="15" Column="2" />
+      <File FileName="Assets\Laser.js" Line="11" Column="59" />
+      <File FileName="Assets\GetWeapon.js" Line="18" Column="36" />
+      <File FileName="Assets\Scripts\ZedRotator.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ZombieAnimator.js" Line="14" Column="1" />
+      <File FileName="Assets\Scripts\ZombieMover.js" Line="47" Column="3" />
+      <File FileName="Assets\Scripts\CrosshairController.js" Line="8" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -179,6 +179,7 @@ GameObject:
   - 81: {fileID: 570385161}
   - 114: {fileID: 570385166}
   - 114: {fileID: 570385167}
+  - 114: {fileID: 570385168}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -268,7 +269,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 570385160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0db01770bbb0647a0f1ddab3acefba, type: 3}
+  m_Script: {fileID: 11500000, guid: dc90e6c897ef6d143ac2e260cf02f014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &570385168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570385160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a91d249fdbf3f4fafceb8463e97480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1419790159
@@ -286,6 +298,7 @@ GameObject:
   - 58: {fileID: 1419790165}
   - 50: {fileID: 1419790166}
   - 114: {fileID: 1419790167}
+  - 114: {fileID: 1419790168}
   m_Layer: 0
   m_Name: zed
   m_TagString: Untagged
@@ -418,6 +431,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assaultRiflePrefab: {fileID: 100000, guid: 3d08488bc7e485141b03e25e528cb728, type: 2}
   shotgunPrefab: {fileID: 100000, guid: 8a6d726cc30283a4a9b06d2248ece131, type: 2}
+  laserPrefab: {fileID: 100000, guid: ae86be471396782449746959820c70da, type: 2}
+--- !u!114 &1419790168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419790159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7198b671c1540fc4ea39db62dd660412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xp: 0
+  nextLevelUp: 100
+  level: 0
 --- !u!1 &1508715250
 GameObject:
   m_ObjectHideFlags: 0

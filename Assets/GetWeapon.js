@@ -2,9 +2,11 @@
 
 var assaultRiflePrefab : GameObject;
 var shotgunPrefab : GameObject;
+var laserPrefab : GameObject;
+
+private var gun : GameObject;
 
 function Update () {
-	var gun : GameObject;
 	if (Input.GetKeyDown ("k")) {
 		removePreviousWeapons();
 		gun = Instantiate(assaultRiflePrefab, transform.position, transform.rotation);	
@@ -15,6 +17,9 @@ function Update () {
 		gun = Instantiate(shotgunPrefab, transform.position, transform.rotation);	
 		gun.transform.parent = transform;
 	}
+	if (Input.GetKeyDown ("l")) {
+		toggleLaserSight();
+	}
 }
 
 function removePreviousWeapons() {
@@ -23,5 +28,16 @@ function removePreviousWeapons() {
 			var child : Transform = children as Transform;
 		    Destroy(child.gameObject);
 		}
+	}
+}
+
+function toggleLaserSight() {
+	var laser : GameObject = GameObject.Find(gun.name + "/LaserSight");
+	
+	if (laser == null) {
+		laser = Instantiate(laserPrefab, transform.position, transform.rotation);
+		laser.transform.parent = gun.transform;
+	} else {
+		Destroy(laser);
 	}
 }

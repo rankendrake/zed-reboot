@@ -15,7 +15,6 @@ GameObject:
   - 50: {fileID: 5000000}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -130,19 +129,6 @@ MonoBehaviour:
   BulletDestroyerScript: {fileID: 11400002, guid: f86391dcd48eb3e43aa5602b07e5a47e,
     type: 2}
   animator: {fileID: 0}
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: effcc77a63d4b4d60a3ffe3203050ff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mover: {fileID: 0}
-  t: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -161,9 +147,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_SortingLayerID: 3687500167
+  m_SortingLayerID: 1026364101
   m_Sprite: {fileID: 21300008, guid: 3e8fa259531fdd245bcfa199c7aeed68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

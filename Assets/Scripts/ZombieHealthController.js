@@ -19,6 +19,11 @@ function Update() {
 		GetComponent(Collider2D).enabled = false;
 				
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
+		
+		// Zed gains experience.
+		var zed : GameObject = GameObject.Find("zed");
+		zed.GetComponent(ZedExperience).gainExperience(1);
+		
 	}
 }
 

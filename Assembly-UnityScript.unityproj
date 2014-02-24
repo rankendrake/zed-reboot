@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\BulletOutOfBounds.js" />
      <Compile Include="Assets\GetWeapon.js" />
+     <Compile Include="Assets\Laser.js" />
      <Compile Include="Assets\Scripts\BulletDestroyer.js" />
      <Compile Include="Assets\Scripts\BulletHit.js" />
      <Compile Include="Assets\Scripts\BulletSpawners\AssaultRifleBulletSpawner.js" />
@@ -55,9 +56,11 @@
      <Compile Include="Assets\Scripts\CameraController.js" />
      <Compile Include="Assets\Scripts\CrosshairController.js" />
      <Compile Include="Assets\Scripts\CrosshairCursor.js" />
-     <Compile Include="Assets\Scripts\FpsHud.js" />
+     <Compile Include="Assets\Scripts\HudFps.js" />
+     <Compile Include="Assets\Scripts\HudXpLevel.js" />
      <Compile Include="Assets\Scripts\StatsManagement.js" />
      <Compile Include="Assets\Scripts\ZedAnimator.js" />
+     <Compile Include="Assets\Scripts\ZedExperience.js" />
      <Compile Include="Assets\Scripts\ZedMover.js" />
      <Compile Include="Assets\Scripts\ZedRotator.js" />
      <Compile Include="Assets\Scripts\ZedStats.js" />
