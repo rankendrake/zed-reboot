@@ -299,7 +299,7 @@ GameObject:
   - 50: {fileID: 1419790166}
   - 114: {fileID: 1419790167}
   - 114: {fileID: 1419790168}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: zed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
