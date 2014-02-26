@@ -1,9 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Armory\Laser.js">
     <Files>
       <File FileName="Assets\Scripts\Armory\Laser.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Armory\Laser.js" Line="14" Column="72" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Zed/ZedMover.js">
+    <Files>
+      <File FileName="Assets/Scripts/Armory/BulletOutOfBounds.js" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/Zed/ZedMover.js" Line="34" Column="16" />
+>>>>>>> 2e4f7515d1fdb1f6866036f6ba062a61babb9336
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
