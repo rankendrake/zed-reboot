@@ -299,6 +299,7 @@ GameObject:
   - 50: {fileID: 1419790166}
   - 114: {fileID: 1419790167}
   - 114: {fileID: 1419790168}
+  - 114: {fileID: 1419790169}
   m_Layer: 2
   m_Name: zed
   m_TagString: Untagged
@@ -446,6 +447,19 @@ MonoBehaviour:
   xp: 0
   nextLevelUp: 100
   level: 0
+--- !u!114 &1419790169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419790159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa553b3bebbdb475abd6e4f2ea8743b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapBounds: {fileID: 0}
+  mover: {fileID: 0}
 --- !u!1 &1508715250
 GameObject:
   m_ObjectHideFlags: 0
