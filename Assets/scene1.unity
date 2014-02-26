@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6fb7429f5317c4f9cb8a4361646541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: c53c5d5be6a92de4b8387ff6cf1823ee, type: 3}
-  cursorMode: 0
   hotSpot: {x: 16, y: 16}
+  cursorTexture: {fileID: 2800000, guid: c53c5d5be6a92de4b8387ff6cf1823ee, type: 3}
+  ccEnabled: 0
 --- !u!1 &489245055
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2.19013786
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1419790162}
   weight: .100000001
-  mapBounds: {fileID: 0}
+  mapBounds: {fileID: 2030875331}
 --- !u!114 &570385167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa553b3bebbdb475abd6e4f2ea8743b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapBounds: {fileID: 0}
+  mapBounds: {fileID: 2030875331}
   mover: {fileID: 0}
 --- !u!1 &1508715250
 GameObject:
@@ -510,6 +510,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2030875331}
   - 33: {fileID: 2030875330}
+  - 23: {fileID: 2030875328}
   m_Layer: 0
   m_Name: MapBounds
   m_TagString: Untagged
@@ -517,6 +518,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!23 &2030875328
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2030875327}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &2030875330
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -532,6 +554,6 @@ Transform:
   m_GameObject: {fileID: 2030875327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 12, z: 1}
+  m_LocalScale: {x: 19, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

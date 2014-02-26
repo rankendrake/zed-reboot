@@ -10,7 +10,6 @@ var mover : ZedMover;
 
 function Start () {
 	mover = GetComponent(ZedMover);
-	mapBounds = GameObject.Find("MapBounds").transform;
 	leftBound = mapBounds.position.x - mapBounds.localScale.x/2;
 	rightBound = mapBounds.position.x + mapBounds.localScale.x/2;
 	topBound = mapBounds.position.y + mapBounds.localScale.y/2;
