@@ -13,7 +13,7 @@ function Start() {
 
 function Update() {
 	if ((Time.time - lastSpawnTime) > spawnDelay) {
-		Instantiate(ZombiePrefab, transform.position, transform.rotation);
+		var NewZombie : GameObject = Instantiate(ZombiePrefab, transform.position, transform.rotation);
 		lastSpawnTime = Time.time;
 	}
 }

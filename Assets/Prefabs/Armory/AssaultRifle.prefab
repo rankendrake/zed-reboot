@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: AssaultRifle
   m_TagString: Untagged
@@ -27,6 +28,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f45265cc0959a49b1f6a275f0987aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dmg: 25
+  Spread: 0
+  AccDrop: 0
+  AccRecover: 0
+  NumPellets: 1
+  Spd: 1500
+  Freq: 10
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: f86391dcd48eb3e43aa5602b07e5a47e, type: 2}
-  frequency: 20
+  attr: {fileID: 0}
   timeOfLastShot: 0
 --- !u!1001 &100100000
 Prefab:
