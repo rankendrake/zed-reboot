@@ -2,18 +2,11 @@
 
 /*
  * If a bullet gets tagged "doomed",
- * destroy it on the next frame.
+ * destroy it immediately.
  */
 
-@HideInInspector
-var destroyBullet : boolean;
-
 function Update() {
-	if (destroyBullet == true) {
-		Destroy(gameObject);
-	}
-	
 	if (tag == "doomed") {
-		destroyBullet = true;
+		Destroy(gameObject);
 	}
 }

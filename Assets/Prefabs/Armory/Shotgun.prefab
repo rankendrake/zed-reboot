@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -41,6 +42,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 100000, guid: f86391dcd48eb3e43aa5602b07e5a47e, type: 2}
   attr: {fileID: 11400002}
+  acc: {fileID: 11400004}
+  actualDeviation: 0
   timeOfLastShot: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -55,11 +58,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dmg: 12
   Spread: 15
-  AccDrop: 0
-  AccRecover: 0
+  AccDrop: 30
+  AccRecover: 10
   NumPellets: 8
   Spd: 800
   Freq: 1.25
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058043d6869bfa844834b4a604d19c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviation: 0
+  accuracy: 0
+  maxDev: 30
+  devCorrectItself: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

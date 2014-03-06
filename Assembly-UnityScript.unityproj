@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Armory\EnemyImpact.js" />
      <Compile Include="Assets\Scripts\Armory\Laser.js" />
      <Compile Include="Assets\Scripts\Armory\ShotgunBulletSpawner.js" />
+     <Compile Include="Assets\Scripts\Armory\WepAccCalculator.js" />
      <Compile Include="Assets\Scripts\Armory\bulletMover.js" />
      <Compile Include="Assets\Scripts\Armory\bulletSpawner.js" />
      <Compile Include="Assets\Scripts\Visual\CameraController.js" />
