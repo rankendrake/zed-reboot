@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  speedDeviation: 100
+  speedDeviation: 25
   angularSpeed: .0500000007
   standing: 0
   zed: {fileID: 0}

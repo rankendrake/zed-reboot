@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
-var startHealth : int;
-private var health : int;
+var startHealth : float;
+private var health : float;
 private var animatorDead : boolean;
 
 var angleDeviationOfDying : float;

@@ -4,6 +4,7 @@ var bulletPrefab : GameObject;
 var attr : WepAttributes;
 var acc : WepAccCalculator;
 var actualDeviation : float;
+var FireSound : AudioSource;
 
 @HideInInspector
 var timeOfLastShot : float;
@@ -19,6 +20,7 @@ function Update () {
 		for (var i = 0; i < attr.GetNumPellets(); i++) {
 			FireRound(actualDeviation);
 		}
+		FireSound.Play();
 	    timeOfLastShot = Time.time;
 		acc.deviation += attr.GetAccDrop();
 	}

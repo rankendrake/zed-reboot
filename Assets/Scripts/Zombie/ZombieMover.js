@@ -25,7 +25,13 @@ function Start () {
 	
 	zombieHealthController = gameObject.GetComponent(ZombieHealthController);
 	
-	speed += (Random.value - 0.5)*speedDeviation;
+	// I want a fast-mover type zombie.
+	if(Random.value < 0.1)
+	{
+	speed = 150;
+	}
+	
+	speed += Random.Range(-speedDeviation,speedDeviation);
 }
 
 function Update () {
