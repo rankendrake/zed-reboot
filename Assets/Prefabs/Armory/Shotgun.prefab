@@ -103,7 +103,7 @@ MonoBehaviour:
   attr: {fileID: 11400002}
   acc: {fileID: 11400004}
   actualDeviation: 0
-  FireSound: {fileID: 8200000}
+  FireSound: {fileID: 8300000, guid: 7b9eadf09bbf9d643888857139200b7a, type: 3}
   timeOfLastShot: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69f45265cc0959a49b1f6a275f0987aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1aeac91e9e99c2f44b0f763321c599d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dmg: 19.8999996
+  Dmg: 20
   Spread: 15
   AccDrop: 30
   AccRecover: 10
@@ -135,9 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deviation: 0
-  accuracy: 0
   maxDev: 30
-  devCorrectItself: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

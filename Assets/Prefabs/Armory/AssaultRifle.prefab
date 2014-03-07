@@ -96,7 +96,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69f45265cc0959a49b1f6a275f0987aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1aeac91e9e99c2f44b0f763321c599d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Dmg: 25
@@ -121,7 +121,7 @@ MonoBehaviour:
   attr: {fileID: 11400000}
   acc: {fileID: 11400004}
   actualDeviation: 0
-  FireSound: {fileID: 8200000}
+  FireSound: {fileID: 8300000, guid: 8fe041dfa8d179242936b44215c3477a, type: 3}
   timeOfLastShot: 0
 --- !u!114 &11400004
 MonoBehaviour:
