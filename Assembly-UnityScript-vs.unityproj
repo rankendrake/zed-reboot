@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Armory\EnemyImpact.js" />
      <Compile Include="Assets\Scripts\Armory\Laser.js" />
      <Compile Include="Assets\Scripts\Armory\ShotgunBulletSpawner.js" />
+     <Compile Include="Assets\Scripts\Armory\WeaponClip.js" />
      <Compile Include="Assets\Scripts\Armory\WepAccCalculator.js" />
      <Compile Include="Assets\Scripts\Armory\WepAttributes.js" />
      <Compile Include="Assets\Scripts\Armory\bulletMover.js" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\Visual\CrosshairCursor.js" />
      <Compile Include="Assets\Scripts\Visual\HudFps.js" />
      <Compile Include="Assets\Scripts\Visual\HudXpLevel.js" />
+     <Compile Include="Assets\Scripts\Zed\AmmoPouch.js" />
      <Compile Include="Assets\Scripts\Zed\GetWeapon.js" />
      <Compile Include="Assets\Scripts\Zed\ZedAnimator.js" />
      <Compile Include="Assets\Scripts\Zed\ZedExperience.js" />

@@ -383,6 +383,7 @@ GameObject:
   - 114: {fileID: 1419790167}
   - 114: {fileID: 1419790168}
   - 114: {fileID: 1419790169}
+  - 114: {fileID: 1419790170}
   m_Layer: 2
   m_Name: zed
   m_TagString: Untagged
@@ -543,6 +544,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapBounds: {fileID: 2030875331}
   mover: {fileID: 0}
+--- !u!114 &1419790170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419790159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39bcf3f37e9b654cb2583f7b82130d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1508715250
 GameObject:
   m_ObjectHideFlags: 0
