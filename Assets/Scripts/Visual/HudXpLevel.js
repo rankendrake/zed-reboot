@@ -9,6 +9,6 @@ function Start() {
 
 function OnGUI() {
     GUI.Label(
-    		Rect(0, 30, Screen.width,Screen.height), 
+    		Rect(Screen.width - 100, Screen.height - 70, Screen.width,Screen.height), 
     		"Experience: " + zedExperience.xp.ToString() + "\n" + "Level: " + zedExperience.level.ToString());
 }

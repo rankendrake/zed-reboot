@@ -2,6 +2,6 @@
 
 function OnGUI(){
     GUI.Label(
-    		Rect(0,0,Screen.width,Screen.height), 
-    		(Mathf.RoundToInt((1/Time.deltaTime))).ToString());
+    		Rect(Screen.width - 100,Screen.height - 30,Screen.width,Screen.height), 
+    		"FPS: " + (Mathf.RoundToInt((1/Time.deltaTime))).ToString());
 }

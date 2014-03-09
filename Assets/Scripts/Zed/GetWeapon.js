@@ -41,3 +41,19 @@ function toggleLaserSight() {
 		Destroy(laser);
 	}
 }
+
+function getId() : String {
+	if (gun == null) {
+		return "";
+	} else {
+		var name : String = gun.name;
+		if (name.Equals("AssaultRifle(Clone)")) {
+			return "assault rifle";
+		} else if (name.Equals("Shotgun(Clone)")) {
+			return "shotgun";
+		} else {
+			Debug.LogError("Gun name unknown in getGunId() @ GetWeapon.js");
+			return "";
+		}
+	}
+}
