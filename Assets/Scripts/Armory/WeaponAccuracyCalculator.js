@@ -10,7 +10,7 @@ var maxDev : float;
 function Start () {
 deviation = 0.0;
 maxDev = 20.0;
-accuracy = GetComponent(WepAttributes).GetAccRecover();
+accuracy = GetComponent(WeaponAttributes).getAccuracyRecover();
 }
 
 function Update () {
