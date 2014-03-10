@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: AssaultRifle
   m_TagString: Untagged
@@ -122,8 +123,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 100000, guid: f86391dcd48eb3e43aa5602b07e5a47e, type: 2}
   attr: {fileID: 11400000}
   acc: {fileID: 11400004}
+  sounds: {fileID: 11400008}
   actualDeviation: 0
-  FireSound: {fileID: 8300000, guid: 8fe041dfa8d179242936b44215c3477a, type: 3}
   timeOfLastShot: 0
 --- !u!114 &11400004
 MonoBehaviour:
@@ -150,6 +151,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipSize: 24
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf996a8a51602c4a82fe881557be986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 8300000, guid: 8fe041dfa8d179242936b44215c3477a, type: 3}
+  reloadBegin: {fileID: 8300000, guid: 558606a01e3e5014b872d292dd4675b0, type: 3}
+  reloadEnd: {fileID: 8300000, guid: 76ad61d933ac1894aa48cbd1a27e82f3, type: 3}
+  reloadTime: 0
+  lastReloadTime: 0
+  reloadPlaying: 0
+  reloadTimeChanged: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
