@@ -3,6 +3,7 @@
 var clipSize : int;
 private var bullets : int;
 private var ammoPouch : AmmoPouch;
+private var clipChanged : boolean;
 
 function Start () {
 	bullets = 0;
@@ -27,5 +28,23 @@ function reload() {
 	var clipsLeft : boolean = ammoPouch.useClip();
 	if (clipsLeft) {
 		bullets = clipSize;
+		clipChanged = true;
+	}
+}
+
+function getClipSize() : int {
+	return clipSize;
+}
+
+function getBullets() : int {
+	return bullets;
+}
+
+function testAndSetClipChanged() : boolean {
+	if (clipChanged) {
+		clipChanged = false;
+		return true;
+	} else {
+		return false;
 	}
 }

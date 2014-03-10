@@ -57,3 +57,27 @@ function getId() : String {
 		}
 	}
 }
+
+function getClipSize() : int {
+	if (gun == null) {
+		return 0;
+	} else {
+		return gun.GetComponent(WeaponClip).getClipSize();
+	}
+}
+
+function getBullets() : int {
+	if (gun == null) {
+		return 0;
+	} else {
+		return gun.GetComponent(WeaponClip).getBullets();
+	}
+}
+
+function testAndSetClipChanged() : boolean {
+	if (gun == null) {
+		return false;
+	} else {
+		return gun.GetComponent(WeaponClip).testAndSetClipChanged();
+	}
+}
