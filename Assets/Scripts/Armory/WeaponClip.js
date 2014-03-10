@@ -4,6 +4,7 @@ var clipSize : int;
 private var bullets : int;
 private var ammoPouch : AmmoPouch;
 private var clipChanged : boolean;
+private var reloadStartTime : float;
 
 function Start () {
 	bullets = 0;
@@ -29,6 +30,7 @@ function reload() {
 	if (clipsLeft) {
 		bullets = clipSize;
 		clipChanged = true;
+		reloadDelay();
 	}
 }
 
@@ -47,4 +49,12 @@ function testAndSetClipChanged() : boolean {
 	} else {
 		return false;
 	}
+}
+
+function reloadDelay() {
+	reloadStartTime = Time.time;
+}
+
+function getReloadStartTime() : float {
+	return reloadStartTime;
 }

@@ -6,6 +6,7 @@ var acc : WepAccCalculator;
 var actualDeviation : float;
 var FireSound : AudioClip;
 private var clip : WeaponClip;
+private var reloadTime : float;
 
 @HideInInspector
 var timeOfLastShot : float;
@@ -14,10 +15,13 @@ function Start() {
 	attr = GetComponent("WepAttributes") as WepAttributes;
 	acc = GetComponent("WepAccCalculator") as WepAccCalculator;
 	clip = transform.GetComponent(WeaponClip);
+	reloadTime = transform.parent.GetComponent(ZedAttributes).getReloadTime();
 }
 
 function Update () {
-	if (Input.GetMouseButton(0) && (Time.time - timeOfLastShot) * attr.GetFreq() > 1) {
+	if (Input.GetMouseButton(0) && 
+			((Time.time - timeOfLastShot)*attr.GetFreq()) > 1 && 
+			(clip.getReloadStartTime() + reloadTime < Time.time)) {
 		if (clip.wasteBullet()) {
 			actualDeviation = Random.Range(-1.0,1.0)*acc.deviation;
 			acc.deviation += attr.GetAccDrop();
