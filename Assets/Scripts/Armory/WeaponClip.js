@@ -9,7 +9,7 @@ private var reloadStartTime : float;
 function Start () {
 	bullets = 0;
 	ammoPouch = transform.parent.GetComponent(AmmoPouch);
-	reload();
+	reload(true);
 }
 
 function wasteBullet() : boolean {
@@ -17,7 +17,7 @@ function wasteBullet() : boolean {
 		return false;
 	} else if (bullets == 1) {
 		bullets--;
-		reload();
+		reload(false);
 	} else {
 		bullets--;
 		
@@ -25,12 +25,12 @@ function wasteBullet() : boolean {
 	return true;
 }
 
-function reload() {
+function reload(initialReload : boolean) {
 	var clipsLeft : boolean = ammoPouch.useClip();
 	if (clipsLeft) {
 		bullets = clipSize;
 		clipChanged = true;
-		reloadDelay();
+		reloadDelay(initialReload);
 	}
 }
 
@@ -51,8 +51,12 @@ function testAndSetClipChanged() : boolean {
 	}
 }
 
-function reloadDelay() {
-	reloadStartTime = Time.time;
+function reloadDelay(initialReload : boolean) {
+	if (initialReload) {
+		reloadStartTime = 0;
+	} else {
+		reloadStartTime = Time.time;
+	}
 }
 
 function getReloadStartTime() : float {

@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\HudGun.js" />
      <Compile Include="Assets\Scripts\Armory\AssaultRifleBulletSpawner.js" />
      <Compile Include="Assets\Scripts\Armory\BulletDestroyer.js" />
      <Compile Include="Assets\Scripts\Armory\BulletHit.js" />
@@ -63,10 +62,12 @@
      <Compile Include="Assets\Scripts\Visual\CrosshairController.js" />
      <Compile Include="Assets\Scripts\Visual\CrosshairCursor.js" />
      <Compile Include="Assets\Scripts\Visual\HudFps.js" />
+     <Compile Include="Assets\Scripts\Visual\HudWeapon.js" />
      <Compile Include="Assets\Scripts\Visual\HudXpLevel.js" />
      <Compile Include="Assets\Scripts\Zed\AmmoPouch.js" />
      <Compile Include="Assets\Scripts\Zed\GetWeapon.js" />
      <Compile Include="Assets\Scripts\Zed\ZedAnimator.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedAttributes.js" />
      <Compile Include="Assets\Scripts\Zed\ZedExperience.js" />
      <Compile Include="Assets\Scripts\Zed\ZedMover.js" />
      <Compile Include="Assets\Scripts\Zed\ZedRotator.js" />
@@ -78,7 +79,6 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieSpawner.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStats.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieVoiceController.js" />
-     <Compile Include="Assets\ZedAttributes.js" />
      <None Include="Assets\NewComputeShader.compute" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

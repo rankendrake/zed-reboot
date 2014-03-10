@@ -47,15 +47,19 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
-  - name: Zed
-    userID: 1
-    uniqueID: 3687500167
-    locked: 0
   - name: Zombie
     userID: 3
     uniqueID: 1026364101
     locked: 0
+  - name: Zed
+    userID: 1
+    uniqueID: 3687500167
+    locked: 0
   - name: Crosshair
     userID: 2
     uniqueID: 1847301683
+    locked: 0
+  - name: 
+    userID: 4
+    uniqueID: 601292019
     locked: 0

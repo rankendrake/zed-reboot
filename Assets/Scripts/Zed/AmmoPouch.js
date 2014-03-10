@@ -18,3 +18,7 @@ function useClip() : boolean {
 	}
 	return true;
 }
+
+function clipsLeft() : int {
+	return clips;
+}

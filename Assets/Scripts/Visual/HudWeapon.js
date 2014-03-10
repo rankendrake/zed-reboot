@@ -4,6 +4,7 @@ private var weapon : GetWeapon;
 private var clipSize : int;
 private var bullets : int;
 private var clipBullets : Texture2D[];
+private var ammoPouch : AmmoPouch;
 
 var assaultRifle : Texture2D;
 var shotgun : Texture2D;
@@ -19,6 +20,7 @@ var bullet5 : Texture2D;
 
 function Start() {
 	weapon = GameObject.Find("zed").GetComponent(GetWeapon);
+	ammoPouch = GameObject.Find("zed").GetComponent(AmmoPouch);
 	clipSize = weapon.getClipSize();
 	bullets = 0;
 	reloadClip();
@@ -26,7 +28,7 @@ function Start() {
 
 function OnGUI() {
 	var id : String = weapon.getId();
-	if (id != null) {
+	if (!id.Equals("")) {
 		GUI.color = new Color(0.0, 0.0, 0.0, 0.25);
 		
 		// Weapon image
