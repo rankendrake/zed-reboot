@@ -15,6 +15,7 @@ var bullet2 : Texture2D;
 var bullet3 : Texture2D;
 var bullet4 : Texture2D;
 var bullet5 : Texture2D;
+var bulletSkins : Texture2D[];
 
 
 
@@ -68,19 +69,6 @@ function reloadClip() {
 
 
 function getRandomBulletTexture() : Texture2D {
-	var bulletNumber : int = Random.Range(1, 5);
-	if (bulletNumber == 1) {
-		return bullet1;
-	} else if (bulletNumber == 2) {
-		return bullet2;
-	} else if (bulletNumber == 3) {
-		return bullet3;
-	} else if (bulletNumber == 4) {
-		return bullet4;
-	} else if (bulletNumber == 5) {
-		return bullet5;
-	} else {
-		Debug.LogError("Invalid bullet texture number in getBulletTecture @ HudWeapon.js");
-		return null;
-	}
+	var bulletNumber : int = Mathf.FloorToInt(Random.Range(0, bulletSkins.Length-0.01));
+	return bulletSkins[bulletNumber];
 }

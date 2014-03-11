@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -103,8 +104,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 100000, guid: f86391dcd48eb3e43aa5602b07e5a47e, type: 2}
   attr: {fileID: 11400002}
   acc: {fileID: 11400004}
+  sounds: {fileID: 0}
   actualDeviation: 0
-  FireSound: {fileID: 8300000, guid: 7b9eadf09bbf9d643888857139200b7a, type: 3}
   timeOfLastShot: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -114,16 +115,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aeac91e9e99c2f44b0f763321c599d6, type: 3}
+  m_Script: {fileID: 11500000, guid: e5416bfda4c667c47b5c967b73d9475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dmg: 20
-  Spread: 15
-  AccDrop: 30
-  AccRecover: 10
-  NumPellets: 8
-  Spd: 800
-  Freq: 1.39999998
+  damage: 20
+  spread: 30
+  accDrop: 8
+  accRecover: 8
+  numPellets: 8
+  speed: 1000
+  frequency: 1.25
+  reloadTime: 2
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 058043d6869bfa844834b4a604d19c38, type: 3}
+  m_Script: {fileID: 11500000, guid: 361d461cf6a927c43bac5424b8b18a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deviation: 0
@@ -149,6 +151,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipSize: 4
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf996a8a51602c4a82fe881557be986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 8300000, guid: 7b9eadf09bbf9d643888857139200b7a, type: 3}
+  reloadBegin: {fileID: 8300000, guid: 558606a01e3e5014b872d292dd4675b0, type: 3}
+  reloadEnd: {fileID: 8300000, guid: bd3f8de860a9c6b40be8b321494c6f84, type: 3}
+  reloadTime: 0
+  lastReloadTime: 0
+  reloadPlaying: 0
+  reloadTimeChanged: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
