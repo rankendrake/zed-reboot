@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 100000, guid: f8cfd03cfe2e6034d93b660f3db46d0a, type: 2}
   spawning: 1
-  spawnDelay: 2
+  spawnDelay: 5
 --- !u!4 &193581138
 Transform:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 100000, guid: f8cfd03cfe2e6034d93b660f3db46d0a, type: 2}
   spawning: 1
-  spawnDelay: 2
+  spawnDelay: 5
 --- !u!4 &1104097856
 Transform:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 100000, guid: f8cfd03cfe2e6034d93b660f3db46d0a, type: 2}
   spawning: 1
-  spawnDelay: 2
+  spawnDelay: 5
 --- !u!1 &1811755061
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZombiePrefab: {fileID: 100000, guid: f8cfd03cfe2e6034d93b660f3db46d0a, type: 2}
   spawning: 1
-  spawnDelay: 2
+  spawnDelay: 5
 --- !u!4 &1811755063
 Transform:
   m_ObjectHideFlags: 0

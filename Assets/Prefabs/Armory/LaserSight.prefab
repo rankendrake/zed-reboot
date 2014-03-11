@@ -72,7 +72,7 @@ LineRenderer:
       rgba: 4278190335
     m_EndColor:
       serializedVersion: 2
-      rgba: 4278190335
+      rgba: 1795162367
   m_UseWorldSpace: 1
 --- !u!1001 &100100000
 Prefab:
