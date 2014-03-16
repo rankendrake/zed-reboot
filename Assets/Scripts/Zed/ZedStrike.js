@@ -1,0 +1,29 @@
+﻿#pragma strict
+
+var zedResources : ZedResources;
+
+var timeOfLastShot : float;
+
+function Start() {
+	zedResources = GameObject.Find("zed").GetComponent(ZedResources);
+}
+
+function Update() {
+	
+	// instantiate when trigger pressed and rate of fire
+	// according to weapon in zedResources
+	if (Input.GetMouseButton(0)) {
+		var currentWeapon : Weapon = zedResources.weapons[zedResources.currentWeaponIndex];
+		currentWeapon.strike();
+	}
+	
+//	if (Input.GetMouseButton(0) && 
+//			((Time.time - timeOfLastShot)*weapon.getRateOfFire()) > 1 && 
+//			(clip.getReloadStartTime() + reloadTime < Time.time)) {
+//		if (clip.wasteBullet()) {
+//			fire();
+//			sounds.fireSound();
+//		    timeOfLastShot = Time.time;
+//		}
+//	}	
+}

@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_3;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,41 +46,25 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Armory\AssaultRifleBulletSpawner.js" />
-     <Compile Include="Assets\Scripts\Armory\BulletDestroyer.js" />
-     <Compile Include="Assets\Scripts\Armory\BulletHit.js" />
-     <Compile Include="Assets\Scripts\Armory\BulletOutOfBounds.js" />
-     <Compile Include="Assets\Scripts\Armory\EnemyImpact.js" />
-     <Compile Include="Assets\Scripts\Armory\Laser.js" />
-     <Compile Include="Assets\Scripts\Armory\ShotgunBulletSpawner.js" />
-     <Compile Include="Assets\Scripts\Armory\WeaponAccuracyCalculator.js" />
-     <Compile Include="Assets\Scripts\Armory\WeaponAttributes.js" />
-     <Compile Include="Assets\Scripts\Armory\WeaponAudioController.js" />
-     <Compile Include="Assets\Scripts\Armory\WeaponClip.js" />
-     <Compile Include="Assets\Scripts\Armory\bulletMover.js" />
-     <Compile Include="Assets\Scripts\Armory\bulletSpawner.js" />
-     <Compile Include="Assets\Scripts\Visual\CameraController.js" />
-     <Compile Include="Assets\Scripts\Visual\CrosshairController.js" />
-     <Compile Include="Assets\Scripts\Visual\CrosshairCursor.js" />
-     <Compile Include="Assets\Scripts\Visual\HudFps.js" />
-     <Compile Include="Assets\Scripts\Visual\HudWeapon.js" />
-     <Compile Include="Assets\Scripts\Visual\HudXpLevel.js" />
-     <Compile Include="Assets\Scripts\Zed\AmmoPouch.js" />
-     <Compile Include="Assets\Scripts\Zed\GetWeapon.js" />
-     <Compile Include="Assets\Scripts\Zed\ZedAnimator.js" />
-     <Compile Include="Assets\Scripts\Zed\ZedAttributes.js" />
-     <Compile Include="Assets\Scripts\Zed\ZedExperience.js" />
-     <Compile Include="Assets\Scripts\Zed\ZedMover.js" />
-     <Compile Include="Assets\Scripts\Zed\ZedRotator.js" />
-     <Compile Include="Assets\Scripts\Zed\ZedStats.js" />
-     <Compile Include="Assets\Scripts\Zed\zedOutOfBounds.js" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieAnimator.js" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieHealthController.js" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieMover.js" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieSpawner.js" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieStats.js" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieVoiceController.js" />
-     <None Include="Assets\NewComputeShader.compute" />
+     <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
+     <Compile Include="Assets\Scripts\Visuals\CameraMovement.js" />
+     <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
+     <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
+     <Compile Include="Assets\Scripts\Weapon\BulletImpact.js" />
+     <Compile Include="Assets\Scripts\Weapon\BulletProperties.js" />
+     <Compile Include="Assets\Scripts\Weapon\MeleeWeapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedMovement.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
