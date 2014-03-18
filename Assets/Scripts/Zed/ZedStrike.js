@@ -10,10 +10,14 @@ function Start() {
 
 function Update() {
 	
+	var currentWeapon : Weapon = zedResources.weapons[zedResources.currentWeaponIndex];
+
+	if(Input.GetKeyDown("r") && currentWeapon.getReloadEndTime() < Time.time) {
+		currentWeapon.manualReload();
+	}
 	// instantiate when trigger pressed and rate of fire
 	// according to weapon in zedResources
-	if (Input.GetMouseButton(0)) {
-		var currentWeapon : Weapon = zedResources.weapons[zedResources.currentWeaponIndex];
+	else if (Input.GetMouseButton(0)) {
 		currentWeapon.strike();
 	}
 	

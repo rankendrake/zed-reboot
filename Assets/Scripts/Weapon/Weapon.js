@@ -21,6 +21,8 @@ class Weapon extends UnityEngine.Object {
 	
 	function falsifyJustReloaded() {}
 	
+	function manualReload() {}
+	
 	function getBullets() : int {
 		return 0;
 	}

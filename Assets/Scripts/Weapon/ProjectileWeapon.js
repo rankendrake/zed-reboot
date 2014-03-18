@@ -17,8 +17,8 @@ class ProjectileWeapon extends Weapon {
 	var bulletsInClipBeforeReload : int;
 	var lastShotTime : float;
 	
-	function ProjectileWeapon(rateOfFire : int, 
-			firePower : int, 
+	function ProjectileWeapon(rateOfFire : float, 
+			firePower : float, 
 			bulletVelocity : float,
 			spread : float,
 			clipSize : int,
@@ -37,7 +37,7 @@ class ProjectileWeapon extends Weapon {
 		this.bulletPrefab = bulletPrefab;
 		this.zedMovement = zedMovement;
 		
-		bullets = 1000; // hardcoded
+		bullets = 1000; // hardcoded, should be dynamic in future implementation.
 		
 		reload();
 	}
@@ -63,6 +63,10 @@ class ProjectileWeapon extends Weapon {
 				reload();
 			}
 		}
+	}
+	
+	function manualReload() {
+		reload();
 	}
 	
 	private function reload() : boolean {
