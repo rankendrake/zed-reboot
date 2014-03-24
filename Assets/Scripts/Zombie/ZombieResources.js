@@ -7,6 +7,8 @@ private var zombieProperties : ZombieProperties;
 private var health : float;
 private var animatorDead : boolean;
 
+var zombieDeathSound : AudioSource;
+
 function Start() {
 	zombieProperties = transform.GetComponent(ZombieProperties);
 
@@ -20,7 +22,7 @@ function Update() {
 		gameObject.GetComponent(Animator).SetBool("isDead", true);
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
-		
+		zombieDeathSound.PlayOneShot(zombieDeathSound.clip,1.0);
 		trimUnnecessaryComponents();
 		
 		// Dying rotation variation
@@ -48,7 +50,8 @@ function trimUnnecessaryComponents() {
     for (var component : Component in components) {
             if (!(component instanceof Transform) &&
             	!(component instanceof Renderer) &&
-            	!(component instanceof Animator)) {
+            	!(component instanceof Animator) &&
+            	!(component instanceof AudioSource)) {
                  Destroy(component);
             }
     }

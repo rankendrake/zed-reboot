@@ -9,6 +9,8 @@ class ProjectileWeapon extends Weapon {
 	var reloadTime : float;
 	var bulletPrefab : GameObject;
 	var zedMovement : ZedMovement;
+	var firingSound : AudioSource;
+	var reloadingSound : AudioSource;
 	
 	var bullets : int;
 	var bulletsInClip : int;
@@ -25,7 +27,9 @@ class ProjectileWeapon extends Weapon {
 			reloadTime : float,
 			id : String,
 			bulletPrefab : GameObject, 
-			zedMovement : ZedMovement) {
+			zedMovement : ZedMovement,
+			firingSound : AudioSource,
+			reloadingSound : AudioSource) {
 			
 		this.rateOfFire = rateOfFire;
 		this.firePower = firePower;
@@ -36,9 +40,10 @@ class ProjectileWeapon extends Weapon {
 		this.id = id;
 		this.bulletPrefab = bulletPrefab;
 		this.zedMovement = zedMovement;
-		
+		this.firingSound = firingSound;
+		this.reloadingSound = reloadingSound;
+			
 		bullets = 1000; // hardcoded, should be dynamic in future implementation.
-		
 		reload();
 	}
 	
@@ -54,7 +59,8 @@ class ProjectileWeapon extends Weapon {
 				var newBullet : GameObject = Instantiate(bulletPrefab, 
 						zedMovement.getPosition(), Quaternion.AngleAxis(angle, Vector3.forward));
 				newBullet.GetComponent(BulletProperties).setPower(firePower);
-				newBullet.rigidbody2D.velocity = bulletVelocity*zedMovement.getDirection();				
+				newBullet.rigidbody2D.velocity = bulletVelocity*zedMovement.getDirection();
+				firingSound.PlayOneShot(firingSound.clip,1.0);
 				lastShotTime = Time.time;
 				if (bulletsInClip == 0) {
 					reload();
@@ -77,6 +83,7 @@ class ProjectileWeapon extends Weapon {
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
 		}
+		reloadingSound.PlayDelayed(reloadTime - reloadingSound.clip.length);
 		return justReloaded;
 	}
 	
