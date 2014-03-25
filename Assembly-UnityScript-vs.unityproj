@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
      <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
      <Compile Include="Assets\Scripts\Visuals\CameraMovement.js" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Zed\PerkAddMoveSpeed1.js" />
      <Compile Include="Assets\Scripts\Zed\ZedMovement.js" />
      <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
      <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
