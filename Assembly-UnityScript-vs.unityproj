@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

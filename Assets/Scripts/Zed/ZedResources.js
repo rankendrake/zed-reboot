@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 private var experience : int;
-private var health : float;
+var health : float;
 private var level : int;
 
 var weapons : Weapon[];
@@ -48,7 +48,6 @@ function reduceHealth(reductionAmount : float) {
 		health = 0;
 	}
 }
-
 
 /*
  *	EXPERIENCE & LEVEL
