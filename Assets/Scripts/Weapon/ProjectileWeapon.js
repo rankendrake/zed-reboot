@@ -76,15 +76,22 @@ class ProjectileWeapon extends Weapon {
 	}
 	
 	private function reload() : boolean {
+		if(bulletsInClip == clipSize) {
+			return justReloaded;
+		}
 		bulletsInClipBeforeReload = bulletsInClip;
 		bulletsInClip = Mathf.Min(clipSize, bullets);
-		bullets -= bulletsInClip;
+		bullets -= bulletsInClip - bulletsInClipBeforeReload;
 		justReloaded = bulletsInClip > 0;
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
 		}
 		reloadingSound.PlayDelayed(reloadTime - reloadingSound.clip.length);
 		return justReloaded;
+	}
+	
+	function addClips(clips : int) {
+		bullets += (clips * clipSize);
 	}
 	
 	function increaseFirePower(factor : float) {

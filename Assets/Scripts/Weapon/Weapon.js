@@ -10,6 +10,9 @@ class Weapon extends UnityEngine.Object {
 		Debug.Log("General weapon strike");
 	}
 	
+	function addClips(clips : int) {
+	}
+	
 	function getClipSize() : int {
 		return 0; // null is melee
 	}

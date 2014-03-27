@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
      <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
+     <Compile Include="Assets\Scripts\Pickup\PickupAddAmmo.js" />
      <Compile Include="Assets\Scripts\Visuals\CameraMovement.js" />
      <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
      <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
