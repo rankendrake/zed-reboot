@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
      <Compile Include="Assets\Scripts\Zed\PerkAddMoveSpeed1.js" />
+     <Compile Include="Assets\Scripts\Zed\PerkIncreaseDamage1.js" />
      <Compile Include="Assets\Scripts\Zed\ZedMovement.js" />
      <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
      <Compile Include="Assets\Scripts\Zed\ZedResources.js" />

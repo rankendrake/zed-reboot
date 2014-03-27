@@ -87,6 +87,10 @@ class ProjectileWeapon extends Weapon {
 		return justReloaded;
 	}
 	
+	function increaseFirePower(factor : float) {
+		firePower *= factor;
+	}
+	
 	function getJustReloaded() : boolean {
 		return justReloaded;
 	}

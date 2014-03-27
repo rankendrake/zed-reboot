@@ -8,8 +8,10 @@ var weapons : Weapon[];
 var currentWeaponIndex : int;  // index in weapons-array
 
 var weaponArsenal : WeaponArsenal;
+var timeOfLastDamage : float;
+var damageSoundTime : float;
 
-
+var damageSound : AudioSource;
 /*
 	var weaponScript : Weapon;
 	weaponScript = currentWeapon.GetComponent(Weapon);
@@ -26,6 +28,8 @@ function Start() {
 	weapons = weaponArsenal.initializeArsenal();
 	currentWeaponIndex = 0;
 	health = 100;
+	timeOfLastDamage = Time.time;
+	damageSoundTime = 0.6;
 }
 
 function Update() {
@@ -46,6 +50,10 @@ function reduceHealth(reductionAmount : float) {
 	health -= reductionAmount;			
 	if (health < 0) {
 		health = 0;
+	}
+	if(Time.time > timeOfLastDamage + damageSoundTime) {
+		damageSound.Play();
+		timeOfLastDamage = Time.time;
 	}
 }
 

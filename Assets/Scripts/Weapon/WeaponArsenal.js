@@ -7,7 +7,6 @@ var shotgunBulletPrefab : GameObject;
 var assaultRifleBulletPrefab : GameObject;
 var zed : GameObject;
 var clips : AudioSource[];
-
 function initializeArsenal () : Weapon[] {
 	var weapons : Weapon[] = new Weapon[4];
 			
