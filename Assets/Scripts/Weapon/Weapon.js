@@ -10,6 +10,10 @@ class Weapon extends UnityEngine.Object {
 		Debug.Log("General weapon strike");
 	}
 	
+	function secondaryStrike() {
+		Debug.Log("General weapon secondary strike");
+	}
+	
 	function addClips(clips : int) {
 	}
 	

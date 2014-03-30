@@ -1,6 +1,8 @@
 ﻿#pragma strict
 
 class MeleeWeapon extends Weapon {
+	private var zed : GameObject;
+	private var weaponAnimator : Animator;
 	var reach : int;
 	var power : int;
 	
@@ -11,12 +13,20 @@ class MeleeWeapon extends Weapon {
 		this.reach = reach;
 		this.power = power;
 		this.id = id;
-		
+		zed = GameObject.Find("zed");
+		weaponAnimator = zed.transform.GetChild(0).GetComponent(Animator);
 	}
 	
 	// @Override
 	function strike() {
 		//Debug.Log("attack with melee weapon. power = " + power);
+		weaponAnimator.Play("Cleave");
+	}
+	
+	// @Override
+	function secondaryStrike() {
+		//Debug.Log("attack with melee weapon. power = " + power);
+		weaponAnimator.Play("Stab");
 	}
 	
 	// @Override

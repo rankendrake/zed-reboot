@@ -21,6 +21,10 @@ function Update() {
 		currentWeapon.strike();
 	}
 	
+	else if (Input.GetMouseButton(1)) {
+		currentWeapon.secondaryStrike();
+	}
+	
 //	if (Input.GetMouseButton(0) && 
 //			((Time.time - timeOfLastShot)*weapon.getRateOfFire()) > 1 && 
 //			(clip.getReloadStartTime() + reloadTime < Time.time)) {
