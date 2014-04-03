@@ -26,9 +26,12 @@ function Update() {
 }
 
 function pickupExecute() {
-		for(var weapon in zedResources.weapons) {
-			weapon.addClips(numberOfClips);
-		}
-		WaitForEndOfFrame();
-		Destroy(gameObject);
+	for(var weapon : Weapon in zedResources.weapons) {
+		if (weapon instanceof ProjectileWeapon) {
+			var projectileWeapon : ProjectileWeapon = weapon as ProjectileWeapon;
+			projectileWeapon.addClips(numberOfClips);
+		}		
+	}
+	WaitForEndOfFrame();
+	Destroy(gameObject);
 }

@@ -114,6 +114,10 @@ class ProjectileWeapon extends Weapon {
 		reload();
 	}
 	
+	function addClips(clips : int) {
+		bullets += (clips * clipSize);
+	}
+	
 	private function reload() : boolean {
 		bulletsInClipBeforeReload = bulletsInClip;
 		bulletsInClip = Mathf.Min(clipSize, bullets);

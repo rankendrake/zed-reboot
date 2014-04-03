@@ -19,6 +19,8 @@ function Update() {
 	// according to weapon in zedResources
 	else if (Input.GetMouseButton(0)) {
 		currentWeapon.strike();
+	} 	else if (Input.GetMouseButton(1)) {
+		currentWeapon.secondaryStrike();
 	}
 	
 //	if (Input.GetMouseButton(0) && 

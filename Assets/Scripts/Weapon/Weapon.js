@@ -7,6 +7,10 @@ class Weapon extends UnityEngine.Object {
 		Debug.Log("General weapon strike");
 	}
 	
+	function secondaryStrike() {
+	
+	}
+	
 	function getClipSize() : int {
 		return 0; // null is melee
 	}
@@ -22,6 +26,7 @@ class Weapon extends UnityEngine.Object {
 	function falsifyJustReloaded() {}
 	
 	function manualReload() {}
+	
 	
 	function getBullets() : int {
 		return 0;

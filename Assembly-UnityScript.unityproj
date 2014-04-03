@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{D9D257B4-6CCA-3637-F958-1B67BB7C358A}</ProjectGuid>
+	<ProjectGuid>{0B27BE7F-0486-4256-4321-B5FA6447E8D8}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AnimatorLayerWeightToOne.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\SkillPointCoinBehavior.js" />
      <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />
      <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
+     <Compile Include="Assets\Scripts\Pickup\PickupAddAmmo.js" />
      <Compile Include="Assets\Scripts\Visuals\CameraController.js" />
      <Compile Include="Assets\Scripts\Visuals\CameraMovement.js" />
      <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
@@ -85,6 +87,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
+     <Compile Include="Assets\SwordImpact.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
