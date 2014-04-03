@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
      <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
      <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\LeaderZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
