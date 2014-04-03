@@ -16,8 +16,11 @@ private var standing : boolean;
 private var rotation : float;
 private var position : Vector3;
 
+private var _transform : Transform;
+
 function Start() {
 	position = transform.position;
+	_transform = transform;
 }
 
 function Update () {
@@ -71,16 +74,16 @@ function Update () {
 	var oldPosition : Vector3 = position;
 	position += new Vector3(moveSpeedX*Time.deltaTime, moveSpeedY*Time.deltaTime, 0);
 	if (map.renderer.bounds.size.x/2 > Mathf.Abs(position.x)) {	
-		rigidbody2D.transform.position.x = position.x;
+		_transform.position.x = position.x;
 	} else {
 		position.x = oldPosition.x;
 	}
 	if (map.renderer.bounds.size.y/2 > Mathf.Abs(position.y)) {	
-		rigidbody2D.transform.position.y = position.y;
+		_transform.position.y = position.y;
 	} else {
 		position.y = oldPosition.y;
 	}
-	
+
 	zedAnimator.SetFloat("speed", Mathf.Max(absMoveSpeedX, absMoveSpeedY));
 	
 	
