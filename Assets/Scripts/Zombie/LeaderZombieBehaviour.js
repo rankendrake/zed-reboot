@@ -1,12 +1,12 @@
 ﻿#pragma strict
 
-enum Mode{Searching, Attacking};
-var currentBehaviour : Mode;
+enum LeaderZombieMode{Searching, Attacking};
+var currentBehaviour : LeaderZombieMode;
 
 var speedDeviation : float;
 var centralizationOfDeviation : int;
 
-var closeEnough : float = 0.12;
+var closeEnough : float = 0.10;
 var strikeRange : float = closeEnough;
 
 var nextPosition : Vector3;
@@ -14,9 +14,11 @@ var scentAccuracy : float;
 
 var visualRange : float;
 
+var positionDifference : Vector3;
+
 private var direction : float;
-private var speed : float;
-private var angularSpeed : float;
+var speed : float;
+var angularSpeed : float;
 
 var zed : GameObject;
 var displacementFromZed : Vector2;
@@ -25,15 +27,14 @@ var zombieStrike : ZombieStrike;
 var zombieResources : ZombieResources;
 
 function Start () {
-	currentBehaviour = Mode.Searching;
-	nextPosition = zed.transform.position + (Random.insideUnitSphere * scentAccuracy);
 	zed = GameObject.Find("zed");
+	currentBehaviour = LeaderZombieMode.Searching;
+	nextPosition = zed.transform.position + (Random.insideUnitSphere * scentAccuracy);
 	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
 	var positionDifference : Vector3 = nextPosition - transform.position;
 	direction = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
 	zombieResources = gameObject.GetComponent(ZombieResources);
-	
 	var speedDeviationFraction : float = speedDeviation / centralizationOfDeviation;
 	for (var i = 0; i < centralizationOfDeviation; i++) {
 		speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
@@ -45,18 +46,20 @@ function Start () {
 function Update () {
 	displacementFromZed = zed.transform.position - transform.position;
 	switch (currentBehaviour) {
-		case Mode.Searching :
+		case LeaderZombieMode.Searching :
 			moveTowards(nextPosition, false);
 			// If Leader moves within visual range of Zed, switch to attack mode.
 			if(Vector2.SqrMagnitude(displacementFromZed) < visualRange*visualRange) {
-				currentBehaviour = Mode.Attacking;
+				currentBehaviour = LeaderZombieMode.Attacking;
 				nextPosition = zed.transform.position;
 			}
 		break;
-		case Mode.Attacking :
+		case LeaderZombieMode.Attacking :
+			// If attacking, chase Zed.
 			moveTowards(zed.transform.position, true);
-			if(Vector2.SqrMagnitude(displacementFromZed) > visualRange*visualRange) {
-				currentBehaviour = Mode.Searching;
+			// If leader cannot see Zed, resume Searching.
+			if(Vector2.SqrMagnitude(displacementFromZed) > visualRange*visualRange*1.5) {
+				currentBehaviour = LeaderZombieMode.Searching;
 				nextPosition = zed.transform.position + (Random.insideUnitSphere * scentAccuracy);
 				nextPosition.z = transform.position.z;
 			}
@@ -67,7 +70,7 @@ function Update () {
 }
 
 function moveTowards(destination : Vector3, chasing : boolean) {
-	var positionDifference : Vector3 = destination - transform.position;
+	positionDifference = destination - transform.position;
 	positionDifference.z = 0;
 	var targetDirection : float = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
@@ -79,9 +82,11 @@ function moveTowards(destination : Vector3, chasing : boolean) {
 		angleDifference += 360;
 	}
 	
-	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
+	direction += angularSpeed*Time.deltaTime*angleDifference;
 	transform.eulerAngles = new Vector3(0, 0, direction);
 	
+	
+	// If zombie is within attacking range of Zed, face Zed, stop, and hit Zed.
 	if(Vector3.Magnitude(positionDifference) < closeEnough) {
 		if(!chasing) {
 			nextPosition = zed.transform.position + (Random.insideUnitSphere * scentAccuracy);

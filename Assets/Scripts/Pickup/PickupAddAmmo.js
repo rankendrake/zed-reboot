@@ -2,21 +2,25 @@
 
 var numberOfClips : int;
 var zedResources : ZedResources;
+var pickupBounds : Bounds;
+var pickupLength : float;
 
 function Start () {
 	numberOfClips = 1;
 	zedResources = GameObject.Find("zed").GetComponent(ZedResources) as ZedResources;
+	pickupBounds = gameObject.GetComponent(MeshRenderer).bounds;
+	pickupLength = pickupBounds.max.x - pickupBounds.min.x;
 }
 
-function OnTriggerEnter2D(otherCollider : Collider2D) {
-	if (otherCollider.CompareTag("Player")) {
-		Debug.Log("Collides!");
-		zedResources = otherCollider.gameObject.GetComponent(ZedResources) as ZedResources;
+function Update() {
+	if(pickupBounds.SqrDistance(GameObject.Find("zed").transform.position) < pickupLength*pickupLength)
+		pickupExecute();
+}
+
+function pickupExecute() {
 		for(var weapon in zedResources.weapons) {
 			weapon.addClips(numberOfClips);
 		}
-		collider2D.enabled = false;
 		WaitForEndOfFrame();
 		Destroy(gameObject);
-	}
 }
