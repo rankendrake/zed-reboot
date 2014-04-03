@@ -31,7 +31,7 @@ function Update() {
 	var zedPosition : Vector3 = zed.position;
 
 	var positionDifference : Vector3 = zedPosition - transform.position;
-	positionDifference.z += 1;
+	positionDifference.z += 1; // why not set to 0 ?
 	var targetDirection : float = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
 	var angleDifference : float = (targetDirection - direction);
@@ -48,8 +48,11 @@ function Update() {
 	if (Vector3.Magnitude(positionDifference) < strikeRange) {
 		rigidbody2D.velocity = Vector2.zero;
 		zombieStrike.hitZed();
-	}
-	else {
+	} /*else if (Vector3.Distance(zedPosition, transform.position) < 1.2*strikeRange) { // POTENTIAL SLOWDOWN
+		rigidbody2D.velocity = new Vector2(
+			speed/2*Mathf.Cos(Mathf.Deg2Rad*direction), 
+			speed/2*Mathf.Sin(Mathf.Deg2Rad*direction));	
+	}*/ else {
 		rigidbody2D.velocity = new Vector2(
 			speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
 			speed*Mathf.Sin(Mathf.Deg2Rad*direction));

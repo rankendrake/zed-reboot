@@ -1,21 +1,24 @@
 ﻿#pragma strict
 
+var skillPointCoinPrefab : GameObject;
 var startHealth : float;
 var angleDeviationOfDying : float;
-
-var spawnAmmoPickupChance : float;
-var pickupPrefab : GameObject;
 
 private var zombieProperties : ZombieProperties;
 private var health : float;
 private var animatorDead : boolean;
 
+private var zedResources : ZedResources;
+
 var zombieDeathSound : AudioSource;
 
 function Start() {
 	zombieProperties = transform.GetComponent(ZombieProperties);
+
 	health = zombieProperties.getMaxHealth();
 	animatorDead = false;
+	
+	zedResources = GameObject.Find("zed").GetComponent(ZedResources);
 }
 
 function Update() {
@@ -25,21 +28,17 @@ function Update() {
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
 		zombieDeathSound.PlayOneShot(zombieDeathSound.clip,1.0);
-		spawnAmmoPickup();
 		trimUnnecessaryComponents();
 		
 		// Dying rotation variation
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
 		
 		// Tell Zed the difficulty of the zombie which was killed
-		var zedResources : ZedResources = GameObject.Find("zed").GetComponent(ZedResources);
 		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());
-	}
-}
-
-function spawnAmmoPickup() {
-	if(Random.value < spawnAmmoPickupChance) {
-		var newPickup : GameObject = Instantiate(pickupPrefab,transform.position,Quaternion.identity);
+		
+		if (Random.Range(0.0, 1.0) < zombieProperties.getSkillPointDropProbability()) {
+			dropSkillPoint();
+		}
 	}
 }
 
@@ -64,4 +63,8 @@ function trimUnnecessaryComponents() {
                  Destroy(component);
             }
     }
+}
+
+function dropSkillPoint() {
+	Instantiate(skillPointCoinPrefab, transform.position, Quaternion.identity);
 }

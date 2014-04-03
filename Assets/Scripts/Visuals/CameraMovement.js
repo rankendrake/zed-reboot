@@ -34,6 +34,9 @@ function Update() {
 	weightedDelta.z = 0;
 	transform.position += weightedDelta;
 	
+	
+	
+	
 //	if(zedPosition.x > leftBound && zedPosition.x < rightBound)
 //	{
 //		transform.position.x += weightedDelta.x;

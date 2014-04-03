@@ -1,24 +1,19 @@
 ﻿#pragma strict
+import System.Collections.Generic;
 
 private var experience : int;
-var health : float;
+private var health : float;
 private var level : int;
+private var skillPoints : int = 0;
+
 
 var weapons : Weapon[];
 var currentWeaponIndex : int;  // index in weapons-array
 
 var weaponArsenal : WeaponArsenal;
-var timeOfLastDamage : float;
-var damageSoundTime : float;
+var perkStock : PerkStock;
 
-var damageSound : AudioSource;
-/*
-	var weaponScript : Weapon;
-	weaponScript = currentWeapon.GetComponent(Weapon);
-	
-	weaponScript.rateOfFire
-	*/
-	
+var activePerks : PerkList;
 /*
  *	HEALTH
  */
@@ -28,8 +23,8 @@ function Start() {
 	weapons = weaponArsenal.initializeArsenal();
 	currentWeaponIndex = 0;
 	health = 100;
-	timeOfLastDamage = Time.time;
-	damageSoundTime = 0.6;
+	
+	activePerks = new PerkList();
 }
 
 function Update() {
@@ -51,25 +46,30 @@ function reduceHealth(reductionAmount : float) {
 	if (health < 0) {
 		health = 0;
 	}
-	if(Time.time > timeOfLastDamage + damageSoundTime) {
-		damageSound.Play();
-		timeOfLastDamage = Time.time;
-	}
+}
+
+function addPerk(perk : Perk) {
+	activePerks.addPerk(perk);
 }
 
 /*
  *	EXPERIENCE & LEVEL
- */
- 
+ */ 
 function handleZombieKilled(zombieDifficultyLevel : int) {
 	if (zombieDifficultyLevel == 1) {
-		gainExperience(1);
+		gainExperience(1);	
+	} else {
+		gainExperience(zombieDifficultyLevel);
 	}
 }
 
 function gainExperience(amount : int) {
 	experience += amount;
 	updateLevel();
+}
+
+function changeSkillPoints(difference : int) {
+	skillPoints += difference;
 }
 
 function updateLevel() {
@@ -86,4 +86,8 @@ function getExperience() {
 
 function getHealth() {
 	return health;
+}
+
+function getSkillPoints() {
+	return skillPoints;
 }

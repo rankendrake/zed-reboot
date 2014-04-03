@@ -14,8 +14,9 @@ function setPerk () {
 // indicate that zed already has the perk. If not, add the perk and set
 // its effect on zed.
 
-if(gameObject == GameObject.Find("zed")) {
-	var zedMovement : ZedMovement = GameObject.Find("zed").GetComponent("ZedMovement") as ZedMovement;
+if(transform == GameObject.Find("zed").transform) {
+	zed = GameObject.Find("zed");
+	var zedMovement : ZedMovement = zed.GetComponent("ZedMovement") as ZedMovement;
 	zedMovement.maxSpeed *= factor;
 	}
 }

@@ -3,18 +3,8 @@
 class Weapon extends UnityEngine.Object {
 	var id : String;
 
-	function increaseFirePower(factor : float) {
-	}
-
 	function strike() {
 		Debug.Log("General weapon strike");
-	}
-	
-	function secondaryStrike() {
-		Debug.Log("General weapon secondary strike");
-	}
-	
-	function addClips(clips : int) {
 	}
 	
 	function getClipSize() : int {

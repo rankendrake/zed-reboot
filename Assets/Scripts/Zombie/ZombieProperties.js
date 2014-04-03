@@ -4,6 +4,7 @@ var difficultyLevel : int;
 var maxHealth : float;
 var attackDamage : float;
 var timeBetweenHits : float;
+var skillPointDropProbability : float;
 
 function getDifficultyLevel() {
 	return difficultyLevel;
@@ -19,4 +20,8 @@ function getMaxHealth() {
 
 function getTimeBetweenHits() {
 	return timeBetweenHits;
+}
+
+function getSkillPointDropProbability() {
+	return skillPointDropProbability;
 }

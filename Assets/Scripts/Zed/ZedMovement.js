@@ -1,112 +1,119 @@
 ﻿#pragma strict
+var upperBody : GameObject;
+var zedResources : ZedResources;
 
 var maxSpeed : float;
-var maxAcceleration : float;
+var acceleration : float;
 var deceleration : float;
+var angularSpeed : float;
+var upperBodyAngularSpeed : float;
 var zedAnimator : Animator;
+var animatorSpeedFactor : float;
 var map : GameObject;
 
-private var moveSpeedX : float;
-private var moveSpeedY : float;
-private var accelerationX : float;
-private var accelerationY : float;
-private var standing : boolean;
+private var actualSpeed : float;
+private var targetSpeed : float;
 
-// The rotation and position are independent of the physics engine
-private var rotation : float;
-private var position : Vector3;
+private var actualAngle : float;
+private var targetAngle : float;
+
+private var upperBodyTargetAngle : float;
+private var upperBodyActualAngle : float;
+
+private var accelerating : boolean;
 
 private var _transform : Transform;
 
 function Start() {
-	position = transform.position;
+	// caching the Transform
 	_transform = transform;
 }
 
 function Update () {
-	// Deceleration at every frame
- 	if (moveSpeedX != 0) {
- 	 	if (moveSpeedX < 0) {
- 			moveSpeedX += Mathf.Min(Mathf.Abs(moveSpeedX), deceleration); 
-	 	} else {
-	 		moveSpeedX -= Mathf.Min(Mathf.Abs(moveSpeedX), deceleration);
-	 	}	
- 	}
- 	if (moveSpeedY != 0) {
- 	 	if (moveSpeedY < 0) {
- 			moveSpeedY += Mathf.Min(Mathf.Abs(moveSpeedY), deceleration); 
-	 	} else {
-	 		moveSpeedY -= Mathf.Min(Mathf.Abs(moveSpeedY), deceleration);
-	 	}	
- 	}
+	updateMovingState();
+	rotateUpperBody();
+	updateTransform();
+	notifyAnimator();
+}
+
+private function updateMovingState() {	
+	var axes : Vector2 = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		
+	targetSpeed = maxSpeed*Mathf.Min(axes.magnitude, 1.0);
+	targetAngle = Mathf.Rad2Deg*Mathf.Atan2(axes.y, axes.x);
 	
-	// Acceleration according to key pressed
-	if (Input.GetKey("w")) {
-		accelerationY = maxAcceleration;
-		moveSpeedY += accelerationY;
-	}
-	if (Input.GetKey("a")) {
-		accelerationX = -maxAcceleration;
-		moveSpeedX += accelerationX;
-	}
-	if (Input.GetKey("s")) {
-		accelerationY = -maxAcceleration;
-		moveSpeedY += accelerationY;
-	}
-	if (Input.GetKey("d")) {
-		accelerationX = maxAcceleration;
-		moveSpeedX += accelerationX;
-	}
+	var currentAcceleration : float = acceleration*Time.deltaTime;
 	
-	var absMoveSpeedX : float = Mathf.Abs(moveSpeedX);
-	var absMoveSpeedY : float = Mathf.Abs(moveSpeedY);
-	
-	// Max speed is not really max speed diagonally
-	if (absMoveSpeedX > maxSpeed) {
-		moveSpeedX = maxSpeed * Mathf.Sign(moveSpeedX);
-	}
-	if (absMoveSpeedY > maxSpeed) {
-		moveSpeedY = maxSpeed * Mathf.Sign(moveSpeedY);
+	// modification by perks
+	var activeMovementPerks : List.<MovementPerk> = zedResources.activePerks.getMovementPerks();
+	for (var perk : MovementPerk in activeMovementPerks) {
+		targetSpeed = targetSpeed * perk.getSpeedMultiplier();
+		currentAcceleration = currentAcceleration * perk.getAccelerationMultiplier();
 	}
 
-	//rigidbody2D.velocity = new Vector2(moveSpeedX, moveSpeedY);
-	//rigidbody2D.transform.position += new Vector3(moveSpeedX*Time.deltaTime, moveSpeedY*Time.deltaTime, 0);
-	var oldPosition : Vector3 = position;
-	position += new Vector3(moveSpeedX*Time.deltaTime, moveSpeedY*Time.deltaTime, 0);
-	if (map.renderer.bounds.size.x/2 > Mathf.Abs(position.x)) {	
-		_transform.position.x = position.x;
-	} else {
-		position.x = oldPosition.x;
-	}
-	if (map.renderer.bounds.size.y/2 > Mathf.Abs(position.y)) {	
-		_transform.position.y = position.y;
-	} else {
-		position.y = oldPosition.y;
-	}
+	// Slow down if no keys pressed
+	if (Mathf.Approximately(targetSpeed, 0)) {
+		var currentDeceleration : float = deceleration*Time.deltaTime;
+		if (Mathf.Abs(actualSpeed) > currentDeceleration) {
+			actualSpeed -= currentDeceleration;
+		} else {
+			actualSpeed = 0;
+		}
+		
+	// Accelerate
+	} else {	
+		var angleDifference = ZedUtils.getAngularDistance(actualAngle, targetAngle);
+		actualAngle = ZedUtils.linearlyAdjustAngle(actualAngle, targetAngle, angularSpeed*Time.deltaTime);
 
-	zedAnimator.SetFloat("speed", Mathf.Max(absMoveSpeedX, absMoveSpeedY));
-	
-	
-	/*
-	 * Rotation
-	 */
-	 
+		 
+		var speedDifference = targetSpeed - actualSpeed;
+		if (Mathf.Abs(speedDifference) > currentAcceleration) {
+			actualSpeed += currentAcceleration*Mathf.Sign(speedDifference) ;
+		} else {
+			actualSpeed = targetSpeed;
+		}
+	}
+}
+
+function rotateUpperBody() {
 	// getting the mouse position relative to the world
 	var mouseScreenPosition : Vector3 = Input.mousePosition;
 	mouseScreenPosition.z = transform.position.z - Camera.main.transform.position.z;
 	var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 	
 	var positionDifference : Vector3 = mouseWorldPosition - transform.position;
-	rotation = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
-	transform.eulerAngles = new Vector3(0, 0, rotation);
+	upperBodyTargetAngle = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
+	upperBodyActualAngle = ZedUtils.proportionallyAdjustAngle(upperBodyActualAngle,
+			upperBodyTargetAngle, upperBodyAngularSpeed*Time.deltaTime);
+	
+	upperBody.transform.eulerAngles = new Vector3(0, 0, upperBodyActualAngle+90);
+}
+
+function getUpperBodyAngle() {
+	return upperBodyActualAngle;
+}
+
+private function updateTransform() {
+	_transform.rotation.eulerAngles = new Vector3(0, 0, actualAngle);
+	var currentSpeed = Time.deltaTime*actualSpeed;
+	_transform.position += _transform.right*currentSpeed;
+}
+
+private function notifyAnimator(){
+	zedAnimator.speed = animatorSpeedFactor*actualSpeed;
+	zedAnimator.SetFloat("speed", actualSpeed);
 }
 
 function getDirection() : Vector2 {
-	return new Vector2(Mathf.Cos(Mathf.Deg2Rad*rotation), 
-			Mathf.Sin(Mathf.Deg2Rad*rotation));
+	return new Vector2(Mathf.Cos(Mathf.Deg2Rad*actualAngle), 
+			Mathf.Sin(Mathf.Deg2Rad*actualAngle));
+}
+
+function getAngle() : float {
+	return actualAngle;
 }
 
 function getPosition() : Vector3 {
-	return position;
+	return _transform.position;
 }

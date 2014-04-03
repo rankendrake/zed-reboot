@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{0B27BE7F-0486-4256-4321-B5FA6447E8D8}</ProjectGuid>
+	<ProjectGuid>{D9D257B4-6CCA-3637-F958-1B67BB7C358A}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,35 +46,45 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AnimatorLayerWeightToOne.js" />
+     <Compile Include="Assets\Scripts\Environment\Collectibles\SkillPointCoinBehavior.js" />
+     <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />
      <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
+     <Compile Include="Assets\Scripts\Environment\PerkMenu.js" />
+     <Compile Include="Assets\Scripts\Environment\PerkStock.js" />
      <Compile Include="Assets\Scripts\Environment\SpriteFinalizer.js" />
+     <Compile Include="Assets\Scripts\Environment\SurvivalSpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Environment\TimedObjectDestructor.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawner.js" />
-     <Compile Include="Assets\Scripts\Pickup\PickupAddAmmo.js" />
+     <Compile Include="Assets\Scripts\Environment\ZombieSpawning.js" />
+     <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
+     <Compile Include="Assets\Scripts\Visuals\CameraController.js" />
      <Compile Include="Assets\Scripts\Visuals\CameraMovement.js" />
      <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
      <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
-     <Compile Include="Assets\Scripts\Weapon\BulletImpact.js" />
+     <Compile Include="Assets\Scripts\Weapon\BulletMovement.js" />
      <Compile Include="Assets\Scripts\Weapon\BulletProperties.js" />
      <Compile Include="Assets\Scripts\Weapon\MeleeWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\MovementPerk.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\Perk.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\PerkList.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\WeaponPerk.js" />
      <Compile Include="Assets\Scripts\Zed\PerkAddMoveSpeed1.js" />
-     <Compile Include="Assets\Scripts\Zed\PerkIncreaseDamage1.js" />
      <Compile Include="Assets\Scripts\Zed\ZedMovement.js" />
      <Compile Include="Assets\Scripts\Zed\ZedProperties.js" />
      <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
+     <Compile Include="Assets\Scripts\Zed\ZedShadowDirection.js" />
      <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
-     <Compile Include="Assets\Scripts\Zombie\LeaderDetector.js" />
-     <Compile Include="Assets\Scripts\Zombie\LeaderZombieBehaviour.js" />
-     <Compile Include="Assets\Scripts\Zombie\PackZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
+     <Compile Include="Assets\Scripts\Zombie\ZombieMovement2.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
-     <Compile Include="Assets\SwordImpact.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

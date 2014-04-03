@@ -21,8 +21,3 @@ function Update () {
 	}
 }
 
-function OnTriggerExit2D(otherCollider : Collider2D) {
-	if (otherCollider.gameObject.tag.Equals("bullet")) {
-		otherCollider.gameObject.tag = "doomedBullet";
-	}
-}

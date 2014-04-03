@@ -1,7 +1,6 @@
 ﻿#pragma strict
 
 var ZombiePrefab : GameObject;
-var LeaderZombiePrefab : GameObject;
 var spawnDelay : float;
 var distanceFromEdge : float;
 
@@ -24,7 +23,7 @@ function Start() {
 
 function Update() {
 	if ((Time.time - lastSpawnTime) > spawnDelay) {
-		var NewZombie : GameObject = Instantiate(LeaderZombiePrefab, spawnLocation, transform.rotation);
+		var NewZombie : GameObject = Instantiate(ZombiePrefab, spawnLocation, transform.rotation);
 		lastSpawnTime = Time.time;
 		
 		randomizeSpawnLocation();

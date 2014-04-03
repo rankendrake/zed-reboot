@@ -28,13 +28,17 @@ function OnGUI() {
 	clipSize = weapon.getClipSize();
 
 	
-	GUI.color = new Color(0.0, 0.0, 0.0, 0.25);
+	GUI.color = new Color(0.0, 0.0, 0.0, 0.9);
 	// Zed level, exp
 	GUI.Label(
 		Rect(10, 175, 100, 100), 
 		"Level: " + zedResources.getLevel().ToString() + 
 		"\nExperience: " +  zedResources.getExperience().ToString() +
-		"\nHealth: " +  zedResources.getHealth().ToString());
+		"\nHealth: " +  zedResources.getHealth().ToString() + 
+		"\nSkillPoints: " + zedResources.getSkillPoints().ToString()
+		);
+	
+	GUI.color = new Color(0.0, 0.0, 0.0, 0.25);
 	
 	if (weapon.getId() != null) {
 		var melee : boolean = false;
