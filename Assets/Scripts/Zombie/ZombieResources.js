@@ -10,7 +10,9 @@ private var animatorDead : boolean;
 
 private var zedResources : ZedResources;
 
-var zombieDeathSound : AudioSource;
+//var zombieDeathSound : AudioSource;
+
+var zombieDeathSound : AudioClip;
 
 function Start() {
 	zombieProperties = transform.GetComponent(ZombieProperties);
@@ -27,7 +29,8 @@ function Update() {
 		gameObject.GetComponent(Animator).SetBool("isDead", true);
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
-		zombieDeathSound.PlayOneShot(zombieDeathSound.clip,1.0);
+	// Play death sound.
+		AudioSource.PlayClipAtPoint(zombieDeathSound,transform.position);
 		trimUnnecessaryComponents();
 		
 		// Dying rotation variation

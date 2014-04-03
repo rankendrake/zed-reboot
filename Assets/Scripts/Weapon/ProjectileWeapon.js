@@ -12,8 +12,11 @@ class ProjectileWeapon extends Weapon {
 	var zedMovement : ZedMovement;
 	var zedResources : ZedResources;
 	var spawnOffset : Vector2;
-	var firingSound : AudioSource;
-	var reloadingSound : AudioSource;
+//	var firingSound : AudioSource;
+//	var reloadingSound : AudioSource;
+
+	var firingSound : AudioClip;
+	var reloadingSound : AudioClip;
 	
 	
 	var bullets : int;
@@ -33,8 +36,8 @@ class ProjectileWeapon extends Weapon {
 			bulletPrefab : GameObject, 
 			zed : GameObject,
 			spawnOffset : Vector2,
-			firingSound : AudioSource,
-			reloadingSound : AudioSource) {
+			firingSound : AudioClip,
+			reloadingSound : AudioClip) {
 			
 		this.rateOfFire = rateOfFire;
 		this.firePower = firePower;
@@ -99,7 +102,7 @@ class ProjectileWeapon extends Weapon {
 				newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
 				
 				
-				firingSound.PlayOneShot(firingSound.clip,1.0);
+				AudioSource.PlayClipAtPoint(firingSound,zed.transform.position);
 				lastShotTime = Time.time;
 				if (bulletsInClip == 0) {
 					reload();
@@ -111,14 +114,16 @@ class ProjectileWeapon extends Weapon {
 	}
 	
 	function manualReload() {
-		reload();
+		if(bulletsInClip < clipSize) {
+			reload();
+		}
 	}
 	
 	function addClips(clips : int) {
 		bullets += (clips * clipSize);
 	}
 	
-	private function reload() : boolean {
+	private function reload() {
 		bulletsInClipBeforeReload = bulletsInClip;
 		bulletsInClip = Mathf.Min(clipSize, bullets);
 		bullets -= bulletsInClip;
@@ -126,8 +131,17 @@ class ProjectileWeapon extends Weapon {
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
 		}
-		reloadingSound.PlayDelayed(reloadTime - reloadingSound.clip.length);
-		return justReloaded;
+		playReloadSound();
+	}
+	
+	// TODO: Figure out how to introduce a time delay onto the script without breaking it.
+	// yield seems to break the whole thing.
+	
+	function playReloadSound() {
+		Debug.Log("Reload sound going to play.");
+		var waitTime : float = reloadTime - reloadingSound.length;
+		AudioSource.PlayClipAtPoint(reloadingSound,zed.transform.position);
+		Debug.Log("Reload sound played.");
 	}
 	
 	function getJustReloaded() : boolean {
