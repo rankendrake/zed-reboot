@@ -3,6 +3,9 @@
 var startHealth : float;
 var angleDeviationOfDying : float;
 
+var spawnAmmoPickupChance : float;
+var pickupPrefab : GameObject;
+
 private var zombieProperties : ZombieProperties;
 private var health : float;
 private var animatorDead : boolean;
@@ -11,7 +14,6 @@ var zombieDeathSound : AudioSource;
 
 function Start() {
 	zombieProperties = transform.GetComponent(ZombieProperties);
-
 	health = zombieProperties.getMaxHealth();
 	animatorDead = false;
 }
@@ -23,6 +25,7 @@ function Update() {
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
 		zombieDeathSound.PlayOneShot(zombieDeathSound.clip,1.0);
+		spawnAmmoPickup();
 		trimUnnecessaryComponents();
 		
 		// Dying rotation variation
@@ -31,6 +34,12 @@ function Update() {
 		// Tell Zed the difficulty of the zombie which was killed
 		var zedResources : ZedResources = GameObject.Find("zed").GetComponent(ZedResources);
 		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());
+	}
+}
+
+function spawnAmmoPickup() {
+	if(Random.value < spawnAmmoPickupChance) {
+		var newPickup : GameObject = Instantiate(pickupPrefab,transform.position,Quaternion.identity);
 	}
 }
 

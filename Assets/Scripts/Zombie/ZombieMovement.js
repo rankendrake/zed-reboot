@@ -48,11 +48,8 @@ function Update() {
 	if (Vector3.Magnitude(positionDifference) < strikeRange) {
 		rigidbody2D.velocity = Vector2.zero;
 		zombieStrike.hitZed();
-	} /*else if (Vector3.Distance(zedPosition, transform.position) < 1.2*strikeRange) { // POTENTIAL SLOWDOWN
-		rigidbody2D.velocity = new Vector2(
-			speed/2*Mathf.Cos(Mathf.Deg2Rad*direction), 
-			speed/2*Mathf.Sin(Mathf.Deg2Rad*direction));	
-	}*/ else {
+	}
+	else {
 		rigidbody2D.velocity = new Vector2(
 			speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
 			speed*Mathf.Sin(Mathf.Deg2Rad*direction));
