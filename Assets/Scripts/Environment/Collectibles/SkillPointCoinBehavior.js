@@ -5,6 +5,8 @@ var maxStartSpeed : float;
 var drag : float;
 var _transform : Transform;
 
+var clinkSound : AudioClip;
+
 private var velocity : Vector2;
 
 function Start() {
@@ -32,7 +34,7 @@ function collect(zedResources : ZedResources) {
 	if (zedResources == null) {
 		Debug.Log("Error! Skill point collected by GameObject without ZedResources");
 	}
-	
+	AudioSource.PlayClipAtPoint(clinkSound,_transform.position);
 	Destroy(gameObject);
 	zedResources.changeSkillPoints(skillPoints);
 }

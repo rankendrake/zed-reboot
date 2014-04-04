@@ -126,7 +126,7 @@ class ProjectileWeapon extends Weapon {
 	private function reload() {
 		bulletsInClipBeforeReload = bulletsInClip;
 		bulletsInClip = Mathf.Min(clipSize, bullets);
-		bullets -= bulletsInClip;
+		bullets -= (bulletsInClip - bulletsInClipBeforeReload);
 		justReloaded = bulletsInClip > 0;
 		if (justReloaded) {
 			reloadEndTime = Time.time + reloadTime;
@@ -138,10 +138,10 @@ class ProjectileWeapon extends Weapon {
 	// yield seems to break the whole thing.
 	
 	function playReloadSound() {
-		Debug.Log("Reload sound going to play.");
+//		Debug.Log("Reload sound going to play.");
 		var waitTime : float = reloadTime - reloadingSound.length;
 		AudioSource.PlayClipAtPoint(reloadingSound,zed.transform.position);
-		Debug.Log("Reload sound played.");
+//		Debug.Log("Reload sound played.");
 	}
 	
 	function getJustReloaded() : boolean {
