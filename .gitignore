@@ -4,3 +4,5 @@ zed-csharp.sln
 zed.sln
 zed.userprefs
 Assets/Scenes/scene.unity
+Assembly-UnityScript-vs.unityproj
+Assembly-UnityScript.unityproj
