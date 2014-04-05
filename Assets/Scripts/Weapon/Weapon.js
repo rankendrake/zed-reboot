@@ -27,6 +27,7 @@ class Weapon extends UnityEngine.Object {
 	
 	function manualReload() {}
 	
+	function addClips(clips : int) {}
 	
 	function getBullets() : int {
 		return 0;
