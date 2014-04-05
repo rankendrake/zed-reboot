@@ -98,17 +98,17 @@ function getUpperBodyAngle() {
 private function checkMapBounds() {
 	if (_transform.position.x < EnvironmentAttributes.mapBounds.min.x) {
 		_transform.position.x = EnvironmentAttributes.mapBounds.min.x;
-		setActualVelocityX(0);
-		setActualVelocityY(actualSpeed*Mathf.Cos(Mathf.Deg2Rad(targetAngle)));
+//		setActualVelocityX(0);
+//		setActualVelocityY(actualSpeed*Mathf.Cos(Mathf.Deg2Rad(targetAngle)));
 	} else if (_transform.position.x > EnvironmentAttributes.mapBounds.max.x) {
 		_transform.position.x = EnvironmentAttributes.mapBounds.max.x;
-		setActualVelocityX(0);
+//		setActualVelocityX(0);
 	} else if (_transform.position.y < EnvironmentAttributes.mapBounds.min.y) {
 		_transform.position.y = EnvironmentAttributes.mapBounds.min.y;
-		setActualVelocityY(0);
+	//	setActualVelocityY(0);
 	} else if (_transform.position.y > EnvironmentAttributes.mapBounds.max.y) {
 		_transform.position.y = EnvironmentAttributes.mapBounds.max.y;
-		setActualVelocityY(0);
+	//	setActualVelocityY(0);
 	}
 }
 
@@ -119,6 +119,7 @@ private function updateTransform() {
 }
 
 private function notifyAnimator(){
+	//zedAnimator.speed = animatorSpeedFactor*actualSpeed;
 	zedAnimator.SetFloat("speed", actualSpeed);
 }
 
