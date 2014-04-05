@@ -1,4 +1,4 @@
-﻿#pragma strict
+#pragma strict
 import System.Collections.Generic;
 
 private var experience : int;
@@ -7,6 +7,7 @@ private var level : int;
 private var skillPoints : int = 0;
 
 private var animatorDead : boolean;
+private var promptOpened : boolean = false;
 
 var weapons : Weapon[];
 var currentWeaponIndex : int;  // index in weapons-array
@@ -29,12 +30,14 @@ function Start() {
 }
 
 function Update() {
-	if (!isAlive() && !animatorDead) {	// Zed is dying
-		if (animatorDead) {
-			// trigger high scores scene in 5...
-
+	if (!isAlive()) {	// Zed is dying
+		if (animatorDead && !promptOpened) {
+			GameObject.Find("environment").GetComponent(NamePrompt).openPrompt();
+			promptOpened = true;
+			Time.timeScale = 0;
 		} else {
 			gameObject.GetComponent(Animator).SetBool("isDead", true);
+			animatorDead = true;
 			trimUnnecessaryComponents();
 		}
 	} else if (Time.time > weapons[currentWeaponIndex].getReloadEndTime()) {

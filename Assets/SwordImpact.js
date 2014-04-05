@@ -19,9 +19,9 @@ function Update () {
   
 	Debug.DrawLine(transform.position, transform.position + direction * length, Color.green, 0.1, false);
 	var hit : RaycastHit2D[] = Physics2D.RaycastAll(transform.position, direction, length);
-	if (hit.Length != 0) {
-		Debug.Log(hit[0].collider.transform.gameObject.name); 
-	}
+	// if (hit.Length != 0) {
+	// 	Debug.Log(hit[0].collider.transform.gameObject.name); 
+	// }
 	
 	for (var h : RaycastHit2D in hit) {
 		if (h.rigidbody != null && h.transform.gameObject.CompareTag("zombie")) {

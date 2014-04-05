@@ -11,7 +11,8 @@ function OnGUI() {
 			(startButtonY)*Screen.height, 
 			buttonWidth*Screen.width,
 			buttonHeight*Screen.width);
-	if (GUI.Button (buttonRect,	GUIContent("Start Survival"))) {							
+	if (GUI.Button (buttonRect,	GUIContent("Start Survival"))) {	
+		Time.timeScale = 1;						
 		Application.LoadLevel("scene");
 	}
 	
