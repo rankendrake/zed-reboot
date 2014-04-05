@@ -17,7 +17,7 @@ private var lastCheckTime : float;
 
 private var spawnJobs : List.<ZombieSpawnJob>;
 
-function Start() {
+function Awake() {
 	spawnJobs = new List.<ZombieSpawnJob>();
 }
 
@@ -115,6 +115,6 @@ function spawnContinuous(prefab : GameObject, startTime : float, duration : floa
  * 			for spawning until game ends.
  */
 function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		period : float, edge : Edge) {
+		period : float, edge : Edge) {	
 	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, period, edge));
 }

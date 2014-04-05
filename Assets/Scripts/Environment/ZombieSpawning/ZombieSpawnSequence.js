@@ -20,5 +20,14 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, period, edge)
 	// spawnContinuous(prefab, startTime, duration, period, edges) [to do]
 	
-	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 2, 100, 2, Edge.BOTTOM);
+//	if (leaderZombiePrefab == null) {
+//		print("hello");
+//	}
+
+	if (zombieSpawnEngine == null) {
+		print("null");
+	} else {
+		zombieSpawnEngine.spawnContinuous(packZombiePrefab, 2, 100, 2, Edge.BOTTOM);
+	}
+	//zombieSpawnEngine.spawnContinuous(leaderZombiePrefab, 2, 100, 2, Edge.BOTTOM);
 }
