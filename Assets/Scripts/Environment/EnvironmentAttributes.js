@@ -3,7 +3,6 @@
 var backgroundSpriteRenderer : SpriteRenderer;
 static var mapBounds : Bounds;
 
-function Start () {
+function Awake () {
 	mapBounds = backgroundSpriteRenderer.bounds;
 }
-

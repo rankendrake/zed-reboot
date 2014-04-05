@@ -33,6 +33,7 @@ function Update () {
 	updateMovingState();
 	rotateUpperBody();
 	updateTransform();
+	checkMapBounds();
 	notifyAnimator();
 }
 
@@ -94,6 +95,23 @@ function getUpperBodyAngle() {
 	return upperBodyActualAngle;
 }
 
+private function checkMapBounds() {
+	if (_transform.position.x < EnvironmentAttributes.mapBounds.min.x) {
+		_transform.position.x = EnvironmentAttributes.mapBounds.min.x;
+		setActualVelocityX(0);
+		setActualVelocityY(actualSpeed*Mathf.Cos(Mathf.Deg2Rad(targetAngle)));
+	} else if (_transform.position.x > EnvironmentAttributes.mapBounds.max.x) {
+		_transform.position.x = EnvironmentAttributes.mapBounds.max.x;
+		setActualVelocityX(0);
+	} else if (_transform.position.y < EnvironmentAttributes.mapBounds.min.y) {
+		_transform.position.y = EnvironmentAttributes.mapBounds.min.y;
+		setActualVelocityY(0);
+	} else if (_transform.position.y > EnvironmentAttributes.mapBounds.max.y) {
+		_transform.position.y = EnvironmentAttributes.mapBounds.max.y;
+		setActualVelocityY(0);
+	}
+}
+
 private function updateTransform() {
 	_transform.rotation.eulerAngles = new Vector3(0, 0, actualAngle);
 	var currentSpeed = Time.deltaTime*actualSpeed;
@@ -101,7 +119,6 @@ private function updateTransform() {
 }
 
 private function notifyAnimator(){
-	zedAnimator.speed = animatorSpeedFactor*actualSpeed;
 	zedAnimator.SetFloat("speed", actualSpeed);
 }
 
@@ -116,4 +133,22 @@ function getAngle() : float {
 
 function getPosition() : Vector3 {
 	return _transform.position;
+}
+
+function setActualVelocityX(val : float) {
+	var actualVelocity : Vector2 = new Vector2(
+			actualSpeed*Mathf.Cos(Mathf.Deg2Rad*actualAngle),
+			actualSpeed*Mathf.Sin(Mathf.Deg2Rad*actualAngle));
+	actualVelocity.x = val;
+	actualSpeed = actualVelocity.magnitude;
+	actualAngle = Mathf.Rad2Deg*Mathf.Atan2(actualVelocity.y, actualVelocity.x);
+}
+
+function setActualVelocityY(val : float) {
+	var actualVelocity : Vector2 = new Vector2(
+			actualSpeed*Mathf.Cos(Mathf.Deg2Rad*actualAngle),
+			actualSpeed*Mathf.Sin(Mathf.Deg2Rad*actualAngle));
+	actualVelocity.y = val;
+	actualSpeed = actualVelocity.magnitude;
+	actualAngle = Mathf.Rad2Deg*Mathf.Atan2(actualVelocity.y, actualVelocity.x);
 }

@@ -1,7 +1,6 @@
 ﻿#pragma strict
 
 var target : Transform;
-var mapBounds : Transform;
 
 private var leftBound : float;
 private var rightBound : float;
@@ -15,14 +14,15 @@ var cameraDampingFactor : float;
 var mouseInfluenceWeight : float;
 
 function Start(){
-	// the ±0.1  is approx Zed's body width
-	rightBound = mapBounds.position.x - mapBounds.localScale.x/2 + (Camera.main.orthographicSize * Camera.main.aspect) - 0.1;
-	leftBound = mapBounds.position.x + mapBounds.localScale.x/2 - (Camera.main.orthographicSize * Camera.main.aspect) + 0.1;
-	bottomBound = mapBounds.position.y + mapBounds.localScale.y/2 - Camera.main.orthographicSize + 0.1;
-	topBound = mapBounds.position.y - mapBounds.localScale.y/2 + Camera.main.orthographicSize - 0.1;
+	leftBound = EnvironmentAttributes.mapBounds.min.x + (Camera.main.orthographicSize * Camera.main.aspect);	
+	rightBound =  EnvironmentAttributes.mapBounds.max.x - (Camera.main.orthographicSize * Camera.main.aspect);	
+	bottomBound = EnvironmentAttributes.mapBounds.min.y + Camera.main.orthographicSize;	
+	topBound = EnvironmentAttributes.mapBounds.max.y - Camera.main.orthographicSize;
 }
 
 function Update () {
+
+	
 	var zedPosition : Vector3 = target.position;
 	var camPosition : Vector3 = transform.position;
 	
