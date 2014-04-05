@@ -6,6 +6,7 @@ private var health : float;
 private var level : int;
 private var skillPoints : int = 0;
 
+private var animatorDead : boolean;
 
 var weapons : Weapon[];
 var currentWeaponIndex : int;  // index in weapons-array
@@ -28,7 +29,15 @@ function Start() {
 }
 
 function Update() {
-	if (Time.time > weapons[currentWeaponIndex].getReloadEndTime()) {
+	if (!isAlive() && !animatorDead) {	// Zed is dying
+		if (animatorDead) {
+			// trigger high scores scene in 5...
+
+		} else {
+			gameObject.GetComponent(Animator).SetBool("isDead", true);
+			trimUnnecessaryComponents();
+		}
+	} else if (Time.time > weapons[currentWeaponIndex].getReloadEndTime()) {
 		if (Input.GetKeyDown("1")) {
 			currentWeaponIndex = 0;
 		} else if (Input.GetKeyDown("2")) {
@@ -48,8 +57,22 @@ function reduceHealth(reductionAmount : float) {
 	}
 }
 
+function isAlive() : boolean {
+	return (health > 0);
+}
+
 function addPerk(perk : Perk) {
 	activePerks.addPerk(perk);
+}
+
+function trimUnnecessaryComponents() {
+	var components = gameObject.GetComponents(typeof(Component));
+    for (var component : Component in components) {
+            if ((component instanceof ZedMovement) ||
+            	(component instanceof ZedStrike)) {
+                 Destroy(component);
+            }
+    }
 }
 
 /*

@@ -101,7 +101,7 @@ private function updateTransform() {
 }
 
 private function notifyAnimator(){
-	zedAnimator.speed = animatorSpeedFactor*actualSpeed;
+	//zedAnimator.speed = animatorSpeedFactor*actualSpeed;
 	zedAnimator.SetFloat("speed", actualSpeed);
 }
 
