@@ -96,19 +96,40 @@ function getUpperBodyAngle() {
 }
 
 private function checkMapBounds() {
+	var yDirection : float;
+	var xDirection : float;
 	if (_transform.position.x < EnvironmentAttributes.mapBounds.min.x) {
 		_transform.position.x = EnvironmentAttributes.mapBounds.min.x;
-//		setActualVelocityX(0);
-//		setActualVelocityY(actualSpeed*Mathf.Cos(Mathf.Deg2Rad(targetAngle)));
+		setActualVelocityX(0);
+		yDirection = Mathf.Sin(Mathf.Deg2Rad*targetAngle);
+		if (!(Mathf.Abs(yDirection) < 0.01)) {
+			yDirection = Mathf.Sign(yDirection);
+		}
+		setActualVelocityY(actualSpeed*Input.GetAxis("Vertical"));
 	} else if (_transform.position.x > EnvironmentAttributes.mapBounds.max.x) {
 		_transform.position.x = EnvironmentAttributes.mapBounds.max.x;
-//		setActualVelocityX(0);
+		setActualVelocityX(0);
+		yDirection = Mathf.Sign(Mathf.Sin(Mathf.Deg2Rad*targetAngle));
+		if (!(Mathf.Abs(yDirection) < 0.01)) {
+			yDirection = Mathf.Sign(yDirection);
+		}
+		setActualVelocityY(actualSpeed*Input.GetAxis("Vertical"));
 	} else if (_transform.position.y < EnvironmentAttributes.mapBounds.min.y) {
 		_transform.position.y = EnvironmentAttributes.mapBounds.min.y;
-	//	setActualVelocityY(0);
+		setActualVelocityY(0);
+		xDirection = Mathf.Sign(Mathf.Cos(Mathf.Deg2Rad*targetAngle));
+		if (!(Mathf.Abs(xDirection) < 0.01)) {
+			xDirection = Mathf.Sign(xDirection);
+		}
+		setActualVelocityX(actualSpeed*Input.GetAxis("Horizontal"));
 	} else if (_transform.position.y > EnvironmentAttributes.mapBounds.max.y) {
 		_transform.position.y = EnvironmentAttributes.mapBounds.max.y;
-	//	setActualVelocityY(0);
+		setActualVelocityY(0);
+		xDirection = Mathf.Sign(Mathf.Cos(Mathf.Deg2Rad*targetAngle));
+		if (!(Mathf.Abs(xDirection) < 0.01)) {
+			xDirection = Mathf.Sign(xDirection);
+		}
+		setActualVelocityX(actualSpeed*Input.GetAxis("Horizontal"));
 	}
 }
 
