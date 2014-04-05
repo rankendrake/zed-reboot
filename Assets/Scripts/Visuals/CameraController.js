@@ -9,8 +9,8 @@ private var bottomBound : float;
 
 private var cameraSpeedX : float;
 private var cameraSpeedY : float;
-var cameraAcceleration : float;
-var cameraDampingFactor : float;
+var acceleration : float;
+var damping : float;
 var mouseInfluenceWeight : float;
 
 function Start(){
@@ -43,11 +43,11 @@ function Update () {
 
 	
 	var delta : Vector3 = (targetPosition - camPosition);
-	cameraSpeedX += cameraAcceleration * delta.x;
-	cameraSpeedY += cameraAcceleration * delta.y;
+	cameraSpeedX += acceleration*delta.x*Time.deltaTime;
+	cameraSpeedY += acceleration*delta.y*Time.deltaTime;
 	
-	cameraSpeedX *= cameraDampingFactor;
-	cameraSpeedY *= cameraDampingFactor;
+	cameraSpeedX *= Mathf.Exp(-damping*Time.deltaTime);
+	cameraSpeedY *= Mathf.Exp(-damping*Time.deltaTime);
 
 	transform.position += (new Vector3(cameraSpeedX*Time.deltaTime, cameraSpeedY*Time.deltaTime, 0));
 				
