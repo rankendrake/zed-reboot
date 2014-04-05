@@ -61,8 +61,7 @@ function trimUnnecessaryComponents() {
     for (var component : Component in components) {
             if (!(component instanceof Transform) &&
             	!(component instanceof Renderer) &&
-            	!(component instanceof Animator) &&
-            	!(component instanceof AudioSource)) {
+            	!(component instanceof Animator)) {
                  Destroy(component);
             }
     }

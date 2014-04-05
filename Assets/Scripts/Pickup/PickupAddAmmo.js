@@ -1,37 +1,41 @@
 ﻿#pragma strict
 
 var numberOfClips : int;
-var zedResources : ZedResources;
-var pickupBounds : Bounds;
-var spriteLength : float;
-var distanceFromZed : float;
+var maxStartSpeed : float;
+var drag : float;
+var _transform : Transform;
 
-function Start () {
-	numberOfClips = 1;
-	zedResources = GameObject.Find("zed").GetComponent(ZedResources) as ZedResources;
-	pickupBounds = gameObject.GetComponent(SpriteRenderer).bounds;
-	spriteLength = pickupBounds.max.x - pickupBounds.min.x;
-	//transform.position.z = GameObject.Find("zed").transform.position.z;
+var pickupSound : AudioClip;
+
+private var velocity : Vector2;
+
+function Start() {
+	velocity = new Vector2(Random.Range(-maxStartSpeed, maxStartSpeed), 
+			Random.Range(-maxStartSpeed, maxStartSpeed));
 }
 
-function Update() {
-	var zedPosition = GameObject.Find("zed").transform.position;
-	zedPosition.z = transform.position.z;
-	if (Vector3.Magnitude(zedPosition - transform.position) < spriteLength) {
-		pickupExecute();
-	}
+function Update () {
+	_transform.position += Time.deltaTime*velocity;
 	
-//	if(pickupBounds.SqrDistance() < spriteLength*spriteLength)
-//		pickupExecute();
+	// (to do: not frame independent yet)
+	velocity = velocity*drag;
 }
 
-function pickupExecute() {
-	for(var weapon : Weapon in zedResources.weapons) {
-		if (weapon instanceof ProjectileWeapon) {
-			var projectileWeapon : ProjectileWeapon = weapon as ProjectileWeapon;
-			projectileWeapon.addClips(numberOfClips);
-		}		
+
+function OnTriggerEnter2D(other: Collider2D) {
+	var otherGameObject = other.transform.root.gameObject;
+	if (otherGameObject.CompareTag("zed")) {
+		collect(otherGameObject.GetComponent(ZedResources));	
 	}
-	WaitForEndOfFrame();
+}
+
+function collect(zedResources : ZedResources) {
+	if (zedResources == null) {
+		Debug.Log("Error! Ammo pickup collected by GameObject without ZedResources");
+	}
+	AudioSource.PlayClipAtPoint(pickupSound,_transform.position);
 	Destroy(gameObject);
+	for(var weapon : Weapon in zedResources.weapons) {
+		weapon.addClips(numberOfClips);
+	}
 }
