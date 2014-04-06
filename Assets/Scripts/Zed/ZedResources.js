@@ -31,7 +31,7 @@ function Start() {
 
 function Update() {
 	if (!isAlive()) {	// Zed is dying
-		if (animatorDead && !promptOpened) {
+		if (animatorDead && !promptOpened && gameObject.GetComponent(Animator).GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ZedDead")) {
 			GameObject.Find("environment").GetComponent(NamePrompt).openPrompt();
 			promptOpened = true;
 			Time.timeScale = 0;
