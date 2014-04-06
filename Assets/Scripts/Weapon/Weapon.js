@@ -40,4 +40,5 @@ class Weapon extends UnityEngine.Object {
 	function getReloadEndTime() : float {
 		return 0;
 	}
+	
 }
