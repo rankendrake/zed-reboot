@@ -24,7 +24,7 @@ function Start() {
 	// initializes weapons-array
 	weapons = weaponArsenal.initializeArsenal();
 	currentWeaponIndex = 0;
-	health = 100;
+	health = 1000;
 	
 	activePerks = new PerkList();
 }
