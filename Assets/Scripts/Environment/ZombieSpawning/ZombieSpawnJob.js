@@ -43,6 +43,7 @@ class ZombieSpawnJob extends UnityEngine.Object {
 		this.edge = edge;
 		this.startTime = startTime;
 		this.endTime = startTime + duration;
+		this.spawnDelay = spawnDelay;
 	}	
 	
 	function ZombieSpawnJob(prefab : GameObject, 
