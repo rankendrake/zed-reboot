@@ -126,7 +126,15 @@ function getSkillPoints() {
 function getCurrentScatterAngle() : float {
 	if (weapons[currentWeaponIndex] instanceof ProjectileWeapon) {
 		var weapon : ProjectileWeapon = weapons[currentWeaponIndex] as ProjectileWeapon;
-		return weapon.getCurrentScatterAngle();
+		
+		var scatterAngle : float = weapon.getCurrentScatterAngle();
+		
+		// modification by perks
+		var activeWeaponPerks : List.<WeaponPerk> = activePerks.getWeaponPerks();
+		for (var perk : WeaponPerk in activeWeaponPerks) {
+			scatterAngle = scatterAngle * perk.getScatterMultiplier();
+		}
+		return scatterAngle;
 	} else {
 		return 0;
 	}

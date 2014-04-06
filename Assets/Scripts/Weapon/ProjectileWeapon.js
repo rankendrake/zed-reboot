@@ -94,7 +94,7 @@ class ProjectileWeapon extends Weapon {
 				var angle : float = zedMovement.getUpperBodyAngle();
 				
 				// apply scatter
-				var scatterAngle = getCurrentScatterAngle();
+				var scatterAngle = zedResources.getCurrentScatterAngle();
 				angle += Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
 				
 				newBullet.transform.eulerAngles = new Vector3(0, 0, angle);

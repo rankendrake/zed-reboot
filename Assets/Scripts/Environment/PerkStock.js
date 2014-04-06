@@ -5,10 +5,11 @@
 
 import System.Collections.Generic;
 
-final var CATEGORY_COUNT : int = 3;
+final var CATEGORY_COUNT : int = 4;
 final var MOVEMENT : int = 0;
 final var RATE_OF_FIRE : int = 1;
 final var FIRE_POWER : int = 2;
+final var SHOT_ACCURACY : int = 3;
 
 private var perkTree : List.<Perk>[]; // array of Lists
 private var unlockLevel : int[]; 	// to what level perks in each 
@@ -90,6 +91,20 @@ function createPerkStock() {
 					.skillPointCost(10)
 					.firePowerMultiplier(1.2)
 					.build());		
+	
+	perkTree[SHOT_ACCURACY].Add(
+			new WeaponPerk.Builder()
+					.name("Shot accuracy I")
+					.skillPointCost(5)
+					.scatterMultiplier(0.6)
+					.build());
+					
+	perkTree[SHOT_ACCURACY].Add(
+			new WeaponPerk.Builder()
+					.name("Shot accuracy II")
+					.skillPointCost(10)
+					.scatterMultiplier(0.0)
+					.build());
 }
 
 function getPerk(category : int, index : int) {
