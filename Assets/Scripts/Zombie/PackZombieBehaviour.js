@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-enum LeaderZombieState {Searching,Attacking};
+enum PackZombieState {Wandering,Following,Attacking};
 
 var speed : float;
 var speedDeviation : float;
@@ -8,63 +8,65 @@ var angularSpeed : float;
 var centralizationOfDeviation : int;
 var strikeRange : float;
 
-var scentAccuracy : float = 1.0;
-var reachedNextPosition : float = 0.12;
-var zedVisualRange : float = 3.0;
+var leaderDetectionRange : float = 5.0;
+var reachedNextPosition : float = 0.25;
+var targetVisualRange : float = 3.0;
 
 var nextPosition : Vector3;
-var currentState : LeaderZombieState;
+var currentState : PackZombieState;
 var positionDifference : Vector3;
 
-var lastPositionPollingTime : float;
-var timeBetweenPositionPolls : float = 5.0;
+var positionRelativeToLeader : Vector3;
+var maxDistanceFromLeader : float;
 
 private var direction : float;
 private var target : Transform;
+private var leader : GameObject;
 private var zombieResources : ZombieResources;
 
-var zombieStrike : ZombieStrike;
+private var zombieStrike : ZombieStrike;
+var mapBounds : Bounds;
 
 function Start() {
-	target = GameObject.Find("zed").transform;
 	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
-	var zedPosition : Vector3 = target.position;
-	var positionDifference : Vector3 = zedPosition - transform.position;
+	var positionDifference : Vector3 = target.position - transform.position;
 	direction = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	zombieResources = gameObject.GetComponent(ZombieResources);
-	plotNewPosition();
+	plotRandomPosition();
+	mapBounds = GameObject.Find("environment").GetComponent(SpriteRenderer).bounds;
 	var speedDeviationFraction : float = speedDeviation / centralizationOfDeviation;
 	for (var i = 0; i < centralizationOfDeviation; i++) {
 		speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
 	}
+	currentState = PackZombieState.Wandering;
 }
 
 function Update() {
 	switch (currentState) {
-	case LeaderZombieState.Searching : 
-		// If still searching, walk towards plotted point near Zed. If zombie reaches that point, plot a new point.
+	case PackZombieState.Wandering : 
+		
 		moveTowards(nextPosition);
-		if(Vector3.Magnitude(positionDifference) < reachedNextPosition ||
-			Time.time > lastPositionPollingTime + timeBetweenPositionPolls) {
-			plotNewPosition();
+		if(Vector3.Magnitude(positionDifference) < reachedNextPosition) {
+			plotRandomPosition();
 		}
-		var distanceFromZed = target.position - transform.position;
-		distanceFromZed.z = 0;
-		if(Vector3.Magnitude(distanceFromZed) < zedVisualRange) {
+		var distanceFromTarget = target.position - transform.position;
+		distanceFromTarget.z = 0;
+		if(leader != null && !leader.CompareTag("deadZombie")) {
+			currentState = PackZombieState.Following;
+		}
+		if(target != null) {
 			nextPosition = target.position;
-			currentState = LeaderZombieState.Attacking;
+			currentState = PackZombieState.Attacking;
 		}
 		break;
-	case LeaderZombieState.Attacking : 
-		// If attacking, continuously move towards Zed.
+	case PackZombieState.Following :
+		break;
+	case PackZombieState.Attacking : 
+		// If attacking, continuously move towards target.
 		moveTowards(target.position);
 		if(Vector3.Magnitude(positionDifference) < strikeRange) {
 			rigidbody2D.velocity = new Vector2(0,0);
 			zombieStrike.hitTarget(target.gameObject);
-		}
-		else if(Vector3.Magnitude(positionDifference) > 1.5 * zedVisualRange) {
-			plotNewPosition();
-			currentState = LeaderZombieState.Searching;
 		}
 		break;
 	default: break;
@@ -93,7 +95,6 @@ function moveTowards(destination : Vector3) {
 		speed*Mathf.Sin(Mathf.Deg2Rad*direction));
 }
 
-function plotNewPosition() {
-	nextPosition = target.position + Random.insideUnitCircle * scentAccuracy;
-	lastPositionPollingTime = Time.time;
+function plotRandomPosition() {
+//	nextPosition = target.position;
 }
