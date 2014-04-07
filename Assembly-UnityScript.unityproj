@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\AnimatorLayerWeightToOne.js" />
      <Compile Include="Assets\BarrelTurner.js" />
+     <Compile Include="Assets\Crosshair.js" />
      <Compile Include="Assets\MiniturretBehaviour.js" />
      <Compile Include="Assets\NamePrompt.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\SkillPointCoinBehavior.js" />

@@ -97,9 +97,6 @@ class ProjectileWeapon extends Weapon {
 				var scatterAngle = zedResources.getCurrentScatterAngle();
 				angle += Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
 				
-				// adjust angle to account for displaced barrel position
-				angle +=
-				
 				newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
 				
 //				newBullet.transform.position.x += Vector2.Dot(
