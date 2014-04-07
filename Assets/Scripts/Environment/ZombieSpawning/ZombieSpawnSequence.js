@@ -22,7 +22,7 @@ function Start () {
 	
 
 
-	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 2, 100, 2, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 2, 100, 2, Vector2(0,0));
 
 	//zombieSpawnEngine.spawnContinuous(leaderZombiePrefab, 2, 100, 2, Edge.BOTTOM);
 }

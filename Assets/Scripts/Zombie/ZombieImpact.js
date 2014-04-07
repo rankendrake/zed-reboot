@@ -4,7 +4,7 @@ import System.Collections.Generic;
 private var zombieResources : ZombieResources;
 private var zombieMovement : ZombieMovement;
 
-function Start() {
+function Awake() {
 	zombieResources = GetComponent(ZombieResources);
 	zombieMovement = GetComponent(ZombieMovement);
 }
