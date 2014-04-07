@@ -21,6 +21,8 @@ var activePerks : PerkList;
 private var currentScatterAngle : float;
 private var lastShotScatterAngle : float;
 
+var gruntSound : AudioClip;
+
 /*
  *	HEALTH
  */
@@ -63,6 +65,7 @@ function reduceHealth(reductionAmount : float) {
 	if (health < 0) {
 		health = 0;
 	}
+	AudioSource.PlayClipAtPoint(gruntSound,transform.position);
 }
 
 function isAlive() : boolean {
