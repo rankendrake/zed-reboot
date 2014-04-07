@@ -3,6 +3,7 @@
 var skillPointCoinPrefab : GameObject;
 var startHealth : float;
 var angleDeviationOfDying : float;
+var spriteRenderer : SpriteRenderer;
 
 private var zombieProperties : ZombieProperties;
 private var health : float;
@@ -35,6 +36,9 @@ function Update() {
 		
 		// Dying rotation variation
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
+		
+		spriteRenderer.sortingLayerName = "backgroundLayer";
+		spriteRenderer.sortingOrder = -10;
 		
 		// Tell Zed the difficulty of the zombie which was killed
 		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());

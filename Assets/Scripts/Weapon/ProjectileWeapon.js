@@ -26,12 +26,22 @@ class ProjectileWeapon extends Weapon {
 	var bulletsInClipBeforeReload : int;
 	var lastShotTime : float;
 	
+	var scatterMaxAngle : float;
+	var scatterSaturationFactor : float; // how quickly will the gun saturate 
+										 // the scattering angle
+	var scatterRelaxationFactor : float;
+	var lastShotScatterAngle : float;
+	
+			
 	function ProjectileWeapon(rateOfFire : float, 
 			firePower : float, 
 			bulletSpeed : float,
 			spread : float,
 			clipSize : int,
 			reloadTime : float,
+			scatterMaxAngle : float,
+			scatterSaturationFactor : float,
+			scatterRelaxationFactor : float,
 			id : String,
 			bulletPrefab : GameObject, 
 			zed : GameObject,
@@ -45,6 +55,9 @@ class ProjectileWeapon extends Weapon {
 		this.spread = spread;
 		this.clipSize = clipSize;
 		this.reloadTime = reloadTime;
+		this.scatterMaxAngle = scatterMaxAngle;
+		this.scatterSaturationFactor = scatterSaturationFactor;
+		this.scatterRelaxationFactor = scatterRelaxationFactor;
 		this.id = id;
 		this.bulletPrefab = bulletPrefab;
 		this.zed = zed;
@@ -79,6 +92,14 @@ class ProjectileWeapon extends Weapon {
 						zedMovement.getPosition(), 
 						Quaternion.identity);
 				var angle : float = zedMovement.getUpperBodyAngle();
+				
+				// apply scatter
+				var scatterAngle = zedResources.getCurrentScatterAngle();
+				angle += Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
+				
+				// adjust angle to account for displaced barrel position
+				angle +=
+				
 				newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
 				
 //				newBullet.transform.position.x += Vector2.Dot(
@@ -100,7 +121,8 @@ class ProjectileWeapon extends Weapon {
 				
 				newBullet.GetComponent(BulletProperties).setPower(firePower);
 				newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
-				
+								
+				increaseScatterAngle();
 				
 				AudioSource.PlayClipAtPoint(firingSound,zed.transform.position);
 				lastShotTime = Time.time;
@@ -132,6 +154,15 @@ class ProjectileWeapon extends Weapon {
 			reloadEndTime = Time.time + reloadTime;
 		}
 		playReloadSound();
+	}
+	
+	function increaseScatterAngle() {
+		lastShotScatterAngle = getCurrentScatterAngle();	
+		lastShotScatterAngle += scatterSaturationFactor*(scatterMaxAngle - lastShotScatterAngle);
+	}
+	
+	function getCurrentScatterAngle() {
+		return lastShotScatterAngle*Mathf.Exp(-(Time.time - lastShotTime)*scatterRelaxationFactor);
 	}
 	
 	// TODO: Figure out how to introduce a time delay onto the script without breaking it.

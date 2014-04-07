@@ -82,6 +82,8 @@ function rotateUpperBody() {
 	mouseScreenPosition.z = transform.position.z - Camera.main.transform.position.z;
 	var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 	
+	
+	// determining muzzle world position
 	var positionDifference : Vector3 = mouseWorldPosition - transform.position;
 	
 	upperBodyTargetAngle = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);

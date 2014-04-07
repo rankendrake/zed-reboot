@@ -15,7 +15,12 @@ var currentWeaponIndex : int;  // index in weapons-array
 var weaponArsenal : WeaponArsenal;
 var perkStock : PerkStock;
 
+var zedProperties : ZedProperties;
 var activePerks : PerkList;
+
+private var currentScatterAngle : float;
+private var lastShotScatterAngle : float;
+
 /*
  *	HEALTH
  */
@@ -24,7 +29,7 @@ function Start() {
 	// initializes weapons-array
 	weapons = weaponArsenal.initializeArsenal();
 	currentWeaponIndex = 0;
-	health = 1000;
+	health = 100;
 	
 	activePerks = new PerkList();
 }
@@ -117,3 +122,27 @@ function getHealth() {
 function getSkillPoints() {
 	return skillPoints;
 }
+
+function getCurrentScatterAngle() : float {
+	if (weapons[currentWeaponIndex] instanceof ProjectileWeapon) {
+		var weapon : ProjectileWeapon = weapons[currentWeaponIndex] as ProjectileWeapon;
+		
+		var scatterAngle : float = weapon.getCurrentScatterAngle();
+		
+		// modification by perks
+		var activeWeaponPerks : List.<WeaponPerk> = activePerks.getWeaponPerks();
+		for (var perk : WeaponPerk in activeWeaponPerks) {
+			scatterAngle = scatterAngle * perk.getScatterMultiplier();
+		}
+		return scatterAngle;
+	} else {
+		return 0;
+	}
+}
+
+//function applyScatter(maxAngle : float, saturationFactor : float) {
+//	// to do: perks
+//	lastShotScatterAngle = getCurrentScatterAngle();	
+//	lastShotScatterAngle += saturationFactor*(maxAngle - lastShotScatterAngle);
+//	currentScatterAngle = lastShotScatterAngle;
+//}

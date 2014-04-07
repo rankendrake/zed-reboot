@@ -19,6 +19,11 @@ function Update() {
 	// according to weapon in zedResources
 	else if (Input.GetMouseButton(0)) {
 		currentWeapon.strike();
+		
+		if (currentWeapon instanceof ProjectileWeapon) {
+			var currentProjectileWeapon : ProjectileWeapon = currentWeapon as ProjectileWeapon;
+		}
+		
 	} 	else if (Input.GetMouseButton(1)) {
 		currentWeapon.secondaryStrike();
 	}
