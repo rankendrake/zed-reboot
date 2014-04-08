@@ -1,98 +1,108 @@
 ﻿#pragma strict
 import System.Collections.Generic;
 
+var zedFont : Font;
+var flavourText : String;
+var flavourTextFontSize : int;
+var labelFontSize : int;
+var headerFontSize : int;
+var numberFontSize : int;
+
+var defaultScreenWidth : int = 1400; // for font size calculation
+private var screenToDefaultScreenRatio : float;
+
 var boxWidth : float;  // fraction of Screen.width
 var boxHeight : float; // fraction of Screen.width
-var screenYFraction : float;
+var boxYScreenFraction : float;
 
-var nameInsertOffsetX : int;
-var nameInsertOffsetY : int;
+var clearButtonHeight : float;
+var newGameButtonHeight : float;
 
-var highScoreName : String;
+// var highScoreName : String;
+// var aname : String = "";
+// var score : String = "";
+private var highscore : List.<Scores>;
+private var centeredStyle : GUIStyle;
 
-var aname : String = "";
-var score : String = "";
-var highscore : List.<Scores>;
-
-function Start() {
-   //EventManager._instance._buttonClick += ButtonClicked;
-
+function Awake() {
    highscore = HighScoreManager._instance.GetHighScore();
+   screenToDefaultScreenRatio = parseFloat(Screen.width)/defaultScreenWidth;
 }
 
 function OnGUI() {
+	GUI.skin.font = zedFont;
+	GUI.skin.button.fontSize = labelFontSize; // temporary
+
 	// Create general high score box
+	changeFontSize(flavourTextFontSize, GUI.skin.box);
 	GUI.Box(
 		Rect((0.5 - (boxWidth/2))*Screen.width,
-		screenYFraction*Screen.height,
+		boxYScreenFraction*Screen.height,
 		boxWidth*Screen.width,
 		boxHeight*Screen.width), 
-		"YOU WERE NOT MEANT TO SURVIVE ANYWAY");
+		flavourText);
 
-	GUI.BeginGroup(
+	GUILayout.BeginArea(
 		Rect((0.5 - (boxWidth/2))*Screen.width,
-		screenYFraction*Screen.height,
+		boxYScreenFraction*Screen.height,
 		boxWidth*Screen.width,
 		boxHeight*Screen.width));
 
-	GUILayout.Space(60);
+	GUILayout.Space(40);
 
-	// GUILayout.BeginHorizontal();
-	// GUILayout.Label("What is your name, mortal one?", GUILayout.Width(192));
-	// aname = GUILayout.TextField(aname, GUILayout.Width(192));
-	// GUILayout.EndHorizontal();
+	changeFontSize(headerFontSize, GUI.skin.label);
 
-	// GUILayout.BeginHorizontal();
-	// GUILayout.Label("Score :", GUILayout.Width(46));
-	// score = GUILayout.TextField(score, GUILayout.Width(128));
-	// GUILayout.EndHorizontal();
-	// GUILayout.Space(10);
-
-	// if (GUILayout.Button("Add Score", GUILayout.Width(boxWidth*Screen.width), GUILayout.Height(16))) {
-	// 	HighScoreManager._instance.SaveHighScore(aname, System.Int32.Parse(score), System.DateTime.Now.ToString());
-	// 	highscore = HighScoreManager._instance.GetHighScore();   
-	// }
-
-	if (GUILayout.Button("Get LeaderBoard", GUILayout.Width(boxWidth*Screen.width - 5), GUILayout.Height(16))) {
-		highscore = HighScoreManager._instance.GetHighScore();      
-	}
-
-	if (GUILayout.Button("Clear Leaderboard", GUILayout.Width(boxWidth*Screen.width - 5), GUILayout.Height(16))) {
-		HighScoreManager._instance.ClearLeaderBoard();      
-	}
-
-	GUILayout.Space(20);
-
+	// Column headers
 	GUILayout.BeginHorizontal();
-	GUILayout.Space(20);
-	GUILayout.Label("~~~Time~~~", GUILayout.Width(boxWidth*Screen.width/3));
-	GUILayout.Label("~~~Fallen ones~~~", GUILayout.Width(boxWidth*Screen.width/3));
-	GUILayout.Label("~~~Result~~~", GUILayout.Width(boxWidth*Screen.width/3));
+	GUILayout.Label("Time", centeredStyle, GUILayout.Width(boxWidth*Screen.width/3));
+	GUILayout.Label("Fallen one", centeredStyle, GUILayout.Width(boxWidth*Screen.width/3));
+	GUILayout.Label("Result", centeredStyle, GUILayout.Width(boxWidth*Screen.width/3));
 	GUILayout.EndHorizontal();
 
 	GUILayout.Space(10);
 
+	// High score results
 	for(var _score : Scores in highscore) {
 		GUILayout.BeginHorizontal();
-		GUILayout.Space(20);
-		GUILayout.Label(_score.time, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(25));
-		GUILayout.Label(_score.name, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(25));
-		GUILayout.Label(""+_score.score, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(25));
+	    changeFontSize(labelFontSize, GUI.skin.label);
+		GUILayout.Label(_score.time, centeredStyle, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		GUILayout.Label(_score.name, centeredStyle, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+	    changeFontSize(numberFontSize, GUI.skin.label);
+		GUILayout.Label(""+_score.score, centeredStyle, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
 		GUILayout.EndHorizontal();
 	}
 
-	GUILayout.Space(boxHeight*Screen.height + 64 - highscore.Count*28);
+	GUILayout.EndArea();
+
+	// Area for buttons
+	GUILayout.BeginArea(
+		Rect((0.5 - (boxWidth/2))*Screen.width,
+		boxYScreenFraction*Screen.height + boxHeight*Screen.width,
+		boxWidth*Screen.width,
+		(clearButtonHeight+4*2+newGameButtonHeight)*Screen.width));
+
+	GUILayout.Space(4);
+
+	if (GUILayout.Button("Clear Leaderboard", GUILayout.Width(boxWidth*Screen.width - 3), GUILayout.Height(clearButtonHeight))) {
+		HighScoreManager._instance.ClearLeaderBoard();
+		highscore = HighScoreManager._instance.GetHighScore(); 
+	}
 
 	GUILayout.BeginHorizontal();
-	if (GUILayout.Button("To Main Menu", GUILayout.Width(boxWidth*Screen.width/2 - 5), GUILayout.Height(64))) {
+	if (GUILayout.Button("To Main Menu", GUILayout.Width(boxWidth*Screen.width/2 - 3), GUILayout.Height(newGameButtonHeight))) {
 		Application.LoadLevel("MainMenu");     
 	}
-	if (GUILayout.Button("New Game", GUILayout.Width(boxWidth*Screen.width/2 - 5), GUILayout.Height(64))) {
+	if (GUILayout.Button("New Game", GUILayout.Width(boxWidth*Screen.width/2 - 3), GUILayout.Height(newGameButtonHeight))) {
 		Time.timeScale = 1;
 		Application.LoadLevel("scene");     
 	}
 	GUILayout.EndHorizontal();
 
-	GUI.EndGroup();
+	GUILayout.EndArea();
+}
 
+function changeFontSize(newsize : int, element : GUIStyle) {
+	element.fontSize = newsize*screenToDefaultScreenRatio;
+	centeredStyle = GUIStyle(element);
+    centeredStyle.alignment = TextAnchor.MiddleCenter;
 }

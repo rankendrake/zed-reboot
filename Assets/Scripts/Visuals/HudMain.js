@@ -1,5 +1,8 @@
 ﻿#pragma strict
 
+var zedFont : Font;
+var labelFontSize : int;
+
 var zed : GameObject;
 var sword : Texture2D;
 var revolver : Texture2D;
@@ -24,11 +27,14 @@ function Start() {
 }
 
 function OnGUI() {
+	GUI.skin.font = zedFont;
+	GUI.skin.label.fontSize = labelFontSize;
+
 	weapon = zedResources.weapons[zedResources.currentWeaponIndex];
 	clipSize = weapon.getClipSize();
 
 	
-	GUI.color = new Color(0.0, 0.0, 0.0, 0.9);
+	GUI.color = new Color(0.0, 0.0, 0.0, 0.4);
 	// Zed level, exp
 	GUI.Label(
 		Rect(10, 175, 100, 100), 
@@ -37,8 +43,6 @@ function OnGUI() {
 		"\nHealth: " +  zedResources.getHealth().ToString() + 
 		"\nSkillPoints: " + zedResources.getSkillPoints().ToString()
 		);
-	
-	GUI.color = new Color(0.0, 0.0, 0.0, 0.25);
 	
 	if (weapon.getId() != null) {
 		var melee : boolean = false;
@@ -54,6 +58,7 @@ function OnGUI() {
 			GUI.DrawTexture(Rect(10, 10, 237, 86), sword, ScaleMode.ScaleAndCrop, true); // placeholder texture
 			melee = true;
 		}
+		
 		
 		if (!melee) {
 			// Total bullets left

@@ -56,6 +56,7 @@ function Update() {
 			currentWeaponIndex = 2;
 		} else if (Input.GetKeyDown("4")) {
 			currentWeaponIndex = 3;
+			reduceHealth(50);
 		}
 	}
 }
