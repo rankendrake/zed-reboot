@@ -70,11 +70,11 @@ function trimUnnecessaryComponents() {
                  Destroy(component);
             }
     }
-    if(transform.childCount > 0) {
-    	for(var child : Transform in gameObject.transform) {
-    		Destroy(child.gameObject);
-    	}
-    }  
+//    if(transform.childCount > 0) {
+//    	for(var child : Transform in gameObject.transform) {
+//    		Destroy(child.gameObject);
+//    	}
+//    }  
 }
 
 function dropSkillPoint() {
