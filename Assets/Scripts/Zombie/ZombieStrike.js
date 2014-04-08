@@ -22,10 +22,10 @@ function hitTarget(target : GameObject) {
 	if(Time.time - zombieProperties.getTimeBetweenHits() > timeOfLastHit) {
 		if(target.CompareTag("zed")) {
 			zedResources.reduceHealth(zombieProperties.getAttackDamage());
+			timeOfLastHit = Time.time;
 		}
 //		else {
 //			target.turretResources.reduceHealth(zombieProperties.getAttackDamage());
 //		}
-		timeOfLastHit = Time.time;
 	}
 }

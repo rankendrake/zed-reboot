@@ -64,8 +64,10 @@ function reduceHealth(reductionAmount : float) {
 	health -= reductionAmount;			
 	if (health < 0) {
 		health = 0;
+//		AudioSource.PlayClipAtPoint(deathSound,transform.position);
 	}
-	AudioSource.PlayClipAtPoint(gruntSound,transform.position);
+	else
+		AudioSource.PlayClipAtPoint(gruntSound,transform.position);
 }
 
 function isAlive() : boolean {
@@ -90,11 +92,7 @@ function trimUnnecessaryComponents() {
  *	EXPERIENCE & LEVEL
  */ 
 function handleZombieKilled(zombieDifficultyLevel : int) {
-	if (zombieDifficultyLevel == 1) {
-		gainExperience(1);	
-	} else {
-		gainExperience(zombieDifficultyLevel);
-	}
+	gainExperience(zombieDifficultyLevel);
 }
 
 function gainExperience(amount : int) {

@@ -10,7 +10,7 @@ var strikeRange : float;
 
 var scentAccuracy : float = 1.0;
 var reachedNextPosition : float = 0.12;
-var zedVisualRange : float = 3.0;
+var zedVisualRange : float = 4.0;
 
 var nextPosition : Vector3;
 var currentState : LeaderZombieState;
@@ -20,15 +20,15 @@ var lastPositionPollingTime : float;
 var timeBetweenPositionPolls : float = 5.0;
 
 private var direction : float;
-private var target : Transform;
+private var target : GameObject;
 private var zombieResources : ZombieResources;
 
 var zombieStrike : ZombieStrike;
 
 function Start() {
-	target = GameObject.Find("zed").transform;
+	target = GameObject.Find("zed");
 	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
-	var zedPosition : Vector3 = target.position;
+	var zedPosition : Vector3 = target.transform.position;
 	var positionDifference : Vector3 = zedPosition - transform.position;
 	direction = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	zombieResources = gameObject.GetComponent(ZombieResources);
@@ -48,19 +48,19 @@ function Update() {
 			Time.time > lastPositionPollingTime + timeBetweenPositionPolls) {
 			plotNewPosition();
 		}
-		var distanceFromZed = target.position - transform.position;
+		var distanceFromZed = target.transform.position - transform.position;
 		distanceFromZed.z = 0;
 		if(Vector3.Magnitude(distanceFromZed) < zedVisualRange) {
-			nextPosition = target.position;
+			nextPosition = target.transform.position;
 			currentState = LeaderZombieState.Attacking;
 		}
 		break;
 	case LeaderZombieState.Attacking : 
 		// If attacking, continuously move towards Zed.
-		moveTowards(target.position);
+		moveTowards(target.transform.position);
 		if(Vector3.Magnitude(positionDifference) < strikeRange) {
 			rigidbody2D.velocity = new Vector2(0,0);
-			zombieStrike.hitTarget(target.gameObject);
+			zombieStrike.hitTarget(target);
 		}
 		else if(Vector3.Magnitude(positionDifference) > 1.5 * zedVisualRange) {
 			plotNewPosition();
@@ -94,6 +94,10 @@ function moveTowards(destination : Vector3) {
 }
 
 function plotNewPosition() {
-	nextPosition = target.position + Random.insideUnitCircle * scentAccuracy;
+	nextPosition = target.transform.position + Random.insideUnitCircle * scentAccuracy;
 	lastPositionPollingTime = Time.time;
+}
+
+function getTarget() {
+	return target;
 }
