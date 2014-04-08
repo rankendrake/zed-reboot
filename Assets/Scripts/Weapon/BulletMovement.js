@@ -95,7 +95,7 @@ function evaluateZombieCollision(raycastHit2D : RaycastHit2D[], firstHitObject :
 				new Vector2(speed*_transform.up.x, speed*_transform.up.y), 
 				hitChildren);
 	} else {
-		Debug.Log("Hit Object does not have ZombieResources component!");
+		Debug.Log("Hit Object does not have ZombieImpact component!");
 	}
 }
 

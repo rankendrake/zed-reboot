@@ -7,6 +7,7 @@
 var zombieSpawnEngine : ZombieSpawnEngine;
 var leaderZombiePrefab : GameObject;
 var packZombiePrefab : GameObject;
+var newZombiePrefab : GameObject;
 
 function Start () {
 	// possible commands:
@@ -22,7 +23,7 @@ function Start () {
 	
 
 
-	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 2, 100, 2, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 2, 100, .4, Edge.RIGHT);
 
 	//zombieSpawnEngine.spawnContinuous(leaderZombiePrefab, 2, 100, 2, Edge.BOTTOM);
 }

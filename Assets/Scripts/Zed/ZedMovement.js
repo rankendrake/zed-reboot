@@ -116,7 +116,8 @@ private function checkMapBounds() {
 			yDirection = Mathf.Sign(yDirection);
 		}
 		setActualVelocityY(actualSpeed*Input.GetAxis("Vertical"));
-	} else if (_transform.position.y < EnvironmentAttributes.mapBounds.min.y) {
+	} 
+	if (_transform.position.y < EnvironmentAttributes.mapBounds.min.y) {
 		_transform.position.y = EnvironmentAttributes.mapBounds.min.y;
 		setActualVelocityY(0);
 		xDirection = Mathf.Sign(Mathf.Cos(Mathf.Deg2Rad*targetAngle));

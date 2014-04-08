@@ -44,7 +44,7 @@ function Update() {
 	
 	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
 	
-	transform.eulerAngles = new Vector3(0, 0, direction);
+	transform.eulerAngles = new Vector3(0, 0, direction-90);
 	if (Vector3.Magnitude(positionDifference) < strikeRange) {
 		rigidbody2D.velocity = Vector2.zero;
 		zombieStrike.hitZed();

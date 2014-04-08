@@ -1,9 +1,7 @@
 ﻿#pragma strict
 
 var skillPointCoinPrefab : GameObject;
-var startHealth : float;
 var angleDeviationOfDying : float;
-var spriteRenderer : SpriteRenderer;
 
 private var zombieProperties : ZombieProperties;
 private var health : float;
@@ -27,7 +25,9 @@ function Start() {
 function Update() {
 	// Zombie is dying
 	if (!isAlive() && !animatorDead) {
-		gameObject.GetComponent(Animator).SetBool("isDead", true);
+		var animator : Animator = gameObject.GetComponent(Animator);
+		animator.SetBool("isDead", true);
+		animator.SetLayerWeight(2, 0); // stop overriding arm movement
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
 	// Play death sound.
@@ -37,8 +37,9 @@ function Update() {
 		// Dying rotation variation
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
 		
-		spriteRenderer.sortingLayerName = "backgroundLayer";
-		spriteRenderer.sortingOrder = -10;
+		
+		//spriteRenderer.sortingLayerName = "backgroundLayer";
+		//spriteRenderer.sortingOrder = -10;
 		
 		// Tell Zed the difficulty of the zombie which was killed
 		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());

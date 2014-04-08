@@ -2,7 +2,7 @@
 
 var _transform : Transform;
 
-function Start() {
+function Awake() {
 	_transform = transform;
 }
 
