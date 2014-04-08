@@ -7,16 +7,16 @@ var centralizationOfDeviation : int;
 var strikeRange : float;
 
 private var direction : float;
-private var zed : Transform;
+private var target : Transform;
 private var zombieResources : ZombieResources;
 
 var zombieStrike : ZombieStrike;
 
 function Start() {
-	zed = GameObject.Find("zed").transform;
+	target = GameObject.Find("zed").transform;
 	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
-	var zedPosition : Vector3 = zed.position;
-	var positionDifference : Vector3 = zedPosition - transform.position;
+	var targetPosition : Vector3 = target.position;
+	var positionDifference : Vector3 = targetPosition - transform.position;
 	direction = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
 	zombieResources = gameObject.GetComponent(ZombieResources);
@@ -28,10 +28,9 @@ function Start() {
 }
 
 function Update() {
-	var zedPosition : Vector3 = zed.position;
+	var targetPosition : Vector3 = target.position;
 
-	var positionDifference : Vector3 = zedPosition - transform.position;
-	positionDifference.z += 1; // why not set to 0 ?
+	var positionDifference : Vector3 = targetPosition - transform.position;
 	var targetDirection : float = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
 	
 	var angleDifference : float = (targetDirection - direction);
@@ -47,8 +46,8 @@ function Update() {
 	transform.eulerAngles = new Vector3(0, 0, direction-90);
 	if (Vector3.Magnitude(positionDifference) < strikeRange) {
 		rigidbody2D.velocity = Vector2.zero;
-		zombieStrike.hitZed();
-	} /*else if (Vector3.Distance(zedPosition, transform.position) < 1.2*strikeRange) { // POTENTIAL SLOWDOWN
+		zombieStrike.hitTarget(target.gameObject);
+	} /*else if (Vector3.Distance(targetPosition, transform.position) < 1.2*strikeRange) { // POTENTIAL SLOWDOWN
 		rigidbody2D.velocity = new Vector2(
 			speed/2*Mathf.Cos(Mathf.Deg2Rad*direction), 
 			speed/2*Mathf.Sin(Mathf.Deg2Rad*direction));	

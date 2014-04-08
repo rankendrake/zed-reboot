@@ -45,4 +45,10 @@ class ZedUtils {
 		return difference;
 	}
 
+	/**
+	 *	Uses positions to calculate angle between
+	 */
+	 static function getAngle(from : Vector3, to : Vector3) : float {
+	 	return Mathf.Rad2Deg*Mathf.Atan2(to.y - from.y, to.x - from.x);
+	 }
 }
