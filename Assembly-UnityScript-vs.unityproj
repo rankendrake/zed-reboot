@@ -89,9 +89,11 @@
      <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
      <Compile Include="Assets\Scripts\Zed\ZedShadowDirection.js" />
      <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\LeaderZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\ZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\LeaderDetector.js" />
-     <Compile Include="Assets\Scripts\Zombie\LeaderZombieBehaviour.js" />
-     <Compile Include="Assets\Scripts\Zombie\PackZombieBehaviour.js" />
+     <Compile Include="Assets\Scripts\Zombie\TargetDetector.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieMovement2.js" />
