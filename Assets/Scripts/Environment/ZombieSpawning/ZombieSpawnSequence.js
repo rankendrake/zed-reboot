@@ -23,7 +23,9 @@ function Start () {
 	
 
 
-	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 2, 100, .4, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 0, 50, .3, Edge.RIGHT);
+
+	//zombieSpawnEngine.spawnContinuous(newZombiePrefab, 10, 20, .3, Edge.LEFT);
 
 	//zombieSpawnEngine.spawnContinuous(leaderZombiePrefab, 2, 100, 2, Edge.BOTTOM);
 }

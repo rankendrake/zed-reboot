@@ -6,9 +6,13 @@ var angularSpeed : float;
 var centralizationOfDeviation : int;
 var strikeRange : float;
 
+var pushSpeedDrag : float;
+
 private var direction : float;
 private var target : Transform;
 private var zombieResources : ZombieResources;
+
+private var additionalVelocity : Vector2;
 
 var zombieStrike : ZombieStrike;
 
@@ -44,6 +48,9 @@ function Update() {
 	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
 	
 	transform.eulerAngles = new Vector3(0, 0, direction-90);
+	
+	additionalVelocity = additionalVelocity*pushSpeedDrag;
+	
 	if (Vector3.Magnitude(positionDifference) < strikeRange) {
 		rigidbody2D.velocity = Vector2.zero;
 		zombieStrike.hitTarget(target.gameObject);
@@ -52,8 +59,13 @@ function Update() {
 			speed/2*Mathf.Cos(Mathf.Deg2Rad*direction), 
 			speed/2*Mathf.Sin(Mathf.Deg2Rad*direction));	
 	}*/ else {
-		rigidbody2D.velocity = new Vector2(
-			speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
-			speed*Mathf.Sin(Mathf.Deg2Rad*direction));
+	//	rigidbody2D.velocity = new Vector2(
+	//		speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
+	//		speed*Mathf.Sin(Mathf.Deg2Rad*direction));	
+		transform.position += speed*Time.deltaTime*transform.up + additionalVelocity;		
 	}
+}
+
+function physicalPush(impulse : Vector2) {
+	additionalVelocity = impulse;
 }
