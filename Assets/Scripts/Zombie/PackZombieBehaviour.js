@@ -128,7 +128,7 @@ function moveTowards(destination : Vector3) {
 	
 	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
 	
-	transform.eulerAngles = new Vector3(0, 0, direction);
+	transform.eulerAngles = new Vector3(0, 0, direction-90);
 
 	rigidbody2D.velocity = new Vector2(
 		speed*Mathf.Cos(Mathf.Deg2Rad*direction), 

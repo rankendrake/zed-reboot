@@ -54,7 +54,20 @@ private function checkCollision() {
 			rayCastStart,  
 			rayCastDirection, 
 			rayCastLength);
-			
+
+// Ignore raycast code. Defunct since the object can be set to ignore raycasts.
+/*
+	var detectorsOnly : boolean = true;
+		
+	for(var hit in raycastHit2D) {
+		if(!hit.collider.gameObject.CompareTag("detector")) {
+			detectorsOnly = false;
+			break;
+		}
+	}
+	if(detectorsOnly)
+		return;
+*/					
 	if (raycastHit2D.Length != 0) {							
 		// again raycast (this time infinitely long), to get all objects
 		// in line of fire
@@ -67,7 +80,19 @@ private function checkCollision() {
 			Debug.Log("error in BulletMovement.js: second raycast empty!");
 			return;
 		}
-		var firstHitObject = raycastHit2D[0].collider.transform.root.gameObject;
+	/*	
+		var hitList : List.<RaycastHit2D> = new List.<RaycastHit2D>();
+		var i : int = 0;
+		while (i < raycastHit2D.Length) {		
+			if (!raycastHit2D[i].collider.gameObject.CompareTag("detector")) {
+				hitList.Add(raycastHit2D[i]);
+			}		
+			i++;
+		}
+		
+		if (hitList.Count == 0) return;
+	*/
+		var firstHitObject : GameObject = raycastHit2D[0].collider.gameObject;
 		
 		if (firstHitObject.CompareTag("zombie")) {
 			evaluateZombieCollision(raycastHit2D, firstHitObject);
@@ -75,17 +100,17 @@ private function checkCollision() {
 			// bullet to be destroyed
 			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
 			moving = false;
-		}										
+		}
 	}	
 }
 
 
-function evaluateZombieCollision(raycastHit2D : RaycastHit2D[], firstHitObject : GameObject) {	
+function evaluateZombieCollision(hitList : RaycastHit2D[], firstHitObject : GameObject) {	
 	var hitChildren : List.<GameObject> = new List.<GameObject>();
 
-	for (var i : int = 0; i < raycastHit2D.Length; i++) {
-		if (raycastHit2D[i].collider.transform.root.gameObject == firstHitObject) {
-			hitChildren.Add(raycastHit2D[i].collider.gameObject);
+	for (var hitObject : RaycastHit2D in hitList) {
+		if (hitObject == firstHitObject) {
+			hitChildren.Add(hitObject.collider.gameObject);
 		}
 	}
 	
