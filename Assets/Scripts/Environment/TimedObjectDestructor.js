@@ -21,7 +21,7 @@ class DoomedObject {
 
 private static var objectsToBeDestroyed : List.<DoomedObject>;
 
-function Start() {
+function Awake() {
 	objectsToBeDestroyed = new List.<DoomedObject>();
 }
 
@@ -47,7 +47,7 @@ private function destroyListedObjects() {
 	while(i < objectsToBeDestroyed.Count) {	
 		if (objectsToBeDestroyed[i].destroyTime < Time.time) {
 			GameObject.Destroy(objectsToBeDestroyed[i].gameObject);
-			objectsToBeDestroyed.RemoveAt(0);
+			objectsToBeDestroyed.RemoveAt(i);
 		} else {
 			i++;
 		}
