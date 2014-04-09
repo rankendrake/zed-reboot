@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var packZombieBehaviour : PackZombieBehaviour;
+private var packZombieBehaviour : PackZombieBehaviour;
 var circleCollider : CircleCollider2D;
 
 function Start() {

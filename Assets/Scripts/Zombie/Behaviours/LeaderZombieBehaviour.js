@@ -1,49 +1,56 @@
 ﻿#pragma strict
 
+class LeaderZombieBehaviour extends ZombieBehaviour {
+
 enum LeaderZombieState {Searching,Attacking};
 
+// Standard data
 var speed : float;
-var speedDeviation : float;
+private var speedDeviation : float;
 var angularSpeed : float;
-var centralizationOfDeviation : int;
+private var centralizationOfDeviation : int;
 var strikeRange : float;
 
-var scentAccuracy : float = 1.0;
-var reachedNextPosition : float = 0.12;
-var zedVisualRange : float = 4.0;
+private var nextPosition : Vector3;
+private var positionDifference : Vector3;
 
-var nextPosition : Vector3;
-var currentState : LeaderZombieState;
-var positionDifference : Vector3;
-
-var lastPositionPollingTime : float;
-var timeBetweenPositionPolls : float = 5.0;
+private var lastPositionPollingTime : float;
+var timeBetweenPositionPolls : float;
 
 private var direction : float;
 private var target : GameObject;
-private var zombieResources : ZombieResources;
 
-var zombieStrike : ZombieStrike;
+private var zombieResources : ZombieResources;
+private var zombieStrike : ZombieStrike;
+private var zombieMovement2 : ZombieMovement2;
+
+var reachedNextPosition : float;
+var zedVisualRange : float;
+var scentAccuracy : float;
+
+var currentState : LeaderZombieState;
 
 function Start() {
 	target = GameObject.Find("zed");
-	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
+	zombieStrike = transform.GetComponent(ZombieStrike) as ZombieStrike;
+	zombieMovement2 = transform.GetComponent(ZombieMovement2) as ZombieMovement2;
+	zombieMovement2.updateTargetSpeed(speed);
 	var zedPosition : Vector3 = target.transform.position;
-	var positionDifference : Vector3 = zedPosition - transform.position;
-	direction = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
+	getTargetAngle(zedPosition);
 	zombieResources = gameObject.GetComponent(ZombieResources);
 	plotNewPosition();
 	var speedDeviationFraction : float = speedDeviation / centralizationOfDeviation;
 	for (var i = 0; i < centralizationOfDeviation; i++) {
 		speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
 	}
+
 }
 
 function Update() {
 	switch (currentState) {
 	case LeaderZombieState.Searching : 
+		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		// If still searching, walk towards plotted point near Zed. If zombie reaches that point, plot a new point.
-		moveTowards(nextPosition);
 		if(Vector3.Magnitude(positionDifference) < reachedNextPosition ||
 			Time.time > lastPositionPollingTime + timeBetweenPositionPolls) {
 			plotNewPosition();
@@ -57,20 +64,34 @@ function Update() {
 		break;
 	case LeaderZombieState.Attacking : 
 		// If attacking, continuously move towards Zed.
-		moveTowards(target.transform.position);
+		nextPosition = target.transform.position;
+		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		if(Vector3.Magnitude(positionDifference) < strikeRange) {
-			rigidbody2D.velocity = new Vector2(0,0);
+			zombieMovement2.updateTargetSpeed(0.0);
 			zombieStrike.hitTarget(target);
 		}
-		else if(Vector3.Magnitude(positionDifference) > 1.5 * zedVisualRange) {
-			plotNewPosition();
-			currentState = LeaderZombieState.Searching;
+		else {
+			zombieMovement2.updateTargetSpeed(speed);
+			if(Vector3.Magnitude(positionDifference) > 1.5 * zedVisualRange) {
+				plotNewPosition();
+				currentState = LeaderZombieState.Searching;
+			}
 		}
 		break;
 	default: break;
 	}
 }
 
+function updateZombieAngle() {
+		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
+}
+
+function getTargetAngle(destination : Vector3) {
+	positionDifference = destination - transform.position;
+	return (Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x)-90);
+}
+
+/*
 function moveTowards(destination : Vector3) {
 	positionDifference = destination - transform.position;
 	positionDifference.z = 0;
@@ -86,18 +107,27 @@ function moveTowards(destination : Vector3) {
 	
 	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
 	
-	transform.eulerAngles = new Vector3(0, 0, direction);
+	transform.eulerAngles = new Vector3(0, 0, direction-90);
 
 	rigidbody2D.velocity = new Vector2(
 		speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
 		speed*Mathf.Sin(Mathf.Deg2Rad*direction));
 }
-
+*/
 function plotNewPosition() {
 	nextPosition = target.transform.position + Random.insideUnitCircle * scentAccuracy;
 	lastPositionPollingTime = Time.time;
 }
 
+function isAttacking() {
+	return currentState == LeaderZombieState.Attacking;
+}
+
+function setTarget(target : GameObject) {
+	this.target = target;
+}
+
 function getTarget() {
 	return target;
+}
 }

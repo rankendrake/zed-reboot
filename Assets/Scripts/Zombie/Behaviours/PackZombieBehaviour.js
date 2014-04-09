@@ -1,47 +1,57 @@
 ﻿#pragma strict
 
+class PackZombieBehaviour extends ZombieBehaviour {
+
 enum PackZombieState {Wandering,Following,Attacking};
 
+// Standard data
 var speed : float;
-var speedDeviation : float;
+private var speedDeviation : float;
 var angularSpeed : float;
-var centralizationOfDeviation : int;
+private var centralizationOfDeviation : int;
 var strikeRange : float;
+private var direction : float;
 
-var leaderDetectionRange : float = 3.0;
-var reachedNextPosition : float = 3.0;
-var targetVisualRange : float = 3.0;
+// Target-related data
+@HideInInspector var target : GameObject;
+var targetVisualRange : float;
 
-var nextPosition : Vector3;
+// current state
 var currentState : PackZombieState;
-var positionDifference : Vector3;
 
-var positionRelativeToLeader : Vector2;
+// Leader-related data
+var leader : GameObject;
+var leaderDetectionRange : float;
+private var positionRelativeToLeader : Vector2;
 var maxDistanceFromLeader : float = 3.0;
 var leaderSpeedupFactor : float = 2.0;
 
-private var direction : float;
-var target : GameObject;
-var leader : GameObject;
+// Position-related data
+private var nextPosition : Vector3;
+private var positionDifference : Vector3;
+var reachedNextPosition : float;
+
+// Zombie data
 private var zombieResources : ZombieResources;
-
-var lastPollingTime : float;
-var timeBetweenPolls : float = 5.0;
-
 private var zombieStrike : ZombieStrike;
-var mapBounds : Bounds;
+private var zombieMovement2 : ZombieMovement2;
+// Mapbounds
+private var mapBounds : Bounds;
 
 function Start() {
 	plotRandomPosition();
 	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
-	var positionDifference : Vector3 = nextPosition - transform.position;
-	direction = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
-	zombieResources = gameObject.GetComponent(ZombieResources);
+	zombieMovement2 = gameObject.GetComponent(ZombieMovement2) as ZombieMovement2;
+	zombieResources = gameObject.GetComponent(ZombieResources) as ZombieResources;
+	getTargetAngle(nextPosition);
 	mapBounds = GameObject.Find("environment").GetComponent(SpriteRenderer).bounds;
-	var speedDeviationFraction : float = speedDeviation / centralizationOfDeviation;
-	for (var i = 0; i < centralizationOfDeviation; i++) {
-		speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
+	if(centralizationOfDeviation > 0) {
+		var speedDeviationFraction : float = speedDeviation / centralizationOfDeviation;
+		for (var i = 0; i < centralizationOfDeviation; i++) {
+			speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
+		}
 	}
+	zombieMovement2.updateTargetSpeed(speed);
 	currentState = PackZombieState.Wandering;
 	positionRelativeToLeader = Random.insideUnitCircle * maxDistanceFromLeader;
 }
@@ -50,7 +60,7 @@ function Update() {
 	// Additional behaviour dependent on currentState.
 	switch (currentState) {
 	case PackZombieState.Wandering : 
-	moveTowards(nextPosition);
+		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 	// If Pack Zombie has reached the next position, plot another random position.
 		if(Vector3.Magnitude(positionDifference) < reachedNextPosition) {
 			plotRandomPosition();
@@ -60,7 +70,7 @@ function Update() {
 			currentState = PackZombieState.Following;
 			speed = leader.GetComponent(LeaderZombieBehaviour).speed * 1.2;
 		}
-	// TODO: Target will soon be set by ZombieTargetSelector. For now, LeaderDetector takes up that role,
+	// TODO: Target will soon be set by TargetSelector. For now, LeaderDetector takes up that role,
 	// 		using the same collider that is used to detect leaders.
 		if(target != null) {
 			currentState = PackZombieState.Attacking;
@@ -69,23 +79,23 @@ function Update() {
 		// If following, adopt a position around the leader, and stay close to the leader.
 	case PackZombieState.Following :
 		nextPosition = leader.transform.position + positionRelativeToLeader;
-		// Once Pack Zombie has assumed his position near the leader, he will maintain formation with the leader.
-		if(Vector3.Magnitude(leader.transform.position - transform.position) < reachedNextPosition) {
-			matchLeaderMovement();
+		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
+		// If Pack Zombie has reached his assumed position, he will alternate between slowing down and speeding up to maintain his position.
+		if(Vector3.Magnitude(nextPosition - transform.position) < reachedNextPosition) {
+			speed = leader.GetComponent(LeaderZombieBehaviour).speed * 0.95;
 		}
-		else
-			moveTowards(nextPosition);
+		else speed = leader.GetComponent(LeaderZombieBehaviour).speed * 1.1;
 		// If the leader is attacking a target, they will enter attack mode and also attack the target.
 		// Pack Zombies entering attack mode by this means will receive a speed boost, presumably from
 		// leader motivation.
-		if(leader.GetComponent(LeaderZombieBehaviour).currentState == LeaderZombieState.Attacking) {
+		if(leader.GetComponent(LeaderZombieBehaviour).isAttacking()) {
 			currentState = PackZombieState.Attacking;
 			speed *= leaderSpeedupFactor;
 			target = leader.GetComponent(LeaderZombieBehaviour).getTarget();
 		}
 		// If the leader dies, the pack zombie begins to wander again, having lost their leader.
 		// The leader is set to null, and currentState returns to Wandering.
-		if(!leader.GetComponent(ZombieResources).isAlive()) {
+		else if(!leader.GetComponent(ZombieResources).isAlive()) {
 			currentState = PackZombieState.Wandering;
 			leader = null;
 		}
@@ -95,12 +105,13 @@ function Update() {
 	case PackZombieState.Attacking : 
 		// Set nextPosition to the target's position.
 		nextPosition = target.transform.position;
-		moveTowards(nextPosition);
+		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		// If within range, attack target.
 		if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
-			rigidbody2D.velocity = new Vector2(0,0);
+			zombieMovement2.updateTargetSpeed(0.0);
 			zombieStrike.hitTarget(target);
 		}
+		else zombieMovement2.updateTargetSpeed(speed);
 		// If the target isn't Zed, then it's probably a turret.
 /*		if(!target.CompareTag("Player")) {
 			if(target.GetComponent(TurretResources.isDead())) {
@@ -113,6 +124,11 @@ function Update() {
 	}
 }
 
+function getTargetAngle(destination : Vector3) {
+	positionDifference = destination - transform.position;
+	return Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x)-90;
+}
+/*
 function moveTowards(destination : Vector3) {
 	positionDifference = destination - transform.position;
 	positionDifference.z = 0;
@@ -128,11 +144,16 @@ function moveTowards(destination : Vector3) {
 	
 	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
 	
-	transform.eulerAngles = new Vector3(0, 0, direction);
+	transform.eulerAngles = new Vector3(0, 0, direction-90);
 
 	rigidbody2D.velocity = new Vector2(
 		speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
 		speed*Mathf.Sin(Mathf.Deg2Rad*direction));
+}
+*/
+
+function getTargetVisualRange() {
+	return targetVisualRange;
 }
 
 function setLeader(newLeader : GameObject) {
@@ -143,13 +164,13 @@ function getTarget() {
 	return target;
 }
 
-function matchLeaderMovement() {
-	transform.eulerAngles = leader.transform.eulerAngles;
-	rigidbody2D.velocity = leader.rigidbody2D.velocity;
+function setTarget(target : GameObject) {
+	this.target = target;
 }
 
 function plotRandomPosition() {
 	var nextX = Random.Range(mapBounds.min.x,mapBounds.max.x);
 	var nextY = Random.Range(mapBounds.min.y,mapBounds.max.y);
 	nextPosition = Vector3(nextX,nextY);
+}
 }

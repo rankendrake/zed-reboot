@@ -21,12 +21,11 @@ var headReactionTime : float; // sec
 var reactionTimerAccuracy : int; // number of intermediate steps
 
 private var animator : Animator;
-var animatorSpeedFactor = 0.3; // animator.speed/actualSpeed
-
-
+var animatorSpeedFactor = 1.0; // animator.speed/actualSpeed
 
 
 var spriteContainer : GameObject;
+/*
 var armLeft : Transform;
 var armRight : Transform;
 var head: Transform;
@@ -34,33 +33,30 @@ var torso: Transform;
 
 private var delayedTargetAngle : ReactionTimer;
 private var delayedHeadAngle : ReactionTimer;
-
+*/
 function Start () {
+	spriteContainer = gameObject;
 	animator = spriteContainer.GetComponent(Animator);
+/*
 	delayedTargetAngle = new ReactionTimer(reactionTime, reactionTimerAccuracy, 0);
 	delayedHeadAngle = new ReactionTimer(headReactionTime, reactionTimerAccuracy, 0);
+*/
 }
 
-function Update () {			
-	updateTargetAngle();
-	updateTargetSpeed();	
+function Update () {
 	
 	updateActualAngle();
 	updateActualSpeed();
 	
-	updateBodyPartAngles();
+//	updateBodyPartAngles();
 	
 	updatePosition();
 	
 	animator.speed = animatorSpeedFactor*actualSpeed; 
-	
-	if (Input.GetKeyDown("a")) {
-		physicalPush(new Vector2(-12, 0));
-	}
 }
 
-function updateTargetAngle() {
-	// getting the mouse position relative to the world
+function updateTargetAngle(direction : float) {
+/*	// getting the mouse position relative to the world
 	var mouseScreenPosition : Vector3 = Input.mousePosition;
 	mouseScreenPosition.z = transform.position.z - Camera.main.transform.position.z;
 	var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
@@ -72,11 +68,15 @@ function updateTargetAngle() {
 	delayedHeadAngle.putValue(targetAngle);
 	
 	targetAngle = delayedTargetAngle.getValue();
+	*/
+	
+	// AI updates the target angle here.
+	targetAngle = direction;
 }
 
-function updateTargetSpeed() {
+function updateTargetSpeed(speed : float) {
 	// to do: walking, running, rage?	
-	targetSpeed = walkingSpeed;
+	targetSpeed = speed;
 }
 
 function updateActualAngle() {
@@ -92,7 +92,7 @@ function updateActualSpeed() {
 		actualSpeed = Mathf.Max(actualSpeed - walkingResistance*Time.deltaTime, targetSpeed);
 	}
 }
-
+/*
 function updateBodyPartAngles() {
 	upperBodyAngle = ZedUtils.linearlyAdjustAngle(upperBodyAngle, actualAngle, upperBodyTurningSpeed*Time.deltaTime);
 	var upperBodyEulerAngles : Vector3 = new Vector3(0, 0, upperBodyAngle);
@@ -105,7 +105,7 @@ function updateBodyPartAngles() {
 	}
 	if (torso != null) torso.eulerAngles = upperBodyEulerAngles;
 }
-
+*/
 function updatePosition() {
 	transform.Translate(0, actualSpeed*Time.deltaTime, 0);
 }
