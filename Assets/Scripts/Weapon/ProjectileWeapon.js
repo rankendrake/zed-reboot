@@ -5,6 +5,7 @@ class ProjectileWeapon extends Weapon {
 	var firePower : float;
 	var bulletSpeed : float;
 	var spread : float;
+	var bulletsSpawned : int;
 	var clipSize : int;
 	var reloadTime : float;
 	var bulletPrefab : GameObject;
@@ -37,6 +38,7 @@ class ProjectileWeapon extends Weapon {
 			firePower : float, 
 			bulletSpeed : float,
 			spread : float,
+			bulletsSpawned : int,
 			clipSize : int,
 			reloadTime : float,
 			scatterMaxAngle : float,
@@ -53,6 +55,7 @@ class ProjectileWeapon extends Weapon {
 		this.firePower = firePower;
 		this.bulletSpeed = bulletSpeed;
 		this.spread = spread;
+		this.bulletsSpawned = bulletsSpawned;
 		this.clipSize = clipSize;
 		this.reloadTime = reloadTime;
 		this.scatterMaxAngle = scatterMaxAngle;
@@ -87,42 +90,41 @@ class ProjectileWeapon extends Weapon {
 			Time.time > lastShotTime + 1/actualRateOfFire ) {
 			justReloaded = false;
 			if (bulletsInClip > 0) {
-				bulletsInClip--;				
-				var newBullet : GameObject = Instantiate(bulletPrefab, 
-						zedMovement.getPosition(), 
-						Quaternion.identity);
+				bulletsInClip--;
+
 				var angle : float = zedMovement.getUpperBodyAngle();
 				
 				// apply scatter
 				var scatterAngle = zedResources.getCurrentScatterAngle();
 				angle += Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
-				
-				newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
-				
-//				newBullet.transform.position.x += Vector2.Dot(
-//						Vector2(newBullet.transform.right.x, newBullet.transform.right.y), 
-//						Vector2(spawnOffset.x, 0));
-//						
-//				newBullet.transform.position.y += Vector2.Dot(
-//						Vector2(newBullet.transform.right.x, newBullet.transform.right.y), 
-//						Vector2(0, spawnOffset.y));
-				
-				newBullet.transform.position.x = newBullet.transform.position.x
-						+ Mathf.Cos(Mathf.Deg2Rad*angle)*spawnOffset.x
-						- Mathf.Sin(Mathf.Deg2Rad*angle)*spawnOffset.y;
+
+				for (var b : int = 0; b < bulletsSpawned; b++) {
+					var newBullet : GameObject = Instantiate(bulletPrefab, 
+						zedMovement.getPosition(), 
+						Quaternion.identity);
+
+					var angleWithSpread : float = angle + Random.Range(-0.5*spread, 0.5*spread);
 					
-				newBullet.transform.position.y = newBullet.transform.position.y
-						+ Mathf.Sin(Mathf.Deg2Rad*angle)*spawnOffset.x
-						+ Mathf.Cos(Mathf.Deg2Rad*angle)*spawnOffset.y;
-			
+					newBullet.transform.eulerAngles = new Vector3(0, 0, angleWithSpread);
+					
+					newBullet.transform.position.x = newBullet.transform.position.x
+							+ Mathf.Cos(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.x
+							- Mathf.Sin(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.y;
+						
+					newBullet.transform.position.y = newBullet.transform.position.y
+							+ Mathf.Sin(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.x
+							+ Mathf.Cos(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.y;
 				
-				newBullet.GetComponent(BulletProperties).setPower(firePower);
-				newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
-								
-				increaseScatterAngle();
-				
-				AudioSource.PlayClipAtPoint(firingSound,zed.transform.position);
-				lastShotTime = Time.time;
+					
+					newBullet.GetComponent(BulletProperties).setPower(firePower);
+					newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
+									
+					increaseScatterAngle();
+					
+					AudioSource.PlayClipAtPoint(firingSound,zed.transform.position);
+					lastShotTime = Time.time;
+				}
+
 				if (bulletsInClip == 0) {
 					reload();
 				}
