@@ -22,6 +22,7 @@ private var currentScatterAngle : float;
 private var lastShotScatterAngle : float;
 
 var gruntSound : AudioClip;
+var deathSound : AudioClip;
 
 /*
  *	HEALTH
@@ -63,9 +64,9 @@ function Update() {
 
 function reduceHealth(reductionAmount : float) {
 	health -= reductionAmount;			
-	if (health < 0) {
+	if (health <= 0) {
 		health = 0;
-//		AudioSource.PlayClipAtPoint(deathSound,transform.position);
+		AudioSource.PlayClipAtPoint(deathSound,transform.position);
 	}
 	else
 		AudioSource.PlayClipAtPoint(gruntSound,transform.position);
