@@ -17,14 +17,14 @@ function Update() {
 	}
 	// instantiate when trigger pressed and rate of fire
 	// according to weapon in zedResources
-	else if (Input.GetMouseButton(0)) {
+	else if (Input.GetMouseButton(0) && Time.timeScale != 0) {
 		currentWeapon.strike();
 		
 		if (currentWeapon instanceof ProjectileWeapon) {
 			var currentProjectileWeapon : ProjectileWeapon = currentWeapon as ProjectileWeapon;
 		}
 		
-	} 	else if (Input.GetMouseButton(1)) {
+	} 	else if (Input.GetMouseButton(1) && Time.timeScale != 0) {
 		currentWeapon.secondaryStrike();
 	}
 	
