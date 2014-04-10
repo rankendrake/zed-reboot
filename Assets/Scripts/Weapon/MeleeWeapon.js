@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 class MeleeWeapon extends Weapon {
-	private var zed : Transform;
+	private var zed : GameObject;
 	private var weaponAnimator : Animator;
 	var reach : int;
 	var power : int;
@@ -13,13 +13,15 @@ class MeleeWeapon extends Weapon {
 		this.reach = reach;
 		this.power = power;
 		this.id = id;
-		zed = GameObject.Find("zed").transform as Transform;
-		for (var child : Transform in zed) {
-			if (child.gameObject.CompareTag("sword")) {
+		//zed = GameObject.Find("zed").transform as Transform;
+		zed = GameObject.FindGameObjectsWithTag("zed")[0];		
+		
+		var zedsChildren = zed.GetComponentsInChildren(Transform);
+		for (var child : Transform in zedsChildren) {
+   			if (child.gameObject.CompareTag("sword")) {
 				weaponAnimator = child.gameObject.GetComponent(Animator);
 			}
-		}
-		
+		}		
 	}
 
 	// @Override
