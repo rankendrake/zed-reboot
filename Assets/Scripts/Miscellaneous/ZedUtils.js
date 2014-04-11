@@ -51,4 +51,15 @@ class ZedUtils {
 	 static function getAngle(from : Vector3, to : Vector3) : float {
 	 	return Mathf.Rad2Deg*Mathf.Atan2(to.y - from.y, to.x - from.x);
 	 }
+
+	/**
+	 *	Rotates a vector by Euler angles
+	 */
+	static function rotateVector(v : Vector2, a : float) : Vector2 {
+		var out : Vector2 = new Vector2();
+		var aRad : float = Mathf.Deg2Rad*a;
+		out.x = v.x*Mathf.Cos(aRad) - v.y*Mathf.Sin(aRad);
+		out.y = v.x*Mathf.Sin(aRad) + v.y*Mathf.Cos(aRad);
+		return out;
+	}
 }

@@ -5,8 +5,7 @@ private var lastShotTime : float;
 
 var bulletPrefab : GameObject;
 
-var barrelLength : float;
-var distanceBetweenBarrels : float;
+var bulletSpawnOffsets : Vector2[];
 var firePower : float;
 var bulletSpeed : float;
 var rateOfFire : float;
@@ -90,12 +89,9 @@ function decelerate() {
 function fire(direction : Vector3) {
 	if (Time.time > lastShotTime + 1/rateOfFire ) {
 		for (var i : int = 0; i < 2; i++) {
-			var instantiationPosition : Vector3 = transform.position + direction*barrelLength;
-			instantiationPosition += new Vector3(
-				Mathf.Sin(Mathf.Rad2Deg*transform.eulerAngles.z)*distanceBetweenBarrels*Mathf.Pow(-1, i), 
-				-Mathf.Cos(Mathf.Rad2Deg*transform.eulerAngles.z)*distanceBetweenBarrels*Mathf.Pow(-1, i), 
-				0);
-
+			// var instantiationPosition : Vector2 = transform.position + bulletSpawnOffsets[i];
+			var instantiationPosition : Vector2 = transform.position + ZedUtils.rotateVector(bulletSpawnOffsets[i], transform.eulerAngles.z);
+			
 
 			var newBullet : GameObject = Instantiate(bulletPrefab, 
 					instantiationPosition,

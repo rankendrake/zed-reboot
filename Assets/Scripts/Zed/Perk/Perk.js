@@ -14,7 +14,7 @@
 class Perk {
 	private var name : String;
 	private var skillPointCost : int;
-	private var perkIcon : Texture2D;	
+	private var perkIcon : Texture2D;
 	
 	function Perk(name : String,
 			skillPointCost : int,

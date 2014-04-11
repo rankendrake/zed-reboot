@@ -50,6 +50,7 @@
      <Compile Include="Assets\BarrelTurner.js" />
      <Compile Include="Assets\CogTurner.js" />
      <Compile Include="Assets\Crosshair.js" />
+     <Compile Include="Assets\LaserSight.js" />
      <Compile Include="Assets\MiniturretBehaviour.js" />
      <Compile Include="Assets\NamePrompt.js" />
      <Compile Include="Assets\Scripts\CollisionBehavior.js" />
@@ -79,6 +80,7 @@
      <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\MovementPerk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\Perk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\PerkList.js" />

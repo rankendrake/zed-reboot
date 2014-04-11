@@ -6,6 +6,7 @@ class PerkList {
 	private var list : List.<Perk>;
 	private var movementPerkList : List.<MovementPerk>;
 	private var weaponPerkList : List.<WeaponPerk>;
+	private var laserPerk : LaserPerk;
 	
 	private var lastAdded : Perk;
 	
@@ -21,6 +22,8 @@ class PerkList {
 			movementPerkList.Add(perk as MovementPerk);
 		} else if (perk instanceof WeaponPerk) {
 			weaponPerkList.Add(perk as WeaponPerk);
+		} else if (perk instanceof LaserPerk) {
+			laserPerk = perk;
 		}
 		lastAdded = perk;
 	}
@@ -40,4 +43,10 @@ class PerkList {
 	function getWeaponPerks() : List.<WeaponPerk> {
 		return weaponPerkList;
 	}
+
+	function getLaserPerk() : LaserPerk {
+		return laserPerk;
+	}
+
+
 }
