@@ -24,9 +24,7 @@ function Update () {
 		checkBoundaries();
 	} else {
 		_transform.position = finalPosition;
-		spriteRenderer.enabled = false;
-		TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
-				trailRenderer.time);			
+		spriteRenderer.enabled = false;			
 	}
 }
 
@@ -100,6 +98,8 @@ private function checkCollision() {
 			// bullet to be destroyed
 			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
 			moving = false;
+			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
+				trailRenderer.time);
 		}
 	}	
 }
@@ -135,5 +135,8 @@ private function checkBoundaries() {
 		
 		TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
 				trailRenderer.time);
+				
+		finalPosition = _transform.position;		
+		moving = false;
 	}
 }

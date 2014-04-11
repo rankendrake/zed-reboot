@@ -26,7 +26,7 @@ function Awake() {
 }
 
 function Update () {
-	destroyListedObjects();
+	destroyListedObjects();	
 }
 
 /*
@@ -45,7 +45,7 @@ static function destroyGameObjectInSeconds(gameObject : GameObject,
 private function destroyListedObjects() {
 	var i : int = 0;	
 	while(i < objectsToBeDestroyed.Count) {	
-		if (objectsToBeDestroyed[i].destroyTime < Time.time) {
+		if (objectsToBeDestroyed[i].destroyTime < Time.time) {				
 			GameObject.Destroy(objectsToBeDestroyed[i].gameObject);
 			objectsToBeDestroyed.RemoveAt(i);
 		} else {

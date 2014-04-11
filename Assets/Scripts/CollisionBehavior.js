@@ -33,22 +33,26 @@ function FixedUpdate () {
 	
 	// give push to all others
 	for (var i : int = 0; i < overlappingObjectsCount; i++) {	
-		var positionDifference : Vector3 = overlappingObjects[i].getPosition() - _transform.position;
-		positionDifference.z = 0;
-		if (positionDifference.magnitude > (colliderLeaveRadius + overlappingObjects[i].getColliderLeaveRadius())) {
-			removeOverlappingObject(i);
-		} else {	
-			positionDifference = positionDifference.normalized;
-			var overlapTime : float = Time.time - overlapStartTimes[i];
-			var currentPushStrength = pushStrength*(1 - Mathf.Exp(-pushIncreaseFactor*overlapTime));
-			var pushImpulse : Vector2;
-			if (!pushPerpendicular) {		
-				pushImpulse = currentPushStrength*(new Vector2(positionDifference.x, positionDifference.y));
-			} else {
-				var pushDirection : float = Mathf.Sign(Vector3.Cross(parentTransform.right, positionDifference).z);
-				pushImpulse = currentPushStrength*pushDirection*parentTransform.up;
+		if (overlappingObjects[i] != null) {	
+			var positionDifference : Vector3 = overlappingObjects[i].getPosition() - _transform.position;
+			positionDifference.z = 0;
+			if (positionDifference.magnitude > (colliderLeaveRadius + overlappingObjects[i].getColliderLeaveRadius())) {
+				removeOverlappingObject(i);
+			} else {	
+				positionDifference = positionDifference.normalized;
+				var overlapTime : float = Time.time - overlapStartTimes[i];
+				var currentPushStrength = pushStrength*(1 - Mathf.Exp(-pushIncreaseFactor*overlapTime));
+				var pushImpulse : Vector2;
+				if (!pushPerpendicular) {		
+					pushImpulse = currentPushStrength*(new Vector2(positionDifference.x, positionDifference.y));
+				} else {
+					var pushDirection : float = Mathf.Sign(Vector3.Cross(parentTransform.right, positionDifference).z);
+					pushImpulse = currentPushStrength*pushDirection*parentTransform.up;
+				}
+				overlappingObjects[i].physicalPush(pushImpulse);
 			}
-			overlappingObjects[i].physicalPush(pushImpulse);
+		} else {
+			removeOverlappingObject(i);
 		}
 	}	
 }
@@ -71,8 +75,6 @@ function OnTriggerEnter2D(other : Collider2D) {
 	
 
 function OnTriggerExit2D(other : Collider2D) {
-	print("trigger exit");
-
 	if (other.gameObject.CompareTag("collisionDetector")) {
 		var otherCollisionBehavior = other.GetComponent(CollisionBehavior);		
 		if (otherCollisionBehavior == null) {

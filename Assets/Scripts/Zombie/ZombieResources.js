@@ -27,12 +27,16 @@ function Update() {
 	if (!isAlive() && !animatorDead) {
 		var animator : Animator = gameObject.GetComponent(Animator);
 		animator.SetBool("isDead", true);
+		animatorDead = true;
 		animator.SetLayerWeight(2, 0); // stop overriding arm movement
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
 	// Play death sound.
 		AudioSource.PlayClipAtPoint(zombieDeathSound,transform.position);
 		trimUnnecessaryComponents();
+		
+		TimedObjectDestructor.destroyGameObjectInSeconds(gameObject, 2);
+		
 		
 		// Dying rotation variation
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
