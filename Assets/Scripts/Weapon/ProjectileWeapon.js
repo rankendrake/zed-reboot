@@ -75,7 +75,8 @@ class ProjectileWeapon extends Weapon {
 	}
 	
 	// @Override
-	function strike() {
+	function strike() : boolean {
+		var successfulStrike : boolean = false;
 		// modifications by perks
 		var actualRateOfFire : float = rateOfFire;
 		var actualBulletSpeed : float = bulletSpeed;
@@ -91,6 +92,7 @@ class ProjectileWeapon extends Weapon {
 			justReloaded = false;
 			if (bulletsInClip > 0) {
 				bulletsInClip--;
+				successfulStrike = true;
 
 				var angle : float = zedMovement.getUpperBodyAngle();
 				
@@ -117,6 +119,7 @@ class ProjectileWeapon extends Weapon {
 				
 					
 					newBullet.GetComponent(BulletProperties).setPower(firePower);
+					newBullet.GetComponent(BulletProperties).setOwner(zed);
 					newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
 									
 					increaseScatterAngle();
@@ -132,6 +135,8 @@ class ProjectileWeapon extends Weapon {
 				reload();
 			}
 		}
+
+		return successfulStrike;
 	}
 	
 	function manualReload() {

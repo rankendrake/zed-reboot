@@ -53,6 +53,7 @@
      <Compile Include="Assets\LaserSight.js" />
      <Compile Include="Assets\MiniturretBehaviour.js" />
      <Compile Include="Assets\NamePrompt.js" />
+     <Compile Include="Assets\ParticleLayerOrder.js" />
      <Compile Include="Assets\Scripts\CollisionBehavior.js" />
      <Compile Include="Assets\Scripts\Environment\Collectibles\SkillPointCoinBehavior.js" />
      <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />

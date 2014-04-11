@@ -25,9 +25,10 @@ class MeleeWeapon extends Weapon {
 	}
 
 	// @Override
-	function strike() {
+	function strike() : boolean {
 		//Debug.Log("attack with melee weapon. power = " + power);
 		weaponAnimator.Play("Cleave");
+		return true;
 	}
 
 	// @Override

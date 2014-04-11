@@ -23,10 +23,12 @@ private var upperBodyActualAngle : float;
 private var accelerating : boolean;
 
 private var _transform : Transform;
+private var distanceCovered : float;
 
 function Start() {
 	// caching the Transform
 	_transform = transform;
+	distanceCovered = 0;
 }
 
 function Update () {
@@ -138,8 +140,9 @@ private function checkMapBounds() {
 
 private function updateTransform() {
 	_transform.rotation.eulerAngles = new Vector3(0, 0, actualAngle);
-	var currentSpeed = Time.deltaTime*actualSpeed;
-	_transform.position += _transform.right*currentSpeed;
+	var distanceCoveredAtFrame = Time.deltaTime*actualSpeed;
+	distanceCovered += distanceCoveredAtFrame;
+	_transform.position += _transform.right*distanceCoveredAtFrame;
 }
 
 private function notifyAnimator(){
@@ -176,4 +179,8 @@ function setActualVelocityY(val : float) {
 	actualVelocity.y = val;
 	actualSpeed = actualVelocity.magnitude;
 	actualAngle = Mathf.Rad2Deg*Mathf.Atan2(actualVelocity.y, actualVelocity.x);
+}
+
+function getDistanceCovered() : float {
+	return distanceCovered;
 }

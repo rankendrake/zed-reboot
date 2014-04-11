@@ -116,9 +116,11 @@ function evaluateZombieCollision(hitList : RaycastHit2D[], firstHitObject : Game
 	
 	var zombieImpact : ZombieImpact = firstHitObject.transform.root.gameObject.GetComponent(ZombieImpact);
 	if (zombieImpact != null) {
-		zombieImpact.impact(bulletProperties.getPower(), 
-				new Vector2(speed*_transform.up.x, speed*_transform.up.y), 
-				hitChildren);
+		zombieImpact.impact(
+			bulletProperties.getOwner(), 
+			bulletProperties.getPower(), 
+			new Vector2(speed*_transform.up.x, speed*_transform.up.y), 
+			hitChildren);
 	} else {
 		Debug.Log("Hit Object does not have ZombieImpact component!");
 	}
