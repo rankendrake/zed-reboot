@@ -16,16 +16,13 @@ function Start () {
 	// spawnSingle(prefab, time, edge)
 	// spawnSingle(prefab, time, edges) [To do]
 	
-	// spawnContinuous(prefab, startTime, duration, period, position)
-	// spawnContinuous(prefab, startTime, duration, period, position, spread)
-	// spawnContinuous(prefab, startTime, duration, period, edge)
-	// spawnContinuous(prefab, startTime, duration, period, edges) [to do]
+	// spawnContinuous(prefab, startTime, duration, zombieNumber, position)
+	// spawnContinuous(prefab, startTime, duration, zombieNumber, position, spread)
+	// spawnContinuous(prefab, startTime, duration, zombieNumber, edge)
+	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
 	
 
 
-	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 0, 50, .3, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 2, 5, 5, Vector2(4,0));
 
-	//zombieSpawnEngine.spawnContinuous(newZombiePrefab, 10, 20, .3, Edge.LEFT);
-
-	//zombieSpawnEngine.spawnContinuous(leaderZombiePrefab, 2, 100, 2, Edge.BOTTOM);
 }

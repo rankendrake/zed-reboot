@@ -62,7 +62,7 @@ function spawnSingle(prefab : GameObject, time : float, position : Vector2) {
  * 			when the spawning should take place after the start of the level
  */
 function spawnSingle(prefab : GameObject, time : float, position : Vector2, spread : Vector2) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 100, 200, position, spread));
+	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 1, 1, position, spread));
 }
 
 /* 
@@ -73,7 +73,7 @@ function spawnSingle(prefab : GameObject, time : float, position : Vector2, spre
  * 			when the spawning should take place after the start of the level
  */
 function spawnSingle(prefab : GameObject, time : float, edge : Edge) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 100, 200, edge));
+	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 1, 1, edge));
 }
 
 /* 
@@ -84,7 +84,7 @@ function spawnSingle(prefab : GameObject, time : float, edge : Edge) {
  * 			when the spawning should take place after the start of the level
  */
 function spawnSingle(prefab : GameObject, time : float, edges : Edge[]) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 100, 200, edges));
+	spawnJobs.Add(new ZombieSpawnJob(prefab, time, 1, 1, edges));
 }
 
 
@@ -94,8 +94,8 @@ function spawnSingle(prefab : GameObject, time : float, edges : Edge[]) {
  * 			for spawning until game ends.
  */
 function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		period : float, position : Vector2) {
-	spawnContinuous(prefab, startTime, duration, period, position, new Vector2(0, 0));
+		zombieNumber : int, position : Vector2) {
+	spawnContinuous(prefab, startTime, duration, zombieNumber, position, new Vector2(0, 0));
 }
 
 
@@ -105,8 +105,8 @@ function spawnContinuous(prefab : GameObject, startTime : float, duration : floa
  * 			for spawning until game ends.
  */
 function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		period : float, position : Vector2, spread : Vector2) {
-	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, period, position, spread));
+		zombieNumber : int, position : Vector2, spread : Vector2) {
+	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, zombieNumber, position, spread));
 }
 
 /*
@@ -115,6 +115,6 @@ function spawnContinuous(prefab : GameObject, startTime : float, duration : floa
  * 			for spawning until game ends.
  */
 function spawnContinuous(prefab : GameObject, startTime : float, duration : float, 
-		period : float, edge : Edge) {	
-	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, period, edge));
+		zombieNumber : int, edge : Edge) {	
+	spawnJobs.Add(new ZombieSpawnJob(prefab, startTime, duration, zombieNumber, edge));
 }
