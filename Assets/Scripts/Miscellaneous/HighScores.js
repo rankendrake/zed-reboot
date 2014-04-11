@@ -30,8 +30,10 @@ function Awake() {
 }
 
 function OnGUI() {
+
+	GUI.skin = null;
 	GUI.skin.font = zedFont;
-	GUI.skin.button.fontSize = labelFontSize; // temporary
+	GUI.skin.button.fontSize = labelFontSize;
 
 	// Create general high score box
 	changeFontSize(flavourTextFontSize, GUI.skin.box);
@@ -54,9 +56,12 @@ function OnGUI() {
 
 	// Column headers
 	GUILayout.BeginHorizontal();
-	GUILayout.Label("Time", centeredStyle, GUILayout.Width(boxWidth*Screen.width/3));
-	GUILayout.Label("Fallen one", centeredStyle, GUILayout.Width(boxWidth*Screen.width/3));
-	GUILayout.Label("Result", centeredStyle, GUILayout.Width(boxWidth*Screen.width/3));
+	GUILayout.Label("Fallen one", centeredStyle, GUILayout.Width(boxWidth*Screen.width/4));
+	GUILayout.Label("Result", centeredStyle, GUILayout.Width(boxWidth*Screen.width/6));
+	GUILayout.Label("Duration", centeredStyle, GUILayout.Width(boxWidth*Screen.width/9));
+	GUILayout.Label("Hit", centeredStyle, GUILayout.Width(boxWidth*Screen.width/9));
+	GUILayout.Label("Run", centeredStyle, GUILayout.Width(boxWidth*Screen.width/9));
+	GUILayout.Label("Time", centeredStyle, GUILayout.Width(boxWidth*Screen.width/4));
 	GUILayout.EndHorizontal();
 
 	GUILayout.Space(10);
@@ -65,10 +70,14 @@ function OnGUI() {
 	for(var _score : Scores in highscore) {
 		GUILayout.BeginHorizontal();
 	    changeFontSize(labelFontSize, GUI.skin.label);
-		GUILayout.Label(_score.time, centeredStyle, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
-		GUILayout.Label(_score.name, centeredStyle, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
-	    changeFontSize(numberFontSize, GUI.skin.label);
-		GUILayout.Label(""+_score.score, centeredStyle, GUILayout.Width(boxWidth*Screen.width/3), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		GUILayout.Label(_score.name, centeredStyle, GUILayout.Width(boxWidth*Screen.width/4), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		changeFontSize(numberFontSize, GUI.skin.label);
+		GUILayout.Label(String.Format("{0:D}", _score.score), centeredStyle, GUILayout.Width(boxWidth*Screen.width/6), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		changeFontSize(labelFontSize, GUI.skin.label);
+		GUILayout.Label(_score.duration, centeredStyle, GUILayout.Width(boxWidth*Screen.width/9), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		GUILayout.Label(String.Format("{0:F2}%", _score.hit), centeredStyle, GUILayout.Width(boxWidth*Screen.width/9), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		GUILayout.Label(String.Format("{0:F0}m", _score.run), centeredStyle, GUILayout.Width(boxWidth*Screen.width/9), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
+		GUILayout.Label(_score.time, centeredStyle, GUILayout.Width(boxWidth*Screen.width/4), GUILayout.Height(labelFontSize*1.8*screenToDefaultScreenRatio));
 		GUILayout.EndHorizontal();
 	}
 
@@ -99,6 +108,8 @@ function OnGUI() {
 	GUILayout.EndHorizontal();
 
 	GUILayout.EndArea();
+
+	GUI.skin = null;
 }
 
 function changeFontSize(newsize : int, element : GUIStyle) {

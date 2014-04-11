@@ -11,6 +11,8 @@ var textFieldHeight : float;
 var buttonHeight : float;
 var screenYFraction : float;
 var zedResources : ZedResources;
+var zedStrike : ZedStrike;
+var zedMovement : ZedMovement;
 
 var defaultScreenWidth : int = 1400; // for font size calculation
 private var screenToDefaultScreenRatio : float;
@@ -88,6 +90,8 @@ function OnGUI() {
 		    GUI.FocusControl("inputField");
 		}
 	}
+
+	GUI.skin = null;
 }
 
 function openPrompt() {
@@ -106,6 +110,22 @@ function changeFontSize(newsize : int, element : GUIStyle) {
 }
 
 function hallOfFameButtonPressed() {
-	HighScoreManager._instance.SaveHighScore(aname, zedResources.getExperience(), System.DateTime.Now.ToString());
+	var timeInSeconds : float = Time.timeSinceLevelLoad;
+	var minutes : int = timeInSeconds / 60;
+	var seconds : int = timeInSeconds % 60;
+	var timeString : String = minutes.ToString() + ":";
+	if (seconds < 10) {
+		timeString = timeString + "0" + seconds.ToString();
+	} else {
+		timeString = timeString + seconds.ToString();		
+	}
+
+	HighScoreManager._instance.SaveHighScore(
+		aname, 
+		zedResources.getExperience(), 
+		System.DateTime.Now.ToString(), 
+		zedStrike.getPercentageHit(),
+		zedMovement.getDistanceCovered(),
+		timeString);
 	closePrompt(); 
 }

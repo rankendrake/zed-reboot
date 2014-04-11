@@ -1,4 +1,5 @@
 ﻿// http://answers.unity3d.com/questions/20773/how-do-i-make-a-highscores-board.html
+// (edited)
 
 
 using UnityEngine;
@@ -40,7 +41,7 @@ public class HighScoreManager : MonoBehaviour
        DontDestroyOnLoad (gameObject);
     }
  
-    public void SaveHighScore (string name, int score, string time)
+    public void SaveHighScore (string name, int score, string time, float hit, float run, string duration)
     {
        List<Scores> HighScores = new List<Scores> ();
  
@@ -50,6 +51,9 @@ public class HighScoreManager : MonoBehaviour
          temp.score = PlayerPrefs.GetInt ("HighScore" + i + "score");
          temp.name = PlayerPrefs.GetString ("HighScore" + i + "name");
          temp.time = PlayerPrefs.GetString ("HighScore" + i + "time");
+         temp.hit = PlayerPrefs.GetFloat ("HighScore" + i + "hit");
+         temp.run = PlayerPrefs.GetFloat ("HighScore" + i + "run");
+         temp.duration = PlayerPrefs.GetString ("HighScore" + i + "duration");
          HighScores.Add (temp);
          i++;
        }
@@ -58,6 +62,9 @@ public class HighScoreManager : MonoBehaviour
          _temp.name = name;
          _temp.score = score;
          _temp.time = time;
+         _temp.hit = hit;
+         _temp.run = run;
+         _temp.duration = duration;
          HighScores.Add (_temp);
        } else {
          for (i=1; i<=HighScores.Count && i<=LeaderboardLength; i++) {
@@ -66,6 +73,9 @@ public class HighScoreManager : MonoBehaviour
               _temp.name = name;
               _temp.score = score;
               _temp.time = time;
+              _temp.hit = hit;
+              _temp.run = run;
+              _temp.duration = duration;
               HighScores.Insert (i - 1, _temp);
               break;
           }      
@@ -74,6 +84,9 @@ public class HighScoreManager : MonoBehaviour
               _temp.name = name;
               _temp.score = score;
               _temp.time = time;
+              _temp.hit = hit;
+              _temp.run = run;
+              _temp.duration = duration;
               HighScores.Add (_temp);
               break;
           }
@@ -85,6 +98,9 @@ public class HighScoreManager : MonoBehaviour
          PlayerPrefs.SetString ("HighScore" + i + "name", HighScores [i - 1].name);
          PlayerPrefs.SetInt ("HighScore" + i + "score", HighScores [i - 1].score);
          PlayerPrefs.SetString ("HighScore" + i + "time", HighScores [i - 1].time);
+         PlayerPrefs.SetFloat ("HighScore" + i + "hit", HighScores [i - 1].hit);
+         PlayerPrefs.SetFloat ("HighScore" + i + "run", HighScores [i - 1].run);
+         PlayerPrefs.SetString ("HighScore" + i + "duration", HighScores [i - 1].duration);
          i++;
        }
  
@@ -100,6 +116,9 @@ public class HighScoreManager : MonoBehaviour
          temp.score = PlayerPrefs.GetInt ("HighScore" + i + "score");
          temp.name = PlayerPrefs.GetString ("HighScore" + i + "name");
          temp.time = PlayerPrefs.GetString ("HighScore" + i + "time");
+         temp.hit = PlayerPrefs.GetFloat ("HighScore" + i + "hit");
+         temp.run = PlayerPrefs.GetFloat ("HighScore" + i + "run");
+         temp.duration = PlayerPrefs.GetString ("HighScore" + i + "duration");
          HighScores.Add (temp);
          i++;
        }
@@ -117,6 +136,9 @@ public class HighScoreManager : MonoBehaviour
          PlayerPrefs.DeleteKey("HighScore" + i + "name");
          PlayerPrefs.DeleteKey("HighScore" + i + "score");
          PlayerPrefs.DeleteKey("HighScore" + i + "time");
+         PlayerPrefs.DeleteKey("HighScore" + i + "hit");
+         PlayerPrefs.DeleteKey("HighScore" + i + "run");
+         PlayerPrefs.DeleteKey("HighScore" + i + "duration");
        }
     }
  

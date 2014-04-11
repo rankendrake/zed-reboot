@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 var power : float;
+private var owner : GameObject;
 
 function setPower(power : float) {
 	this.power = power;
@@ -8,4 +9,12 @@ function setPower(power : float) {
 
 function getPower() {
 	return power;
+}
+
+function setOwner(obj : GameObject) {
+	owner = obj;
+}
+
+function getOwner() : GameObject {
+	return owner;
 }

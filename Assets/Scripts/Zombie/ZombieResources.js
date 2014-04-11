@@ -7,13 +7,13 @@ private var zombieProperties : ZombieProperties;
 private var health : float;
 private var animatorDead : boolean;
 
-private var zedResources : ZedResources;
+var zedResources : ZedResources;
 
 //var zombieDeathSound : AudioSource;
 
 var zombieDeathSound : AudioClip;
 
-function Start() {
+function Awake() {
 	zombieProperties = transform.GetComponent(ZombieProperties);
 
 	health = zombieProperties.getMaxHealth();

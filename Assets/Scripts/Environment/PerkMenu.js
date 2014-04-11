@@ -56,6 +56,7 @@ function Update () {
 }
 
 function OnGUI() {
+	var defaultBackground : Texture2D = GUI.skin.box.normal.background;
 	if (perkMenuActive) {
 		changeFontSize(titleFontSize, GUI.skin.box);
 
@@ -172,6 +173,9 @@ function OnGUI() {
 				(descriptionBoxSize.y*Screen.width)),
 			GUI.tooltip);
 	} 
+
+	GUI.skin.box.normal.background = defaultBackground;
+	GUI.skin = null;
 }
 
 /*

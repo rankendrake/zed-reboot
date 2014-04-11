@@ -51,6 +51,8 @@ function OnGUI() {
 	if (newButton(quitButtonY, "Quit Game")) {
 		Application.Quit();
 	}
+
+	GUI.skin = null;
 }
 
 function newButton(y : float, text : String) : boolean {
