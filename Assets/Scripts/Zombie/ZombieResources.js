@@ -31,13 +31,11 @@ function Update() {
 		animator.SetLayerWeight(2, 0); // stop overriding arm movement
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
-	// Play death sound.
+		
+		// Play death sound.
 		AudioSource.PlayClipAtPoint(zombieDeathSound,transform.position);
 		trimUnnecessaryComponents();
-		
-		TimedObjectDestructor.destroyGameObjectInSeconds(gameObject, 2);
-		
-		
+			
 		// Dying rotation variation
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
 		
@@ -75,12 +73,18 @@ function trimUnnecessaryComponents() {
             }
     }
     if(transform.childCount > 0) {
-    	for(var child : Transform in gameObject.transform) {
+    	var childrenTransforms : Component[] = transform.GetComponentsInChildren(Transform);    
+    	for(var i : int = 0; i < childrenTransforms.Length; i++) {
+    		var child : Transform = childrenTransforms[i];    		
     		if(child.gameObject.CompareTag("detector")) {
 	    		Destroy(child.gameObject);
-	    		}
-    	}
+	    	} else if(child.gameObject.CompareTag("collisionDetector")) {
+	    		Destroy(child.gameObject);
+	    	}
+	    	child.gameObject.isStatic = true;
+    	}    	
     }  
+    gameObject.isStatic = true;    
 }
 
 function dropSkillPoint() {
