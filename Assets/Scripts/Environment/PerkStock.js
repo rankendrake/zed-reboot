@@ -5,11 +5,12 @@
 
 import System.Collections.Generic;
 
-final var CATEGORY_COUNT : int = 4;
+final var CATEGORY_COUNT : int = 5;
 final var MOVEMENT : int = 0;
 final var RATE_OF_FIRE : int = 1;
 final var FIRE_POWER : int = 2;
 final var SHOT_ACCURACY : int = 3;
+final var MISC : int = 4;
 
 private var perkTree : List.<Perk>[]; // array of Lists
 private var unlockLevel : int[]; 	// to what level perks in each 
@@ -105,6 +106,14 @@ function createPerkStock() {
 					.skillPointCost(10)
 					.scatterMultiplier(0.0)
 					.build());
+
+	perkTree[MISC].Add(
+			new LaserPerk.Builder()
+					.name("Laser Sight")
+					.skillPointCost(0)
+					.color(Color(0, 1, 0))
+					.build());
+
 }
 
 function getPerk(category : int, index : int) {
