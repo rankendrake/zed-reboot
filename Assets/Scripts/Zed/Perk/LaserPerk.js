@@ -14,7 +14,18 @@ class LaserPerk extends Perk {
 	}
 
 	function toggleActive() {
-		active = !active;
+		if (color != null && active) {
+			if (color == Color.green) {
+				color = Color.red;
+			} else if (color == Color.red) {
+				color = Color.blue;
+			} else if (color == Color.blue) {
+				active = !active;
+				color = Color.green;
+			}
+		} else {
+			active = !active;
+		}
 	}
 
 	function isActive() {
