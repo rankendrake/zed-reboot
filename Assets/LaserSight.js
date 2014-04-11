@@ -11,7 +11,10 @@ function Start() {
 
 function Update () {
 	var laserPerk : LaserPerk = zedResources.activePerks.getLaserPerk();
-	if (laserPerk != null && laserPerk.isActive()) {
+	if (Input.GetKeyDown("l")) {
+		laserPerk.toggleActive();
+	}
+	if (laserPerk != null && laserPerk.isActive() && zedResources.currentWeaponIndex != 0) {
 		lineRenderer.enabled = true;
 		var color : Color = laserPerk.getColor();
 		lineRenderer.SetColors(color, color);
