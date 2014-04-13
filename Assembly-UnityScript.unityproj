@@ -106,7 +106,6 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieTargetSelector.js" />
      <Compile Include="Assets\SwordImpact.js" />
      <Compile Include="Assets\Tiling.js" />
-     <Compile Include="Assets\ZombieCollision.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
