@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 13954c15d9e9e9847824d2fb3103a2fa
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: sword_arms_0
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1728
+        width: 366
+        height: 280
+      alignment: 9
+      pivot: {x: .736863792, y: .698153675}
+    - name: sword_arms_1
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1705
+        width: 269
+        height: 296
+      alignment: 9
+      pivot: {x: .581643283, y: .660107195}
+    - name: sword_arms_2
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 1722
+        width: 280
+        height: 272
+      alignment: 9
+      pivot: {x: .524769366, y: .682733417}
+    - name: sword_arms_3
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 1721
+        width: 285
+        height: 289
+      alignment: 9
+      pivot: {x: .56489259, y: .587992013}
+    - name: sword_arms_4
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 1743
+        width: 252
+        height: 242
+      alignment: 9
+      pivot: {x: .574388802, y: .708553076}
+    - name: sword_arms_5
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1328
+        width: 376
+        height: 299
+      alignment: 9
+      pivot: {x: .618910551, y: .433860332}
+    - name: sword_arms_6
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 1291
+        width: 501
+        height: 340
+      alignment: 9
+      pivot: {x: .747132301, y: .517701983}
+    - name: sword_arms_7
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 1215
+        width: 563
+        height: 423
+      alignment: 9
+      pivot: {x: .635921061, y: .784572184}
+    - name: sword_arms_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 647
+        width: 519
+        height: 446
+      alignment: 9
+      pivot: {x: .690517724, y: .833515406}
+    - name: sword_arms_9
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 648
+        width: 320
+        height: 456
+      alignment: 9
+      pivot: {x: .569860101, y: .807345986}
+    - name: sword_arms_10
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 642
+        width: 274
+        height: 434
+      alignment: 9
+      pivot: {x: .503138185, y: .836793661}
+    - name: sword_arms_11
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 640
+        width: 322
+        height: 405
+      alignment: 9
+      pivot: {x: .398531139, y: .867278695}
+    - name: sword_arms_12
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 183
+        width: 265
+        height: 357
+      alignment: 9
+      pivot: {x: .496755362, y: .832365155}
+    - name: sword_arms_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 95
+        width: 365
+        height: 330
+      alignment: 9
+      pivot: {x: .671962976, y: .671962917}
+  spritePackingTag: 
+  userData: 
