@@ -19,23 +19,24 @@ var timeBetweenPositionPolls : float;
 
 private var direction : float;
 private var target : GameObject;
+private var zed : GameObject;
 
 private var zombieResources : ZombieResources;
 private var zombieStrike : ZombieStrike;
 private var zombieMovement2 : ZombieMovement2;
 
 var reachedNextPosition : float;
-var zedVisualRange : float;
+var targetVisualRange : float;
 var scentAccuracy : float;
 
 var currentState : LeaderZombieState;
 
 function Start() {
-	target = GameObject.Find("zed");
+	zed = GameObject.Find("zed");
 	zombieStrike = transform.GetComponent(ZombieStrike) as ZombieStrike;
 	zombieMovement2 = transform.GetComponent(ZombieMovement2) as ZombieMovement2;
 	zombieMovement2.updateTargetSpeed(speed);
-	var zedPosition : Vector3 = target.transform.position;
+	var zedPosition : Vector3 = zed.transform.position;
 	getTargetAngle(zedPosition);
 	zombieResources = gameObject.GetComponent(ZombieResources);
 	plotNewPosition();
@@ -55,15 +56,16 @@ function Update() {
 			Time.time > lastPositionPollingTime + timeBetweenPositionPolls) {
 			plotNewPosition();
 		}
-		var distanceFromZed = target.transform.position - transform.position;
+		var distanceFromZed = zed.transform.position - transform.position;
 		distanceFromZed.z = 0;
-		if(Vector3.Magnitude(distanceFromZed) < zedVisualRange) {
+		if(target != null) {
+			Debug.Log("Leader attacking!");
 			nextPosition = target.transform.position;
 			currentState = LeaderZombieState.Attacking;
 		}
 		break;
 	case LeaderZombieState.Attacking : 
-		// If attacking, continuously move towards Zed.
+		// If attacking, continuously move towards target.
 		nextPosition = target.transform.position;
 		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		if(Vector3.Magnitude(positionDifference) < strikeRange) {
@@ -72,7 +74,8 @@ function Update() {
 		}
 		else {
 			zombieMovement2.updateTargetSpeed(speed);
-			if(Vector3.Magnitude(positionDifference) > 1.5 * zedVisualRange) {
+			if(Vector3.Magnitude(positionDifference) > 1.5 * targetVisualRange) {
+				target = null;
 				plotNewPosition();
 				currentState = LeaderZombieState.Searching;
 			}
@@ -80,6 +83,10 @@ function Update() {
 		break;
 	default: break;
 	}
+}
+
+function getTargetVisualRange() {
+	return targetVisualRange;
 }
 
 function updateZombieAngle() {
@@ -115,7 +122,7 @@ function moveTowards(destination : Vector3) {
 }
 */
 function plotNewPosition() {
-	nextPosition = target.transform.position + Random.insideUnitCircle * scentAccuracy;
+	nextPosition = zed.transform.position + Random.insideUnitCircle * scentAccuracy;
 	lastPositionPollingTime = Time.time;
 }
 

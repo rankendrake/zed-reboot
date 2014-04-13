@@ -3,15 +3,12 @@ import System.Collections.Generic;
 
 var slowBloodSpawner : ParticleSystem;
 var fastBloodSpawner : ParticleSystem;
-private var zombieResources : ZombieResources;
-private var zombieMovement : ZombieMovement;
+var zombieResources : ZombieResources;
 private var zedStrike : ZedStrike;
 
 
 function Awake() {
-	zombieResources = GetComponent(ZombieResources);
-	zombieMovement = GetComponent(ZombieMovement);
-	zedStrike = zombieResources.zedResources.gameObject.GetComponent(ZedStrike);
+	zedStrike = GameObject.Find("zed").gameObject.GetComponent(ZedStrike);
 	if (zedStrike == null) {
 		Debug.Log("zedStrike is null in ZombieImpact, finding new zedStrike");
 		zedStrike = GameObject.Find("zed").GetComponent(ZedStrike);
@@ -26,7 +23,6 @@ function damage(impactObject : GameObject, power : float) {
 			zedStrike.incrementBulletsHit();
 		}
 	}
-
 	zombieResources.reduceHealth(power);
 } 
 
@@ -48,5 +44,5 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
 	fastBloodSpawner.transform.eulerAngles.z = Mathf.Rad2Deg*Mathf.Atan2(velocity.y, velocity.x);
 	fastBloodSpawner.time = 0;
 	fastBloodSpawner.Play();
-	damage(impactObject, power);
+//	damage(impactObject, power);
 }

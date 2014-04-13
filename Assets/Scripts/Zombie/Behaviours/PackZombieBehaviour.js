@@ -27,8 +27,8 @@ var maxDistanceFromLeader : float = 3.0;
 var leaderSpeedupFactor : float = 2.0;
 
 // Position-related data
-private var nextPosition : Vector3;
-private var positionDifference : Vector3;
+var nextPosition : Vector3;
+var positionDifference : Vector3;
 var reachedNextPosition : float;
 
 // Zombie data
@@ -57,6 +57,7 @@ function Start() {
 }
 
 function Update() {
+	positionDifference = nextPosition - transform.position;
 	// Additional behaviour dependent on currentState.
 	switch (currentState) {
 	case PackZombieState.Wandering : 

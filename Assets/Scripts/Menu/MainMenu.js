@@ -12,11 +12,13 @@ var buttonWidth : float;  // fraction of Screen.width
 var buttonHeight : float; // fraction of Screen.width
 var titleLabelY : float;
 var startButtonY : float; // fraction of Screen.height
+var howToPlayButtonY : float;
 var highScoreButtonY : float;
 var quitButtonY : float;
 
 var gameSceneName : String;
 var highScoreSceneName : String;
+var howToPlaySceneName : String;
 
 function Awake() {
 	screenToDefaultScreenRatio = parseFloat(Screen.width)/defaultScreenWidth;
@@ -45,6 +47,11 @@ function OnGUI() {
 	// High scores
 	if (newButton(highScoreButtonY, "High Scores")) {
 		Application.LoadLevel(highScoreSceneName);
+	}
+
+	// How to play
+	if (newButton(howToPlayButtonY, "How To Play")) {
+		Application.LoadLevel(howToPlaySceneName);
 	}
 
 	// Quit game
