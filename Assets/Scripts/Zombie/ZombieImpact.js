@@ -4,7 +4,6 @@ import System.Collections.Generic;
 var slowBloodSpawner : ParticleSystem;
 var fastBloodSpawner : ParticleSystem;
 var zombieResources : ZombieResources;
-var zombieMovement : ZombieMovement;
 private var zedStrike : ZedStrike;
 
 
@@ -45,5 +44,5 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
 	fastBloodSpawner.transform.eulerAngles.z = Mathf.Rad2Deg*Mathf.Atan2(velocity.y, velocity.x);
 	fastBloodSpawner.time = 0;
 	fastBloodSpawner.Play();
-	damage(impactObject, power);
+//	damage(impactObject, power);
 }

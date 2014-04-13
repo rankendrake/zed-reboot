@@ -170,7 +170,6 @@ function setTarget(target : GameObject) {
 }
 
 function plotRandomPosition() {
-	Debug.Log("Plotting random position");
 	var nextX = Random.Range(mapBounds.min.x,mapBounds.max.x);
 	var nextY = Random.Range(mapBounds.min.y,mapBounds.max.y);
 	nextPosition = Vector3(nextX,nextY);

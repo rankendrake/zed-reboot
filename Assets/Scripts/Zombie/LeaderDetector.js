@@ -15,7 +15,10 @@ function Update() {
 }
 
 function OnTriggerEnter2D(otherCollider : Collider2D) {
-	if(packZombieBehaviour.leader == null && otherCollider.gameObject.name.CompareTo("LeaderZombie") == 0) {
-		packZombieBehaviour.setLeader(otherCollider.gameObject);
+	if(packZombieBehaviour.leader == null) {
+		// If the other game object has a leader zombie behaviour, then it's a leader zombie.
+		if(otherCollider.gameObject.GetComponent(LeaderZombieBehaviour) != null) {
+			packZombieBehaviour.setLeader(otherCollider.gameObject);
+		}
 	}
 }

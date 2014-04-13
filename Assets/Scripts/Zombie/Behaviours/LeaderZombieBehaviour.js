@@ -59,6 +59,7 @@ function Update() {
 		var distanceFromZed = zed.transform.position - transform.position;
 		distanceFromZed.z = 0;
 		if(target != null) {
+			Debug.Log("Leader attacking!");
 			nextPosition = target.transform.position;
 			currentState = LeaderZombieState.Attacking;
 		}
