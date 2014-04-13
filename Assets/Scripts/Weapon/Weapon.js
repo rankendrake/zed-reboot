@@ -2,6 +2,7 @@
 
 class Weapon extends UnityEngine.Object {
 	var id : String;
+	var zed : GameObject;
 
 	function strike() : boolean {
 		Debug.Log("General weapon strike");

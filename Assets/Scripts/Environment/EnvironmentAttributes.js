@@ -8,6 +8,11 @@ static var bottomBound : float;
 static var leftBound : float;
 static var rightBound : float;
 
+static final var SWORD_INDEX : int = 0;
+static final var SHOTGUN_INDEX : int = 1;
+static final var ASSAULT_RIFLE_INDEX : int = 2;
+static final var PISTOL_INDEX : int = 3;
+
 
 function Awake () {
 	mapBounds = backgroundSpriteRenderer.bounds;

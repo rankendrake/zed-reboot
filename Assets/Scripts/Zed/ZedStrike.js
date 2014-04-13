@@ -1,15 +1,24 @@
 ﻿#pragma strict
 
 var zedResources : ZedResources;
+var animator : Animator;
 
 var timeOfLastShot : float;
 private var totalBulletsSpawned : int;
 private var bulletsHit : int;
 
-function Start() {
-	zedResources = GameObject.Find("zed").GetComponent(ZedResources);
+private final var SWORD : int = EnvironmentAttributes.SWORD_INDEX;
+private final var SHOTGUN : int = EnvironmentAttributes.SHOTGUN_INDEX;
+private final var ASSAULT_RIFLE : int = EnvironmentAttributes.ASSAULT_RIFLE_INDEX;
+private final var PISTOL : int = EnvironmentAttributes.PISTOL_INDEX;
+
+function Awake() {
 	totalBulletsSpawned = 0;
-	bulletsHit = 0;
+	bulletsHit = 0;	
+}
+
+function Start() {	
+	animator = zedResources.animator;
 }
 
 function Update() {
@@ -27,7 +36,13 @@ function Update() {
 		if (currentWeapon instanceof ProjectileWeapon) {
 			var currentProjectileWeapon : ProjectileWeapon = currentWeapon as ProjectileWeapon;
 			if (successfulStrike) {
-				totalBulletsSpawned += currentProjectileWeapon.bulletsSpawned;
+				if (zedResources.currentWeaponIndex == SHOTGUN) {
+					animator.SetBool("shotgun", true);
+				} else {
+					animator.SetBool("shotgun", false);
+				}
+				animator.SetTrigger("pistolStrike");
+				totalBulletsSpawned += currentProjectileWeapon.bulletsSpawned;				
 			}
 		}
 		

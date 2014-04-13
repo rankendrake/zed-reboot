@@ -92,7 +92,7 @@ function rotateUpperBody() {
 	upperBodyActualAngle = ZedUtils.proportionallyAdjustAngle(upperBodyActualAngle,
 			upperBodyTargetAngle, upperBodyAngularSpeed*Time.deltaTime);
 	
-	upperBody.transform.eulerAngles = new Vector3(0, 0, upperBodyActualAngle+90);
+	upperBody.transform.eulerAngles = new Vector3(0, 0, upperBodyActualAngle);
 }
 
 function getUpperBodyAngle() {

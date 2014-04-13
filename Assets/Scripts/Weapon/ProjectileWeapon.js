@@ -9,7 +9,6 @@ class ProjectileWeapon extends Weapon {
 	var clipSize : int;
 	var reloadTime : float;
 	var bulletPrefab : GameObject;
-	var zed : GameObject;
 	var zedMovement : ZedMovement;
 	var zedResources : ZedResources;
 	var spawnOffset : Vector2;
@@ -93,29 +92,29 @@ class ProjectileWeapon extends Weapon {
 			if (bulletsInClip > 0) {
 				bulletsInClip--;
 				successfulStrike = true;
-
-				var angle : float = zedMovement.getUpperBodyAngle();
 				
+				var gunAngle : float = zedMovement.getUpperBodyAngle();
 				// apply scatter
 				var scatterAngle = zedResources.getCurrentScatterAngle();
-				angle += Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
+				var shotAngle : float = gunAngle + Random.Range(-0.5*scatterAngle, 0.5*scatterAngle);
+				
 
 				for (var b : int = 0; b < bulletsSpawned; b++) {
 					var newBullet : GameObject = Instantiate(bulletPrefab, 
 						zedMovement.getPosition(), 
 						Quaternion.identity);
 
-					var angleWithSpread : float = angle + Random.Range(-0.5*spread, 0.5*spread);
+					var angleWithSpread : float = shotAngle + Random.Range(-0.5*spread, 0.5*spread);
 					
 					newBullet.transform.eulerAngles = new Vector3(0, 0, angleWithSpread);
 					
 					newBullet.transform.position.x = newBullet.transform.position.x
-							+ Mathf.Cos(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.x
-							- Mathf.Sin(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.y;
+							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
+							- Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
 						
 					newBullet.transform.position.y = newBullet.transform.position.y
-							+ Mathf.Sin(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.x
-							+ Mathf.Cos(Mathf.Deg2Rad*angleWithSpread)*spawnOffset.y;
+							+ Mathf.Sin(Mathf.Deg2Rad*gunAngle)*spawnOffset.x
+							+ Mathf.Cos(Mathf.Deg2Rad*gunAngle)*spawnOffset.y;
 				
 					
 					newBullet.GetComponent(BulletProperties).setPower(firePower);
