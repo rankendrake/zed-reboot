@@ -24,6 +24,7 @@ function Start() {
 function Update() {
 	
 	var currentWeapon : Weapon = zedResources.weapons[zedResources.currentWeaponIndex];
+	var animatorStateInfo : AnimatorStateInfo;
 
 	if(Input.GetKeyDown("r") && currentWeapon.getReloadEndTime() < Time.time) {
 		currentWeapon.manualReload();
@@ -31,11 +32,10 @@ function Update() {
 	// instantiate when trigger pressed and rate of fire
 	// according to weapon in zedResources
 	else if (Input.GetMouseButton(0) && Time.timeScale != 0 ) {
-		var animatorStateInfo : AnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(1);
+		animatorStateInfo = animator.GetCurrentAnimatorStateInfo(1);
 		if (animatorReady(animatorStateInfo, zedResources.currentWeaponIndex)) {
-			var successfulStrike : boolean = currentWeapon.strike();
-			
 			if (currentWeapon instanceof ProjectileWeapon) {
+				var successfulStrike : boolean = currentWeapon.strike();
 				var currentProjectileWeapon : ProjectileWeapon = currentWeapon as ProjectileWeapon;
 				if (successfulStrike) {
 					if (zedResources.currentWeaponIndex == SHOTGUN) {
@@ -47,6 +47,7 @@ function Update() {
 					totalBulletsSpawned += currentProjectileWeapon.bulletsSpawned;				
 				}
 			} else if (currentWeapon instanceof MeleeWeapon) {
+				var currentMeleeWeapon : MeleeWeapon = currentWeapon as MeleeWeapon;
 				animator.SetBool("meleeStrike", true);
 			}		
 		}
@@ -54,6 +55,15 @@ function Update() {
 		currentWeapon.secondaryStrike();
 	} else {
 		animator.SetBool("meleeStrike", false);
+		if (zedResources.currentWeaponIndex == SWORD) {
+			var meleeWeapon : MeleeWeapon = currentWeapon as MeleeWeapon;
+			animatorStateInfo = animator.GetCurrentAnimatorStateInfo(1);
+			if (animatorStateInfo.IsName("SwordUp")) {
+				meleeWeapon.strike();  // strike() initializes the attack
+			} else if (animatorStateInfo.IsName("SwordStrike")) {
+				meleeWeapon.executeStrike(); // executeStrike() computes collisions etc.
+			}
+		}		
 	}
 }
 
@@ -69,18 +79,15 @@ function getPercentageHit() : float {
 }
 
 function animatorReady(stateInfo : AnimatorStateInfo, currentWeaponIndex : int) : boolean {
-	switch (currentWeaponIndex) {
-	case SWORD:
+	if (currentWeaponIndex == SWORD) {
 		return stateInfo.IsName("SwordRelaxed");
-		break;
-	case SHOTGUN:
+	} else if (currentWeaponIndex == SHOTGUN) {
 		return stateInfo.IsName("RifleRelaxed");
-		break;
-	case ASSAULT_RIFLE:
+	} else if (currentWeaponIndex == ASSAULT_RIFLE) {
 		return stateInfo.IsName("RifleRelaxed");
-		break;
-	case PISTOL:
+	} else if (currentWeaponIndex == PISTOL) {
 		return stateInfo.IsName("PistolRelaxed");
-		break;
+	} else {
+		return true;
 	}
 }
