@@ -9,7 +9,7 @@ private var zedStrike : ZedStrike;
 
 
 function Awake() {
-	zedStrike = zombieResources.zedResources.gameObject.GetComponent(ZedStrike);
+	zedStrike = GameObject.Find("zed").gameObject.GetComponent(ZedStrike);
 	if (zedStrike == null) {
 		Debug.Log("zedStrike is null in ZombieImpact, finding new zedStrike");
 		zedStrike = GameObject.Find("zed").GetComponent(ZedStrike);
