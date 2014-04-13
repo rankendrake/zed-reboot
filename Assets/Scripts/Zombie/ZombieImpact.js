@@ -3,14 +3,12 @@ import System.Collections.Generic;
 
 var slowBloodSpawner : ParticleSystem;
 var fastBloodSpawner : ParticleSystem;
-private var zombieResources : ZombieResources;
-private var zombieMovement : ZombieMovement;
+var zombieResources : ZombieResources;
+var zombieMovement : ZombieMovement;
 private var zedStrike : ZedStrike;
 
 
 function Awake() {
-	zombieResources = GetComponent(ZombieResources);
-	zombieMovement = GetComponent(ZombieMovement);
 	zedStrike = zombieResources.zedResources.gameObject.GetComponent(ZedStrike);
 	if (zedStrike == null) {
 		Debug.Log("zedStrike is null in ZombieImpact, finding new zedStrike");
@@ -26,7 +24,6 @@ function damage(impactObject : GameObject, power : float) {
 			zedStrike.incrementBulletsHit();
 		}
 	}
-
 	zombieResources.reduceHealth(power);
 } 
 

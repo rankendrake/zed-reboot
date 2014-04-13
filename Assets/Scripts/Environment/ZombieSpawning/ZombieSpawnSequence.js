@@ -23,6 +23,5 @@ function Start () {
 	
 
 
-	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 2, 5, 5, Vector2(4,0));
-
+	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 0, 5, 25, Vector2(2, 0), Vector2(2, 2));
 }
