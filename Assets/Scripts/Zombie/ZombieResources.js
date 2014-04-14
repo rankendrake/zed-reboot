@@ -16,6 +16,10 @@ var nullSound : AudioClip;
 var zombieDeathSound : AudioClip;
 var displayHealthPoints : boolean;
 
+var animator : Animator;
+
+var waitingTimeToBeRemoved : float = 20;
+
 function OnGUI(){
 	if (displayHealthPoints) {
 		var screenPosition = Camera.main.WorldToScreenPoint(transform.position);
@@ -25,6 +29,7 @@ function OnGUI(){
 
 function Awake() {
 	zombieProperties = transform.GetComponent(ZombieProperties);
+	animator = GetComponent(Animator);
 
 	health = zombieProperties.getMaxHealth();
 	animatorDead = false;
@@ -33,9 +38,10 @@ function Awake() {
 	
 	armWeapon = new MeleeWeapon(zombieProperties.getAttackDamage(), "ArmWeapon", gameObject, nullSound, nullSound);
 	var armAttackAngles : float[] = [ 	// triplets of: time, angle, length
-		0.00,  60.0, 0.40,				// for the raycast
-		0.05,  40.0, 0.40,
-		0.45, 135.0, 0.40
+		0.00,  20.0, 0.40,				// for the raycast
+		0.12, -10.0, 0.40,
+		0.35, 100.0, 0.55,
+		0.50, 135.0, 0.30
 	];
 	armWeapon.initAngleData(armAttackAngles);
 }
@@ -53,7 +59,8 @@ function Update() {
 		// Play death sound.
 		AudioSource.PlayClipAtPoint(zombieDeathSound,transform.position);
 		trimUnnecessaryComponents();
-			
+		TimedObjectDestructor.destroyGameObjectInSeconds(gameObject, waitingTimeToBeRemoved);
+				
 		// Dying rotation variation
 		gameObject.transform.Rotate(new Vector3(0, 0, (Random.value - 0.5)*angleDeviationOfDying));
 		
@@ -70,7 +77,7 @@ function Update() {
 			}
 		}
 
-	}
+	} 
 }
 
 function reduceHealth(reductionAmount : float) {
