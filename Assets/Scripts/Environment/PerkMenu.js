@@ -152,7 +152,7 @@ function OnGUI() {
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Scanner Turret\n0G"))) {
+				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Scanner Turret\n" + scannerTurretCost.ToString() + "G"))) {
 
 			purchaseTurret(0);							
 		}
@@ -171,7 +171,7 @@ function OnGUI() {
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Roaming Miniturret\n0G"))) {
+				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Roaming Miniturret\n" + miniTurretCost.ToString() + "G"))) {
 
 			purchaseTurret(1);							
 		}
