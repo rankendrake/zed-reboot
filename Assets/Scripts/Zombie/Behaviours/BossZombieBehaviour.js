@@ -52,13 +52,12 @@ function Update () {
 		case BossZombieState.Attacking :
 		// Set nextPosition to the target's position.
 			nextPosition = target.transform.position;
+			zombieMovement2.updateTargetSpeed(speed);
 			zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		// If within range, attack target.
 			if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
-				zombieMovement2.updateTargetSpeed(0);
 				zombieStrike.hitTarget(target);
 			}
-			else zombieMovement2.updateTargetSpeed(speed);
 			if(Time.time > phaseChangedTime + timeSpentAttacking) {
 				currentState = BossZombieState.Summon;
 				phaseChangedTime = Time.time;

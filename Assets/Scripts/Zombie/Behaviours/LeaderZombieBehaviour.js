@@ -69,13 +69,12 @@ function Update() {
 	case LeaderZombieState.Attacking : 
 		// If attacking, continuously move towards target.
 		nextPosition = target.transform.position;
+		zombieMovement2.updateTargetSpeed(speed);
 		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		if(Vector3.Magnitude(positionDifference) < strikeRange) {
-			zombieMovement2.updateTargetSpeed(0.0);
 			zombieStrike.hitTarget(target);
 		}
 		else {
-			zombieMovement2.updateTargetSpeed(speed);
 			if(Vector3.Magnitude(positionDifference) > 1.5 * targetVisualRange) {
 				target = null;
 				plotNewPosition();
