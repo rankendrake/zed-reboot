@@ -29,6 +29,8 @@ var distancePerFootstep : float;
 
 var zedFootstepSound : AudioClip;
 
+var zedVelocity : Vector3;
+
 function Start() {
 	// caching the Transform
 	_transform = transform;
@@ -146,6 +148,10 @@ private function checkMapBounds() {
 		}
 		setActualVelocityX(actualSpeed*Input.GetAxis("Horizontal"));
 	}
+}
+
+function getCurrentVelocity() {
+	return _transform.right*actualSpeed;
 }
 
 private function updateTransform() {

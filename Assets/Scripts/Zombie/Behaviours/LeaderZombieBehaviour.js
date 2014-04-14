@@ -4,12 +4,14 @@ class LeaderZombieBehaviour extends ZombieBehaviour {
 
 enum LeaderZombieState {Searching,Attacking};
 
-// Standard data
+// Standard / spawning variables
 var speed : float;
 private var speedDeviation : float;
 var angularSpeed : float;
 private var centralizationOfDeviation : int;
 var strikeRange : float;
+private var chanceToSpawnAsInterceptor : float = 1;
+private var isInterceptor : boolean;
 
 private var nextPosition : Vector3;
 private var positionDifference : Vector3;
@@ -44,7 +46,7 @@ function Start() {
 	for (var i = 0; i < centralizationOfDeviation; i++) {
 		speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
 	}
-
+	isInterceptor = Random.value < chanceToSpawnAsInterceptor;
 }
 
 function Update() {
@@ -95,7 +97,13 @@ function updateZombieAngle() {
 
 function getTargetAngle(destination : Vector3) {
 	positionDifference = destination - transform.position;
-	return (Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x)-90);
+	var targetDifference = positionDifference;
+	if(isInterceptor) {
+		if(target != null && target.GetComponent(ZedMovement) != null && Vector3.Magnitude(positionDifference) < 0.5*targetVisualRange) {
+			targetDifference = positionDifference + (target.GetComponent(ZedMovement).getCurrentVelocity());
+		}
+	}
+	return Mathf.Rad2Deg*Mathf.Atan2(targetDifference.y, targetDifference.x)-90;
 }
 
 /*

@@ -2,16 +2,18 @@
 
 class ChaserZombieBehaviour extends ZombieBehaviour {
 
-// Standard data
+// Standard/Spawning variables
 var speed : float;
 private var speedDeviation : float;
 var angularSpeed : float;
 private var centralizationOfDeviation : int;
 var strikeRange : float;
 private var direction : float;
+private var chanceToSpawnAsInterceptor : float = 0.25;
+private var isInterceptor : boolean;
 
 // Target-related data
-@HideInInspector var target : GameObject;
+private var target : GameObject;
 var targetVisualRange : float;
 
 // Position-related data
@@ -38,11 +40,13 @@ function Start() {
 			speed += Random.Range(-speedDeviationFraction, speedDeviationFraction);
 		}
 	}
+	isInterceptor = Random.value < chanceToSpawnAsInterceptor;
 	zombieMovement2.updateTargetSpeed(speed);
 }
 
 function Update() {
 	positionDifference = nextPosition - transform.position;
+	positionDifference += target.rigidbody2D.velocity;
 		// Set nextPosition to the target's position.
 		nextPosition = target.transform.position;
 		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
@@ -63,7 +67,13 @@ function Update() {
 
 function getTargetAngle(destination : Vector3) {
 	positionDifference = destination - transform.position;
-	return Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x)-90;
+	var targetDifference = positionDifference;
+	if(isInterceptor) {
+		if(target != null && target.GetComponent(ZedMovement) != null && Vector3.Magnitude(positionDifference) < 0.5*targetVisualRange) {
+			targetDifference = positionDifference + (target.GetComponent(ZedMovement).getCurrentVelocity());
+		}
+	}
+	return Mathf.Rad2Deg*Mathf.Atan2(targetDifference.y, targetDifference.x)-90;
 }
 /*
 function moveTowards(destination : Vector3) {
