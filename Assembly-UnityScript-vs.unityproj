@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\Zed\ZedResources.js" />
      <Compile Include="Assets\Scripts\Zed\ZedShadowDirection.js" />
      <Compile Include="Assets\Scripts\Zed\ZedStrike.js" />
+     <Compile Include="Assets\Scripts\Zombie\Behaviours\BossZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\ChaserZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\LeaderZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" />
