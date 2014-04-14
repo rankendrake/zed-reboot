@@ -1,7 +1,5 @@
 ﻿#pragma strict
 
-var zedResources : ZedResources;
-
 var revolverBulletPrefab : GameObject;
 var shotgunBulletPrefab : GameObject;
 var assaultRifleBulletPrefab : GameObject;
