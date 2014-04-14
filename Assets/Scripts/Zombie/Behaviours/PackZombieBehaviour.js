@@ -110,12 +110,11 @@ function Update() {
 		// Set nextPosition to the target's position.
 		nextPosition = target.transform.position;
 		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
-		// If within range, stop moving and attack target.
+		zombieMovement2.updateTargetSpeed(speed);
+		// If within range, attack target.
 		if(Vector3.Magnitude(nextPosition - transform.position) < strikeRange) {
-			zombieMovement2.updateTargetSpeed(0.0);
 			zombieStrike.hitTarget(target);
 		}
-		else zombieMovement2.updateTargetSpeed(speed);
 		// If the target isn't Zed, then it's probably a turret.
 /*		if(!target.CompareTag("Player")) {
 			if(target.GetComponent(TurretResources.isDead())) {

@@ -50,12 +50,11 @@ function Update() {
 		// Set nextPosition to the target's position.
 		nextPosition = target.transform.position;
 		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
+		zombieMovement2.updateTargetSpeed(speed);
 		// If within range, attack target.
 		if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
-			zombieMovement2.updateTargetSpeed(0.0);
 			zombieStrike.hitTarget(target);
 		}
-		else zombieMovement2.updateTargetSpeed(speed);
 		// If the target isn't Zed, then it's probably a turret.
 /*		if(!target.CompareTag("Player")) {
 			if(target.GetComponent(TurretResources.isDead())) {
@@ -75,29 +74,6 @@ function getTargetAngle(destination : Vector3) {
 	}
 	return Mathf.Rad2Deg*Mathf.Atan2(targetDifference.y, targetDifference.x)-90;
 }
-/*
-function moveTowards(destination : Vector3) {
-	positionDifference = destination - transform.position;
-	positionDifference.z = 0;
-	var targetDirection : float = Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x);
-	
-	var angleDifference : float = (targetDirection - direction);
-	if (angleDifference > 180) {
-		angleDifference -= 360;
-	}
-	if (angleDifference < -180) {
-		angleDifference += 360;
-	}
-	
-	direction += angularSpeed*speed*Time.deltaTime*angleDifference;
-	
-	transform.eulerAngles = new Vector3(0, 0, direction-90);
-
-	rigidbody2D.velocity = new Vector2(
-		speed*Mathf.Cos(Mathf.Deg2Rad*direction), 
-		speed*Mathf.Sin(Mathf.Deg2Rad*direction));
-}
-*/
 
 function getTargetVisualRange() {
 	return targetVisualRange;

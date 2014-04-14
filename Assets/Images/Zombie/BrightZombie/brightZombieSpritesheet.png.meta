@@ -1,0 +1,261 @@
+fileFormatVersion: 2
+guid: a73f2daee2b2a2844acce74deeff8263
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 850
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: brightZombieSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1834
+        width: 162
+        height: 206
+      alignment: 9
+      pivot: {x: .4915227, y: .260002643}
+    - name: brightZombieSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 1613
+        width: 148
+        height: 430
+      alignment: 9
+      pivot: {x: .258741438, y: .0911981612}
+    - name: brightZombieSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 1615
+        width: 173
+        height: 429
+      alignment: 9
+      pivot: {x: .245976269, y: .0518306568}
+    - name: brightZombieSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 1598
+        width: 145
+        height: 450
+      alignment: 9
+      pivot: {x: .14009589, y: .0452788621}
+    - name: brightZombieSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 1580
+        width: 150
+        height: 463
+      alignment: 9
+      pivot: {x: .197870284, y: .0817755088}
+    - name: brightZombieSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 1623
+        width: 147
+        height: 412
+      alignment: 9
+      pivot: {x: .163677186, y: .113337547}
+    - name: brightZombieSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1652
+        width: 171
+        height: 375
+      alignment: 9
+      pivot: {x: .130568832, y: .126457363}
+    - name: brightZombieSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1251
+        y: 1698
+        width: 145
+        height: 326
+      alignment: 9
+      pivot: {x: .0737986565, y: .141926214}
+    - name: brightZombieSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 1735
+        width: 187
+        height: 245
+      alignment: 9
+      pivot: {x: .109664179, y: .136690348}
+    - name: brightZombieSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 1733
+        width: 196
+        height: 244
+      alignment: 9
+      pivot: {x: .0866032839, y: .173555464}
+    - name: brightZombieSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1853
+        y: 1724
+        width: 195
+        height: 268
+      alignment: 9
+      pivot: {x: .056312602, y: .259157091}
+    - name: brightZombieSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1043
+        width: 213
+        height: 480
+      alignment: 9
+      pivot: {x: .884010613, y: .153917179}
+    - name: brightZombieSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 1051
+        width: 168
+        height: 417
+      alignment: 9
+      pivot: {x: 1.06763744, y: .0488137826}
+    - name: brightZombieSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1029
+        width: 158
+        height: 459
+      alignment: 9
+      pivot: {x: 1.06497312, y: .0781308487}
+    - name: brightZombieSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 1016
+        width: 138
+        height: 489
+      alignment: 9
+      pivot: {x: 1.17670822, y: .0843533352}
+    - name: brightZombieSpritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 1019
+        width: 144
+        height: 497
+      alignment: 9
+      pivot: {x: 1.19619668, y: .0717012063}
+    - name: brightZombieSpritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 1019
+        width: 155
+        height: 446
+      alignment: 9
+      pivot: {x: 1.10248947, y: .115101084}
+    - name: brightZombieSpritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 1032
+        width: 162
+        height: 339
+      alignment: 9
+      pivot: {x: 1.16970563, y: .0705847293}
+    - name: brightZombieSpritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 1039
+        width: 148
+        height: 295
+      alignment: 9
+      pivot: {x: 1.23305619, y: .0949872583}
+    - name: brightZombieSpritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 1016
+        width: 157
+        height: 251
+      alignment: 9
+      pivot: {x: 1.31116271, y: .155302614}
+    - name: brightZombieSpritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 701
+        width: 162
+        height: 242
+      alignment: 9
+      pivot: {x: 1.37315977, y: .153832808}
+    - name: brightZombieSpritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 677
+        width: 187
+        height: 249
+      alignment: 9
+      pivot: {x: 1.27111495, y: .295932502}
+    - name: brightZombieSpritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 689
+        width: 210
+        height: 203
+      alignment: 9
+      pivot: {x: 1.15396178, y: .310576648}
+    - name: brightZombieSpritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 696
+        width: 272
+        height: 154
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

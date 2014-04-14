@@ -52,7 +52,7 @@ function Update() {
 		var animator : Animator = gameObject.GetComponent(Animator);
 		animator.SetBool("isDead", true);
 		animatorDead = true;
-		animator.SetLayerWeight(2, 0); // stop overriding arm movement
+		animator.SetLayerWeight(1, 0); // stop overriding arm movement
 		gameObject.tag = "deadZombie";
 		gameObject.name = "deadZombie";
 		

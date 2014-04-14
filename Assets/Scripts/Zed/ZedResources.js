@@ -25,6 +25,9 @@ private var currentScatterAngle : float;
 private var lastShotScatterAngle : float;
 
 var gruntSound : AudioClip;
+
+var lastGruntSoundTime : float;
+
 var deathSound : AudioClip;
 
 private var overlay : GameObject;
@@ -106,13 +109,17 @@ function Update() {
 function reduceHealth(reductionAmount : float) {
 	overlayTimeEnd = Time.time + overlayTime;
 	changeOverlay();
+	if(health <= 0)
+		return;
 	health -= reductionAmount;
 	if (health <= 0) {
 		health = 0;
 		AudioSource.PlayClipAtPoint(deathSound,transform.position);
 	}
-	else
-		AudioSource.PlayClipAtPoint(gruntSound,transform.position);
+	else if(Time.time > lastGruntSoundTime + gruntSound.length) {
+			AudioSource.PlayClipAtPoint(gruntSound,transform.position);
+			lastGruntSoundTime = Time.time;
+		}
 }
 
 function changeOverlay() {
