@@ -43,13 +43,17 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
 
 	damage(power);
 	
-	slowBloodSpawner.time = 0;
-	slowBloodSpawner.Play();
+	//slowBloodSpawner.transform.position = transform.position;
+	
+	//slowBloodSpawner.time = 0;
+	//slowBloodSpawner.Play();
+	slowBloodSpawner.Emit(50);
 	zombieMovement2.bulletSlowdown(bulletSlowdownPercentage);
 	
 	fastBloodSpawner.transform.eulerAngles.z = Mathf.Rad2Deg*Mathf.Atan2(velocity.y, velocity.x);
-	fastBloodSpawner.time = 0;
-	fastBloodSpawner.Play();
+	fastBloodSpawner.Emit(30);
+//	fastBloodSpawner.time = 0;
+//	fastBloodSpawner.Play();
 	AudioSource.PlayClipAtPoint(impactSound, transform.position);
 //	damage(impactObject, power);
 }
@@ -59,8 +63,7 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
  */
 function swordImpact(power : float) {
 	//fastBloodSpawner.transform.eulerAngles.z = transform.eulerAngles.z + 90;
-	swordBloodSpawner.time = 0;
-	swordBloodSpawner.Play();
+	swordBloodSpawner.Emit(5);
 	
 	damage(power*Time.deltaTime);
 }

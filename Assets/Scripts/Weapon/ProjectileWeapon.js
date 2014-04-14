@@ -87,7 +87,7 @@ class ProjectileWeapon extends Weapon {
 		
 	
 		if (Time.time > reloadEndTime && 
-			Time.time > lastShotTime + 1/actualRateOfFire ) {
+			Time.time > lastShotTime + 1.0/actualRateOfFire ) {
 			justReloaded = false;
 			if (bulletsInClip > 0) {
 				bulletsInClip--;

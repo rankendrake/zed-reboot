@@ -80,13 +80,13 @@ function getPercentageHit() : float {
 
 function animatorReady(stateInfo : AnimatorStateInfo, currentWeaponIndex : int) : boolean {
 	if (currentWeaponIndex == SWORD) {
-		return stateInfo.IsName("SwordRelaxed");
+		return (stateInfo.IsName("SwordRelaxed"));
 	} else if (currentWeaponIndex == SHOTGUN) {
-		return stateInfo.IsName("RifleRelaxed");
+		return (stateInfo.IsName("RifleRelaxed") || stateInfo.IsName("ShotGunStrike"));
 	} else if (currentWeaponIndex == ASSAULT_RIFLE) {
-		return stateInfo.IsName("RifleRelaxed");
+		return (stateInfo.IsName("RifleRelaxed") || stateInfo.IsName("AssaultRifleStrike"));
 	} else if (currentWeaponIndex == PISTOL) {
-		return stateInfo.IsName("PistolRelaxed");
+		return (stateInfo.IsName("PistolRelaxed") || stateInfo.IsName("PistolStrike"));
 	} else {
 		return true;
 	}
