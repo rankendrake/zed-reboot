@@ -59,7 +59,7 @@ function Update() {
 			animator.SetBool("carrySword", true);
 			animator.SetBool("carryRifle", false);
 			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
+			//AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
 		} else if (Input.GetKeyDown("2")) {
 			if (currentWeaponIndex == 2) {
 				animator.SetTrigger("changeRifles");

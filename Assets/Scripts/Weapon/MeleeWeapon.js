@@ -66,14 +66,30 @@ class MeleeWeapon extends Weapon {
 			return;
 		}
 		var angleDataIndex : int = 0;
+		var differenceAfter : float;
+		var frameTime : float;
+		var currentAngle : float;
+		var currentLength : float ;
 		for (var i : int = 0; i < swordAngleDataPointCount; i++) {
 			if (currentStrikeTime > swordAngleData[3*i]) {
 				angleDataIndex = i;
-			}
+			} else break;
 		}
-		var currentAngle : float = zedMovement.getUpperBodyAngle() + swordAngleData[3*angleDataIndex + 1];
-		var currentLength : float = swordAngleData[3*angleDataIndex + 2];
-
+		if (angleDataIndex < swordAngleDataPointCount - 1) {
+			differenceAfter = currentStrikeTime - swordAngleData[3*angleDataIndex];
+			frameTime = swordAngleData[3*(angleDataIndex + 1)] - swordAngleData[3*angleDataIndex];
+			var weight : float = differenceAfter/frameTime;
+			Debug.Log(weight);
+			currentAngle = zedMovement.getUpperBodyAngle() 
+					+ (1 - weight)*swordAngleData[3*angleDataIndex + 1]
+					+ (weight)*swordAngleData[3*angleDataIndex + 4];
+			currentLength = (1 - weight)*swordAngleData[3*angleDataIndex + 2]
+					+ (weight)*swordAngleData[3*angleDataIndex + 5];
+		} else {
+			currentAngle  = zedMovement.getUpperBodyAngle() + swordAngleData[3*angleDataIndex + 1];
+			currentLength = swordAngleData[3*angleDataIndex + 2];
+		}
+	
 		var currentDirection : Vector2 = new Vector2(Mathf.Cos(Mathf.Deg2Rad*currentAngle),
 				Mathf.Sin(Mathf.Deg2Rad*currentAngle));
 			
