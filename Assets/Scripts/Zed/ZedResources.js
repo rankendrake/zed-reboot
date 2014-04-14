@@ -36,6 +36,9 @@ var overlayTime : float;
 var overlayAlphaIncrease : float;
 var overlayAlphaDecrease : float;
 
+var slowBloodSpawner : ParticleSystem;
+var fastBloodSpawner : ParticleSystem;
+
 /*
  *	HEALTH
  */
@@ -55,12 +58,14 @@ function Update() {
 	}
 	
 	if (!isAlive()) {	// Zed is dying
-		if (animatorDead && !promptOpened && animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ZedDead")) {
+		if (animatorDead && !promptOpened && animator.GetCurrentAnimatorStateInfo(2).IsName("DyingLayer.ZedDead")) {
 			Camera.main.GetComponent(NamePrompt).openPrompt();
 			promptOpened = true;
 			Time.timeScale = 0;
-		} else {
-			animator.SetBool("isDead", true);
+		} else if (!animatorDead) {
+			animator.SetTrigger("die");
+			slowBloodSpawner.Emit(300);
+			fastBloodSpawner.Emit(300);
 			animatorDead = true;
 			trimUnnecessaryComponents();
 		}
