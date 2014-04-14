@@ -5,6 +5,8 @@
 var skillPointCoinPrefab : GameObject;
 var angleDeviationOfDying : float;
 
+var armWeapon : MeleeWeapon;
+
 private var zombieProperties : ZombieProperties;
 private var health : float;
 private var animatorDead : boolean;
@@ -30,6 +32,14 @@ function Awake() {
 	animatorDead = false;
 	
 	zedResources = GameObject.Find("zed").GetComponent(ZedResources);
+	
+	armWeapon = new MeleeWeapon(zombieProperties.getAttackDamage(), "ArmWeapon", gameObject);
+	var armAttackAngles : float[] = [ 	// triplets of: time, angle, length
+		0.00,  60.0, 0.40,				// for the raycast
+		0.05,  40.0, 0.40,
+		0.45, 135.0, 0.40
+	];
+	armWeapon.initAngleData(armAttackAngles);
 }
 
 function Update() {

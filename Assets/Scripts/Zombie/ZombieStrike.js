@@ -1,11 +1,18 @@
 ﻿#pragma strict
 
-var zombieProperties : ZombieProperties;
-var timeOfLastHit : float;
-var zedResources : ZedResources;
+private var zombieResources : ZombieResources;
+private var zombieProperties : ZombieProperties;
+private var timeOfLastHit : float;
+private var zedResources : ZedResources;
+
+var animator : Animator;
+
+function Awake() {
+	zombieProperties = GetComponent(ZombieProperties);
+	zombieResources = GetComponent(ZombieResources);
+}
 
 function Start () {
-	zombieProperties = transform.GetComponent(ZombieProperties) as ZombieProperties;
 	zedResources = GameObject.Find("zed").GetComponent(ZedResources) as ZedResources;
 }
 
@@ -15,17 +22,28 @@ function hitZed() {
 	if(Time.time - zombieProperties.getTimeBetweenHits() > timeOfLastHit) {
 		zedResources.reduceHealth(zombieProperties.getAttackDamage());
 		timeOfLastHit = Time.time;
+		
 	}
 }
 
 function hitTarget(target : GameObject) {
 	if(Time.time - zombieProperties.getTimeBetweenHits() > timeOfLastHit) {
 		if(target.CompareTag("zed")) {
-			zedResources.reduceHealth(zombieProperties.getAttackDamage());
+			//zedResources.reduceHealth(zombieProperties.getAttackDamage());
 			timeOfLastHit = Time.time;
+			zombieResources.armWeapon.strike();
+									
+			animator.SetTrigger("attack");
 		}
 //		else {
 //			target.turretResources.reduceHealth(zombieProperties.getAttackDamage());
 //		}
+	}
+}
+
+
+function Update() {
+	if (zombieResources.armWeapon.isStriking()) {
+		zombieResources.armWeapon.executeStrike();
 	}
 }

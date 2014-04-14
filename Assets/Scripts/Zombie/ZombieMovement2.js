@@ -133,3 +133,7 @@ function physicalPush(pushImpulse : Vector2) {
 	}	
 	actualAngle = (newAngle % 360);
 }
+
+function getActualAngle() {
+	return actualAngle;
+}

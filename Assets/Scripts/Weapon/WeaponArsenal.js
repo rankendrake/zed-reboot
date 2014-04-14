@@ -47,7 +47,7 @@ function initializeArsenal () : Weapon[] {
 			0.40,  0.00, 0.50,
 			0.45,-10.00, 0.30
 		];
-	(weapons[0] as MeleeWeapon).initSwordAngleData(swordData);
+	(weapons[0] as MeleeWeapon).initAngleData(swordData);
 	
 	return weapons;
 }

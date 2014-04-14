@@ -169,9 +169,6 @@ function getCurrentScatterAngle() : float {
 	}
 }
 
-//function applyScatter(maxAngle : float, saturationFactor : float) {
-//	// to do: perks
-//	lastShotScatterAngle = getCurrentScatterAngle();	
-//	lastShotScatterAngle += saturationFactor*(maxAngle - lastShotScatterAngle);
-//	currentScatterAngle = lastShotScatterAngle;
-//}
+function swordImpact(power : float) {
+	reduceHealth(power*Time.deltaTime);
+}
