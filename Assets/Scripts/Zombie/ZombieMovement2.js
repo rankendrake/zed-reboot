@@ -52,6 +52,7 @@ function Update () {
 	
 	updatePosition();
 	
+	animator.SetFloat("speed", actualSpeed);
 	//animator.speed = animatorSpeedFactor*actualSpeed; 
 }
 

@@ -1,8 +1,6 @@
 ﻿#pragma strict
 
-
-
-var skillPointCoinPrefab : GameObject;
+var coinPrefab : GameObject;
 var angleDeviationOfDying : float;
 
 var armWeapon : MeleeWeapon;
@@ -66,9 +64,12 @@ function Update() {
 		// Tell Zed the difficulty of the zombie which was killed
 		zedResources.handleZombieKilled(zombieProperties.getDifficultyLevel());
 		
-		if (Random.Range(0.0, 1.0) < zombieProperties.getSkillPointDropProbability()) {
-			dropSkillPoint();
+		for (var i : int = zombieProperties.getCoinsDroppable(); i > 0; i--) {
+			if (Random.Range(0.0, 1.0) < zombieProperties.getCoinDropProbability()) {
+				dropCoin();
+			}
 		}
+
 	}
 }
 
@@ -107,6 +108,6 @@ function trimUnnecessaryComponents() {
     gameObject.isStatic = true;    
 }
 
-function dropSkillPoint() {
-	Instantiate(skillPointCoinPrefab, transform.position, Quaternion.identity);
+function dropCoin() {
+	Instantiate(coinPrefab, transform.position, Quaternion.identity);
 }

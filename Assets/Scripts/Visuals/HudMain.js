@@ -37,11 +37,12 @@ function OnGUI() {
 	GUI.color = new Color(0.0, 0.0, 0.0, 0.4);
 	// Zed level, exp
 	GUI.Label(
-		Rect(10, 175, 100, 100), 
+		Rect(10, 175, 100, 120), 
 		"Level: " + zedResources.getLevel().ToString() + 
 		"\nExperience: " +  zedResources.getExperience().ToString() +
 		"\nHealth: " +  zedResources.getHealth().ToString() + 
-		"\nSkillPoints: " + zedResources.getSkillPoints().ToString()
+		"\nSkillPoints: " + zedResources.getSkillPoints().ToString() +
+		"\nMoney: " + zedResources.getMoney().ToString()
 		);
 	
 	if (weapon.getId() != null) {

@@ -5,6 +5,7 @@ private var experience : int;
 private var health : float;
 private var level : int;
 private var skillPoints : int = 0;
+private var money : int = 0;
 
 private var animatorDead : boolean;
 private var promptOpened : boolean = false;
@@ -68,7 +69,7 @@ function Update() {
 			animator.SetBool("carrySword", false);
 			animator.SetBool("carryRifle", true);
 			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
+			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		} else if (Input.GetKeyDown("3")) {
 			if (currentWeaponIndex == 1) {
 				animator.SetTrigger("changeRifles");
@@ -77,13 +78,13 @@ function Update() {
 			animator.SetBool("carrySword", false);
 			animator.SetBool("carryRifle", true);
 			animator.SetBool("carryPistol", false);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
+			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		} else if (Input.GetKeyDown("4")) {
 			currentWeaponIndex = 3;
 			animator.SetBool("carrySword", false);
 			animator.SetBool("carryRifle", false);
 			animator.SetBool("carryPistol", true);
-			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound(),transform.position);
+			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		}
 	}
 }
@@ -132,6 +133,10 @@ function changeSkillPoints(difference : int) {
 	skillPoints += difference;
 }
 
+function changeMoney(difference : int) {
+	money += difference;
+}
+
 function updateLevel() {
 	level = Mathf.FloorToInt(Mathf.Log(experience));
 }
@@ -150,6 +155,10 @@ function getHealth() {
 
 function getSkillPoints() {
 	return skillPoints;
+}
+
+function getMoney() {
+	return money;
 }
 
 function getCurrentScatterAngle() : float {

@@ -4,7 +4,8 @@ var difficultyLevel : int;
 var maxHealth : float;
 var attackDamage : float;
 var timeBetweenHits : float;
-var skillPointDropProbability : float;
+var coinDropProbability : float;
+var coinsDroppable : int; // even if 1, might not end up dropping any coins due to probability
 
 function getDifficultyLevel() {
 	return difficultyLevel;
@@ -22,6 +23,10 @@ function getTimeBetweenHits() {
 	return timeBetweenHits;
 }
 
-function getSkillPointDropProbability() {
-	return skillPointDropProbability;
+function getCoinDropProbability() {
+	return coinDropProbability;
+}
+
+function getCoinsDroppable() {
+	return coinsDroppable;
 }
