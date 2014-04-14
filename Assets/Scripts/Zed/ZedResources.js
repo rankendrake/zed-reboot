@@ -39,6 +39,10 @@ function Start() {
 }
 
 function Update() {
+	if (Input.GetKeyDown("x")){
+		reduceHealth(50);
+	}
+	
 	if (!isAlive()) {	// Zed is dying
 		if (animatorDead && !promptOpened && animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ZedDead")) {
 			Camera.main.GetComponent(NamePrompt).openPrompt();
