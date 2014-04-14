@@ -47,11 +47,11 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
 	
 	//slowBloodSpawner.time = 0;
 	//slowBloodSpawner.Play();
-	slowBloodSpawner.Emit(50);
+	slowBloodSpawner.Emit(20);
 	zombieMovement2.bulletSlowdown(bulletSlowdownPercentage);
 	
 	fastBloodSpawner.transform.eulerAngles.z = Mathf.Rad2Deg*Mathf.Atan2(velocity.y, velocity.x);
-	fastBloodSpawner.Emit(30);
+	fastBloodSpawner.Emit(15);
 //	fastBloodSpawner.time = 0;
 //	fastBloodSpawner.Play();
 	AudioSource.PlayClipAtPoint(impactSound, transform.position);
