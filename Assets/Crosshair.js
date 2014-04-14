@@ -23,7 +23,9 @@ function Update () {
 }
 
 function OnGUI() {
-	drawCrosshair();
+	if(zedResources.getHealth() > 0) {
+		drawCrosshair();
+	}
 }
 
 function drawCrosshair() {

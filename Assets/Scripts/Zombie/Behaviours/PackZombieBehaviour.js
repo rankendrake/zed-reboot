@@ -4,13 +4,15 @@ class PackZombieBehaviour extends ZombieBehaviour {
 
 enum PackZombieState {Wandering,Following,Attacking};
 
-// Standard data
+// Standard / spawning variables
 var speed : float;
 private var speedDeviation : float;
 var angularSpeed : float;
 private var centralizationOfDeviation : int;
 var strikeRange : float;
 private var direction : float;
+private var chanceToSpawnAsInterceptor : float = 0.25;
+private var isInterceptor : boolean;
 
 // Target-related data
 @HideInInspector var target : GameObject;
@@ -54,6 +56,7 @@ function Start() {
 	zombieMovement2.updateTargetSpeed(speed);
 	currentState = PackZombieState.Wandering;
 	positionRelativeToLeader = Random.insideUnitCircle * maxDistanceFromLeader;
+	isInterceptor = Random.value < chanceToSpawnAsInterceptor;
 }
 
 function Update() {
@@ -83,9 +86,9 @@ function Update() {
 		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		// If Pack Zombie has reached his assumed position, he will alternate between slowing down and speeding up to maintain his position.
 		if(Vector3.Magnitude(nextPosition - transform.position) < reachedNextPosition) {
-			speed = leader.GetComponent(LeaderZombieBehaviour).speed * 0.95;
+			zombieMovement2.updateTargetSpeed(speed * 0.9);
 		}
-		else speed = leader.GetComponent(LeaderZombieBehaviour).speed * 1.1;
+		else zombieMovement2.updateTargetSpeed(speed * 1.05);
 		// If the leader is attacking a target, they will enter attack mode and also attack the target.
 		// Pack Zombies entering attack mode by this means will receive a speed boost, presumably from
 		// leader motivation.
@@ -127,7 +130,13 @@ function Update() {
 
 function getTargetAngle(destination : Vector3) {
 	positionDifference = destination - transform.position;
-	return Mathf.Rad2Deg*Mathf.Atan2(positionDifference.y, positionDifference.x)-90;
+	var targetDifference = positionDifference;
+	if(isInterceptor) {
+		if(target != null && target.GetComponent(ZedMovement) != null && Vector3.Magnitude(positionDifference) < 0.5*targetVisualRange) {
+			targetDifference = positionDifference + (target.GetComponent(ZedMovement).getCurrentVelocity());
+		}
+	}
+	return Mathf.Rad2Deg*Mathf.Atan2(targetDifference.y, targetDifference.x)-90;
 }
 /*
 function moveTowards(destination : Vector3) {
