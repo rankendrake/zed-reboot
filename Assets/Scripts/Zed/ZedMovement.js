@@ -24,11 +24,16 @@ private var accelerating : boolean;
 
 private var _transform : Transform;
 private var distanceCovered : float;
+private var distanceSinceLastFootstep : float;
+var distancePerFootstep : float;
+
+var zedFootstepSound : AudioClip;
 
 function Start() {
 	// caching the Transform
 	_transform = transform;
 	distanceCovered = 0;
+	distanceSinceLastFootstep = 0;
 }
 
 function Update () {
@@ -75,6 +80,11 @@ private function updateMovingState() {
 		} else {
 			actualSpeed = targetSpeed;
 		}
+	}
+	// Play Footstep sound, if zed moves some distance since his last footstep.
+	if (distanceCovered > (distancePerFootstep + distanceSinceLastFootstep)) {
+		AudioSource.PlayClipAtPoint(zedFootstepSound,transform.position);
+		distanceSinceLastFootstep = distanceCovered;
 	}
 }
 

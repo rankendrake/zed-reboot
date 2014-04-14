@@ -79,6 +79,10 @@ function updateTargetSpeed(speed : float) {
 	targetSpeed = speed;
 }
 
+function bulletSlowdown(percentageSlowdown : float) {
+	actualSpeed *= (100 - percentageSlowdown)/100;
+}
+
 function updateActualAngle() {
 	actualAngle = ZedUtils.linearlyAdjustAngle(actualAngle, targetAngle, turningSpeed*Time.deltaTime);
 	transform.eulerAngles = new Vector3(0, 0, actualAngle);

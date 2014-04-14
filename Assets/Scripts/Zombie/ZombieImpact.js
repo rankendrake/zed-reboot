@@ -4,8 +4,11 @@ import System.Collections.Generic;
 var slowBloodSpawner : ParticleSystem;
 var fastBloodSpawner : ParticleSystem;
 var zombieResources : ZombieResources;
+var zombieMovement2 : ZombieMovement2;
 private var zedStrike : ZedStrike;
 
+var bulletSlowdownPercentage : float = 100;
+var impactSound : AudioClip;
 
 function Awake() {
 	zedStrike = GameObject.Find("zed").gameObject.GetComponent(ZedStrike);
@@ -13,6 +16,7 @@ function Awake() {
 		Debug.Log("zedStrike is null in ZombieImpact, finding new zedStrike");
 		zedStrike = GameObject.Find("zed").GetComponent(ZedStrike);
 	}
+	zombieMovement2 = gameObject.GetComponent(ZombieMovement2) as ZombieMovement2;
 }
 
 // Has the potential of calculating the actual damage
@@ -40,9 +44,10 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
 	
 	slowBloodSpawner.time = 0;
 	slowBloodSpawner.Play();
-	
+	zombieMovement2.bulletSlowdown(bulletSlowdownPercentage);
 	fastBloodSpawner.transform.eulerAngles.z = Mathf.Rad2Deg*Mathf.Atan2(velocity.y, velocity.x);
 	fastBloodSpawner.time = 0;
 	fastBloodSpawner.Play();
+	AudioSource.PlayClipAtPoint(impactSound, transform.position);
 //	damage(impactObject, power);
 }
