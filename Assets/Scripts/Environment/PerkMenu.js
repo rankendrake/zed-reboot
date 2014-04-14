@@ -27,6 +27,9 @@ private var buttonSize : Vector2;
 var buttonPadding : Vector2;
 var descriptionBoxSize : Vector2;
 
+var scannerTurretCost : int;
+var miniTurretCost : int;
+
 private var perkMenuActive : boolean = false;
 
 private var centeredStyle : GUIStyle;
@@ -143,11 +146,21 @@ function OnGUI() {
 			buttonSize.x*Screen.width, 
 			buttonSize.y*Screen.width);
 
+		if (scannerTurretCost > zedResources.getMoney()) {
+			GUI.enabled = false;
+		}
+
 		if (GUI.Button(
 				artilleryButtonRect, 
 				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Scanner Turret\n0G"))) {
 
 			purchaseTurret(0);							
+		}
+
+		GUI.enabled = true;	
+
+		if (miniTurretCost > zedResources.getMoney()) {
+			GUI.enabled = false;
 		}
 
 		artilleryButtonRect = new Rect(
@@ -162,6 +175,8 @@ function OnGUI() {
 
 			purchaseTurret(1);							
 		}
+
+		GUI.enabled = true;	
 
 		GUILayout.EndArea();
 
@@ -196,8 +211,10 @@ function changeFontSize(newsize : int, element : GUIStyle) {
 
 function purchaseTurret(_type : int) {
 	if (_type == 0) {
+		zedResources.changeMoney(-scannerTurretCost);
 		Instantiate(turretPrefabs[0], GameObject.Find("zed").GetComponent(ZedMovement).getPosition(), Quaternion.identity);
 	} else if (_type == 1) {
+		zedResources.changeMoney(-miniTurretCost);
 		Instantiate(turretPrefabs[1], GameObject.Find("zed").GetComponent(ZedMovement).getPosition(), Quaternion.identity);
 	}
 }

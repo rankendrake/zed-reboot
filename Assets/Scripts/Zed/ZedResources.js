@@ -5,6 +5,7 @@ private var experience : int;
 private var health : float;
 private var level : int;
 private var skillPoints : int = 0;
+private var money : int = 0;
 
 private var animatorDead : boolean;
 private var promptOpened : boolean = false;
@@ -132,6 +133,10 @@ function changeSkillPoints(difference : int) {
 	skillPoints += difference;
 }
 
+function changeMoney(difference : int) {
+	money += difference;
+}
+
 function updateLevel() {
 	level = Mathf.FloorToInt(Mathf.Log(experience));
 }
@@ -150,6 +155,10 @@ function getHealth() {
 
 function getSkillPoints() {
 	return skillPoints;
+}
+
+function getMoney() {
+	return money;
 }
 
 function getCurrentScatterAngle() : float {
