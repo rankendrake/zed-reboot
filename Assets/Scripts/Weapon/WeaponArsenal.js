@@ -22,7 +22,7 @@ function initializeArsenal () : Weapon[] {
 	*/
 	
 	// Sword
-	weapons[0] = new MeleeWeapon(2, 1, "sword", zed);
+	weapons[0] = new MeleeWeapon(4000, "sword", zed);
 	
 	// Shotgun
 	weapons[1] = new ProjectileWeapon(1.1, 30, 30, 20, 5, 7, 1, 10, 0.5, 2, "shotgun", shotgunBulletPrefab, zed, new Vector2(0.8,-0.13), clips[0],clips[1]);
@@ -36,14 +36,18 @@ function initializeArsenal () : Weapon[] {
 	
 	// initialize Sword strike data: time, angle, length
 	var swordData : float[] = [
-			0.0, -90.0, 0.1,
-			0.1, -60.0, 0.2,
-			0.2, -20.0, 0.4,
-			0.4,   0.0, 0.5,
-			0.8,  20.0, 0.5,
-			1.2,  40.0, 0.5
+			0.00, -120.0, 0.50,
+			0.05,-80.0, 0.80,
+			0.15, -60.0, 0.85,
+			0.20, -45.0, 1.10,
+			0.23, -25.0, 1.15,
+			0.25,  05.0, 1.15,
+			0.28,  25.0, 1.15,
+			0.31,  50.0, 1.15,
+			0.40,  0.00, 0.50,
+			0.45,-10.00, 0.30
 		];
-	(weapons[0] as MeleeWeapon).initSwordLengthData(swordData);
+	(weapons[0] as MeleeWeapon).initSwordAngleData(swordData);
 	
 	return weapons;
 }

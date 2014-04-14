@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+
+
 var skillPointCoinPrefab : GameObject;
 var angleDeviationOfDying : float;
 
@@ -12,6 +14,14 @@ var zedResources : ZedResources;
 //var zombieDeathSound : AudioSource;
 
 var zombieDeathSound : AudioClip;
+var displayHealthPoints : boolean;
+
+function OnGUI(){
+	if (displayHealthPoints) {
+		var screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+		GUI.Label(new Rect(screenPosition.x, Screen.height-screenPosition.y, 40, 40), ""+health);
+	}
+}
 
 function Awake() {
 	zombieProperties = transform.GetComponent(ZombieProperties);

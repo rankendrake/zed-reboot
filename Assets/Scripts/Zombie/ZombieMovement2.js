@@ -52,7 +52,7 @@ function Update () {
 	
 	updatePosition();
 	
-	animator.speed = animatorSpeedFactor*actualSpeed; 
+	//animator.speed = animatorSpeedFactor*actualSpeed; 
 }
 
 function updateTargetAngle(direction : float) {

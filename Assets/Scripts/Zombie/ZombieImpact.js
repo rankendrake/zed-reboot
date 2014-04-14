@@ -3,6 +3,7 @@ import System.Collections.Generic;
 
 var slowBloodSpawner : ParticleSystem;
 var fastBloodSpawner : ParticleSystem;
+var swordBloodSpawner : ParticleSystem;
 var zombieResources : ZombieResources;
 var zombieMovement2 : ZombieMovement2;
 private var zedStrike : ZedStrike;
@@ -21,12 +22,7 @@ function Awake() {
 
 // Has the potential of calculating the actual damage
 // done using armor, resistances etc
-function damage(impactObject : GameObject, power : float) {
-	if (impactObject != null) {
-		if (impactObject.CompareTag("zed")) {
-			zedStrike.incrementBulletsHit();
-		}
-	}
+function damage(power : float) {
 	zombieResources.reduceHealth(power);
 } 
 
@@ -38,16 +34,33 @@ function damage(impactObject : GameObject, power : float) {
  * 
  */
 function impact(impactObject : GameObject, power : float, velocity : Vector2, hitBodyParts : List.<GameObject>) {
-	// to do...
+	if (impactObject != null) {
+		if (impactObject.CompareTag("zed")) {
+			zedStrike.incrementBulletsHit();
+		}
+	}
 
-	damage(impactObject, power);
+
+	damage(power);
 	
 	slowBloodSpawner.time = 0;
 	slowBloodSpawner.Play();
 	zombieMovement2.bulletSlowdown(bulletSlowdownPercentage);
+	
 	fastBloodSpawner.transform.eulerAngles.z = Mathf.Rad2Deg*Mathf.Atan2(velocity.y, velocity.x);
 	fastBloodSpawner.time = 0;
 	fastBloodSpawner.Play();
 	AudioSource.PlayClipAtPoint(impactSound, transform.position);
 //	damage(impactObject, power);
+}
+
+/*
+ * gives Damage over time
+ */
+function swordImpact(power : float) {
+	//fastBloodSpawner.transform.eulerAngles.z = transform.eulerAngles.z + 90;
+	swordBloodSpawner.time = 0;
+	swordBloodSpawner.Play();
+	
+	damage(power*Time.deltaTime);
 }

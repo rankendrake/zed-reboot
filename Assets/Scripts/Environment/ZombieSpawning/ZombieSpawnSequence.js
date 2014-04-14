@@ -22,7 +22,7 @@ function Start () {
 	// spawnContinuous(prefab, startTime, duration, zombieNumber, edges) [to do]
 	
 
-	zombieSpawnEngine.spawnSingle(leaderZombiePrefab, 0, Vector2(4, 4));
-	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 0, 30, 10, Vector2(4, 4), Vector2(1, 1));
-	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 0, 50, 25, Vector2(2, 0), Vector2(2, 2));
+	zombieSpawnEngine.spawnSingle(newZombiePrefab, 0, Vector2(4, 4));
+//	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 0, 1, 3, Vector2(4, 4), Vector2(1, 1));
+//	zombieSpawnEngine.spawnContinuous(newZombiePrefab, 0, 50, 25, Vector2(2, 0), Vector2(2, 2));
 }

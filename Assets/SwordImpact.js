@@ -25,7 +25,7 @@ function Update () {
 	
 	for (var h : RaycastHit2D in hit) {
 		if (h.rigidbody != null && h.transform.gameObject.CompareTag("zombie")) {
-			h.transform.gameObject.GetComponent(ZombieImpact).damage(transform.gameObject, power);
+			h.transform.gameObject.GetComponent(ZombieImpact).damage(power);
 		}
 	}
 }
