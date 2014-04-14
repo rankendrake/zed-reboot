@@ -168,6 +168,10 @@ class ProjectileWeapon extends Weapon {
 		return lastShotScatterAngle*Mathf.Exp(-(Time.time - lastShotTime)*scatterRelaxationFactor);
 	}
 	
+	function getReloadSound() {
+		return reloadingSound;
+	}
+	
 	// TODO: Figure out how to introduce a time delay onto the script without breaking it.
 	// yield seems to break the whole thing.
 	

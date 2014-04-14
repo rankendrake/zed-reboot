@@ -34,6 +34,10 @@ class Weapon extends UnityEngine.Object {
 	function getBullets() : int {
 		return 0;
 	}
+
+	function getReloadSound() {
+		return null;
+	}
 	
 	function getBulletsInClip() : int {
 		return 0;
