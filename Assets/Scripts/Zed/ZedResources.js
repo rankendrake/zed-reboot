@@ -27,6 +27,12 @@ private var lastShotScatterAngle : float;
 var gruntSound : AudioClip;
 var deathSound : AudioClip;
 
+private var overlay : GameObject;
+private var overlayTimeEnd : float;
+var overlayTime : float;
+var overlayAlphaIncrease : float;
+var overlayAlphaDecrease : float;
+
 /*
  *	HEALTH
  */
@@ -37,6 +43,7 @@ function Start() {
 	health = 100;
 	
 	activePerks = new PerkList();
+	overlay = GameObject.Find("overlay");
 }
 
 function Update() {
@@ -87,16 +94,39 @@ function Update() {
 			AudioSource.PlayClipAtPoint(weapons[currentWeaponIndex].getReloadSound() as AudioClip,transform.position);
 		} 
 	}
+
+	changeOverlay();
 }
 
 function reduceHealth(reductionAmount : float) {
-	health -= reductionAmount;			
+	overlayTimeEnd = Time.time + overlayTime;
+	changeOverlay();
+	health -= reductionAmount;
 	if (health <= 0) {
 		health = 0;
 		AudioSource.PlayClipAtPoint(deathSound,transform.position);
 	}
 	else
 		AudioSource.PlayClipAtPoint(gruntSound,transform.position);
+}
+
+function changeOverlay() {
+	var newAlpha : float;
+	if (Time.time < overlayTimeEnd) {
+		newAlpha = overlay.renderer.material.color.a + overlayAlphaIncrease*Time.deltaTime;
+		if (newAlpha <= 1) {
+			overlay.renderer.material.color.a = newAlpha;
+		} else {
+			overlay.renderer.material.color.a = 1;
+		}
+	} else {
+		newAlpha = overlay.renderer.material.color.a - overlayAlphaDecrease*Time.deltaTime;
+		if (newAlpha > 0) {
+			overlay.renderer.material.color.a = newAlpha;
+		} else {
+			overlay.renderer.material.color.a = 0;
+		}
+	}
 }
 
 function isAlive() : boolean {
