@@ -21,3 +21,15 @@ function Awake () {
 	leftBound = mapBounds.min.x;
 	rightBound = mapBounds.max.x;
 }
+
+function Update () {
+	if(Time.deltaTime > 0.0) {
+		Screen.showCursor = false;
+	}
+	else {
+		Screen.showCursor = true;
+	}
+	if(GameObject.Find("zed").GetComponent(ZedResources).getHealth() == 0) {
+		Screen.showCursor = true;
+	}
+}
