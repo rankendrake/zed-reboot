@@ -19,14 +19,21 @@ class MeleeWeapon extends Weapon {
 									 // third column: length
 	private var angleDataPointCount : int;
 	
+	private var slashSound : AudioClip;
+	private var unsheathSound : AudioClip;
+	
 	function MeleeWeapon(
 			power : int,
 			id : String,
-			zed : GameObject) {
+			zed : GameObject,
+			slashSound : AudioClip,
+			unsheathSound : AudioClip) {
 
 		this.power = power;
 		this.id = id;
 		this.zed = zed;	
+		this.slashSound = slashSound;
+		this.unsheathSound = unsheathSound;
 		zedMovement = zed.GetComponent(ZedMovement);
 		zombieMovement = zed.GetComponent(ZombieMovement2);
 		if ((zedMovement == null) && (zombieMovement == null)) {
@@ -38,6 +45,7 @@ class MeleeWeapon extends Weapon {
 
 	// @Override
 	function strike() : boolean {
+		AudioSource.PlayClipAtPoint(slashSound,zed.transform.position);
 		strikeStartTime = Time.time;
 		strikeEndTime = Time.time + angleData[3*(angleDataPointCount-1)];
 		return true;
@@ -55,6 +63,12 @@ class MeleeWeapon extends Weapon {
 		}
 		angleDataPointCount = angleData.Length/3;
 	}
+	
+	// Reload sound is replaced by unsheathing sound.
+	function getReloadSound() {
+		return unsheathSound;
+	}
+	
 	
 	function isStriking() {
 		return (Time.time < strikeEndTime);

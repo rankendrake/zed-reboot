@@ -11,7 +11,7 @@ private var animatorDead : boolean;
 
 var zedResources : ZedResources;
 
-//var zombieDeathSound : AudioSource;
+var nullSound : AudioClip;
 
 var zombieDeathSound : AudioClip;
 var displayHealthPoints : boolean;
@@ -31,7 +31,7 @@ function Awake() {
 	
 	zedResources = GameObject.Find("zed").GetComponent(ZedResources);
 	
-	armWeapon = new MeleeWeapon(zombieProperties.getAttackDamage(), "ArmWeapon", gameObject);
+	armWeapon = new MeleeWeapon(zombieProperties.getAttackDamage(), "ArmWeapon", gameObject, nullSound, nullSound);
 	var armAttackAngles : float[] = [ 	// triplets of: time, angle, length
 		0.00,  60.0, 0.40,				// for the raycast
 		0.05,  40.0, 0.40,
