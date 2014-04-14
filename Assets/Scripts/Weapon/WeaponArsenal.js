@@ -22,7 +22,7 @@ function initializeArsenal () : Weapon[] {
 	*/
 	
 	// Sword
-	weapons[0] = new MeleeWeapon(4000, "sword", zed);
+	weapons[0] = new MeleeWeapon(4000, "sword", zed, clips[0], clips[1]);
 	
 	// Shotgun
 	weapons[1] = new ProjectileWeapon(1.1, 30, 30, 20, 5, 7, 1, 10, 0.5, 2, "shotgun", shotgunBulletPrefab, zed, new Vector2(0.8,-0.13), clips[0],clips[1]);
