@@ -22,8 +22,8 @@ function OnTriggerEnter2D(otherCollider : Collider2D) {
 		if(otherCollider.gameObject.name.CompareTo("zed") == 0) {
 			zombieBehaviour.setTarget(otherCollider.gameObject);
 		}
-		if(otherCollider.gameObject.CompareTag("turret")) {
-			zombieBehaviour.setTarget(otherCollider.gameObject);
-		}
+//		if(otherCollider.gameObject.CompareTag("turret")) {
+//			zombieBehaviour.setTarget(otherCollider.gameObject);
+//		}
 	}
 }
