@@ -23,7 +23,7 @@ function Update () {
 
 	if (hits.Length == 0 || !hits[0].transform.gameObject.CompareTag("zombie")) {
 		if (zombieTargeted) {
-			if (Random.Range(0, 1) == 1) direction *= -1;
+			if (Random.Range(0, 2) == 1) direction *= -1;
 			zombieTargeted = false;
 		}
 		transform.eulerAngles.z += direction*angularSpeed*Time.deltaTime;
