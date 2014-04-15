@@ -12,6 +12,9 @@ var leftBracket : Texture2D;
 var rightBracket : Texture2D;
 var bulletSkins : Texture2D[];
 
+var healthBar : Texture2D;
+var healthSymbol : Texture2D;
+
 private var zedResources : ZedResources;
 private var clipSize : int;
 private var bullets : int;
@@ -32,14 +35,17 @@ function OnGUI() {
 
 	weapon = zedResources.weapons[zedResources.currentWeaponIndex];
 	clipSize = weapon.getClipSize();
-
+	GUI.color = new Color(0.0, 0.0, 0.0, 0.2);
+	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height-30, 200, 18), healthBar, ScaleMode.StretchToFill); 
 	
 	GUI.color = new Color(0.0, 0.0, 0.0, 0.4);
-	// Zed level, exp
+	GUI.DrawTexture(Rect(Screen.width/2 - 100, Screen.height-30, 8, 18), healthSymbol, ScaleMode.StretchToFill); 
+	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height-30, 2*zedResources.getHealth(), 18), healthBar, ScaleMode.StretchToFill); 
+	
+	
 	GUI.Label(
 		Rect(10, 175, 100, 120), 
-		"Level: " + zedResources.getLevel().ToString() + 
-		"\nExperience: " +  zedResources.getExperience().ToString() +
+		"Score: " +  zedResources.getExperience().ToString() +
 		"\nHealth: " +  zedResources.getHealth().ToString() + 
 		"\nSkillPoints: " + zedResources.getSkillPoints().ToString() +
 		"\nMoney: " + zedResources.getMoney().ToString()

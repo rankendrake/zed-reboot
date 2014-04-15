@@ -35,6 +35,7 @@ private var overlayTimeEnd : float;
 var overlayTime : float;
 var overlayAlphaIncrease : float;
 var overlayAlphaDecrease : float;
+var maxOverlayAlpha : float;
 
 var slowBloodSpawner : ParticleSystem;
 var fastBloodSpawner : ParticleSystem;
@@ -126,6 +127,7 @@ function changeOverlay() {
 	var newAlpha : float;
 	if (Time.time < overlayTimeEnd) {
 		newAlpha = overlay.renderer.material.color.a + overlayAlphaIncrease*Time.deltaTime;
+		if (newAlpha > maxOverlayAlpha) newAlpha = maxOverlayAlpha;
 		if (newAlpha <= 1) {
 			overlay.renderer.material.color.a = newAlpha;
 		} else {
@@ -133,12 +135,15 @@ function changeOverlay() {
 		}
 	} else {
 		newAlpha = overlay.renderer.material.color.a - overlayAlphaDecrease*Time.deltaTime;
+		if (newAlpha > maxOverlayAlpha) newAlpha = maxOverlayAlpha;
 		if (newAlpha > 0) {
 			overlay.renderer.material.color.a = newAlpha;
 		} else {
 			overlay.renderer.material.color.a = 0;
 		}
 	}
+	
+	
 }
 
 function isAlive() : boolean {
@@ -168,6 +173,7 @@ function handleZombieKilled(zombieDifficultyLevel : int) {
 
 function gainExperience(amount : int) {
 	experience += amount;
+	changeSkillPoints(amount);
 	updateLevel();
 }
 

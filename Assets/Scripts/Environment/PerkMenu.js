@@ -6,6 +6,7 @@ var turretPrefabs : GameObject[];
 var boxTexture : Texture2D;
 var zedFont : Font;
 var titleFontSize : int;
+var buttonFontSize : int;
 
 var purchasedIcon : Texture2D; // checkmark-image
 var zedResources : ZedResources;
@@ -62,6 +63,7 @@ function OnGUI() {
 	var defaultBackground : Texture2D = GUI.skin.box.normal.background;
 	if (perkMenuActive) {
 		changeFontSize(titleFontSize, GUI.skin.box);
+		changeFontSize(buttonFontSize, GUI.skin.button);
 
 		GUI.skin.box.normal.background = boxTexture;
 		GUI.Box(
@@ -106,7 +108,7 @@ function OnGUI() {
 
 				if (GUI.Button(
 						buttonRect, 
-						GUIContent(perk.getPerkIcon(), perk.getName() + "\n" + perk.getSkillPointCost() + " SP"))) {
+						GUIContent(perk.getName(), perk.getSkillPointCost() + " SP"))) {
 
 					purchasePerk(categoryIndex, perkIndex);							
 				}
@@ -152,7 +154,7 @@ function OnGUI() {
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Scanner Turret\n" + scannerTurretCost.ToString() + "G"))) {
+				GUIContent("Scanner\nTurret", scannerTurretCost.ToString() + "G"))) {
 
 			purchaseTurret(0);							
 		}
@@ -171,7 +173,7 @@ function OnGUI() {
 
 		if (GUI.Button(
 				artilleryButtonRect, 
-				GUIContent(perkStock.getPerk(0,0).getPerkIcon(), "Roaming Miniturret\n" + miniTurretCost.ToString() + "G"))) {
+				GUIContent("Roaming\nMiniturret", "" + miniTurretCost.ToString() + "G"))) {
 
 			purchaseTurret(1);							
 		}

@@ -19,12 +19,13 @@ function Awake() {
 
 function Update() {
 	parentTransform.position += pushResponse*Time.deltaTime*(new Vector3(addedVelocity.x, addedVelocity.y, 0));
+	//parentTransform.position += new Vector3(0.01,0,0);
 	addedVelocity = new Vector2(0,0);	
 }
 
 
 function OnTriggerStay2D(other : Collider2D) {
-	if (other.gameObject.CompareTag("collisionDetector")) {
+	if (other.gameObject.CompareTag("collisionDetector")) {		
 		insideCounter++;
 		//	if (other.gameObject.CompareTag("collisionDetector")) {
 		var otherCollisionBehavior = other.GetComponent(CollisionBehavior);
@@ -44,7 +45,8 @@ function OnTriggerStay2D(other : Collider2D) {
 			var pushDirection : float = Mathf.Sign(Vector3.Cross(parentTransform.right, positionDifference).z);
 			pushImpulse = currentPushStrength*pushDirection*parentTransform.up;
 		}
-		otherCollisionBehavior.physicalPush(pushImpulse);		
+		otherCollisionBehavior.physicalPush(pushImpulse);
+		Debug.Log(pushImpulse.x);		
 	}
 }
 

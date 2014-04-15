@@ -34,8 +34,7 @@ function createPerkStock() {
 	
 	perkTree[MOVEMENT].Add(
 			new MovementPerk.Builder()
-					.name("Run training I")
-					.perkIcon(movementPerkTextureA)
+					.name("Speed\nI")
 					.skillPointCost(12)
 					.speedMultiplier(1.2)
 					.accelerationMultiplier(1.1)
@@ -43,7 +42,7 @@ function createPerkStock() {
 					
 	perkTree[MOVEMENT].Add(
 			new MovementPerk.Builder()
-					.name("Run training II")
+					.name("Speed\nII")
 					.skillPointCost(15)
 					.speedMultiplier(1.2)
 					.accelerationMultiplier(1.1)
@@ -51,8 +50,7 @@ function createPerkStock() {
 					
 	perkTree[MOVEMENT].Add(
 			new MovementPerk.Builder()
-					.name("")
-					.perkIcon(movementPerkTextureA)
+					.name("Speed\nIII")
 					.skillPointCost(15)
 					.speedMultiplier(1.2)
 					.accelerationMultiplier(1.1)
@@ -60,56 +58,56 @@ function createPerkStock() {
 				
 	perkTree[RATE_OF_FIRE].Add(
 			new WeaponPerk.Builder()
-					.name("Rate of fire improvement I")
+					.name("Fire Rate\nI")
 					.skillPointCost(10)
 					.rateOfFireMultiplier(1.2)
 					.build());
 					
 	perkTree[RATE_OF_FIRE].Add(
 			new WeaponPerk.Builder()
-					.name("Rate of fire improvement II")
+					.name("Fire Rate\nII")
 					.skillPointCost(20)
 					.rateOfFireMultiplier(1.4)
 					.build());
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
-					.name("fire power I")
+					.name("Fire Power\nI")
 					.skillPointCost(10)
 					.firePowerMultiplier(1.2)
 					.build());	
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
-					.name("fire power II")
+					.name("Fire Power\nII")
 					.skillPointCost(10)
 					.firePowerMultiplier(1.2)
 					.build());	
 					
 	perkTree[FIRE_POWER].Add(
 			new WeaponPerk.Builder()
-					.name("fire power III")
+					.name("Fire Power\nIII")
 					.skillPointCost(10)
 					.firePowerMultiplier(1.2)
 					.build());		
 	
 	perkTree[SHOT_ACCURACY].Add(
 			new WeaponPerk.Builder()
-					.name("Shot accuracy I")
+					.name("Shot Accuracy\nI")
 					.skillPointCost(5)
 					.scatterMultiplier(0.6)
 					.build());
 					
 	perkTree[SHOT_ACCURACY].Add(
 			new WeaponPerk.Builder()
-					.name("Shot accuracy II")
+					.name("Shot Accuracy\nII")
 					.skillPointCost(10)
 					.scatterMultiplier(0.0)
 					.build());
 
 	perkTree[MISC].Add(
 			new LaserPerk.Builder()
-					.name("Laser Sight")
+					.name("Laser Sight\n")
 					.skillPointCost(0)
 					.color(Color(0, 1, 0))
 					.build());
