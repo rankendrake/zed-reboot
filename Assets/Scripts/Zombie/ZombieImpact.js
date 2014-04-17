@@ -63,6 +63,7 @@ function impact(impactObject : GameObject, power : float, velocity : Vector2, hi
  */
 function swordImpact(power : float) {
 	//fastBloodSpawner.transform.eulerAngles.z = transform.eulerAngles.z + 90;
+	swordBloodSpawner.transform.position = transform.position;
 	swordBloodSpawner.Emit(5);
 	
 	damage(power*Time.deltaTime);

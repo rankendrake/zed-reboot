@@ -56,6 +56,8 @@ function Start() {
 function Update() {
 	if (Input.GetKeyDown("x")){
 		reduceHealth(50);
+	} else if (Input.GetKeyDown("m")) {
+		changeMoney(10);
 	}
 	
 	if (!isAlive()) {	// Zed is dying

@@ -45,8 +45,7 @@ function OnTriggerStay2D(other : Collider2D) {
 			var pushDirection : float = Mathf.Sign(Vector3.Cross(parentTransform.right, positionDifference).z);
 			pushImpulse = currentPushStrength*pushDirection*parentTransform.up;
 		}
-		otherCollisionBehavior.physicalPush(pushImpulse);
-		Debug.Log(pushImpulse.x);		
+		otherCollisionBehavior.physicalPush(pushImpulse);	
 	}
 }
 

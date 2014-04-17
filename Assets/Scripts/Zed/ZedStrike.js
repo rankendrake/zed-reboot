@@ -47,10 +47,15 @@ function Update() {
 					totalBulletsSpawned += currentProjectileWeapon.bulletsSpawned;				
 				}
 			} else if (currentWeapon instanceof MeleeWeapon) {
-				var currentMeleeWeapon : MeleeWeapon = currentWeapon as MeleeWeapon;
-				animator.SetBool("meleeStrike", true);
-			}		
-		}
+				if (animator.GetCurrentAnimatorStateInfo(1).IsName("WeaponLayer.SwordStrike")) {
+
+					animator.Play("WeaponLayer.SwordRaise");
+				} else {
+					var currentMeleeWeapon : MeleeWeapon = currentWeapon as MeleeWeapon;
+					animator.SetBool("meleeStrike", true);
+				}
+			} 
+		} 
 	} 	else if (Input.GetMouseButton(1) && Time.timeScale != 0) {
 		currentWeapon.secondaryStrike();
 	} else {
@@ -80,13 +85,13 @@ function getPercentageHit() : float {
 
 function animatorReady(stateInfo : AnimatorStateInfo, currentWeaponIndex : int) : boolean {
 	if (currentWeaponIndex == SWORD) {
-		return (stateInfo.IsName("SwordRelaxed"));
+		return (stateInfo.IsName("WeaponLayer.SwordRelaxed") || stateInfo.IsName("WeaponLayer.SwordStrike") || stateInfo.IsName("WeaponLayer.SwordStrike") || stateInfo.IsName("WeaponLayer.SwordUp"));
 	} else if (currentWeaponIndex == SHOTGUN) {
-		return (stateInfo.IsName("RifleRelaxed") || stateInfo.IsName("ShotGunStrike"));
+		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.ShotGunStrike"));
 	} else if (currentWeaponIndex == ASSAULT_RIFLE) {
-		return (stateInfo.IsName("RifleRelaxed") || stateInfo.IsName("AssaultRifleStrike"));
+		return (stateInfo.IsName("WeaponLayer.RifleRelaxed") || stateInfo.IsName("WeaponLayer.AssaultRifleStrike"));
 	} else if (currentWeaponIndex == PISTOL) {
-		return (stateInfo.IsName("PistolRelaxed") || stateInfo.IsName("PistolStrike"));
+		return (stateInfo.IsName("WeaponLayer.PistolRelaxed") || stateInfo.IsName("WeaponLayer.PistolStrike"));
 	} else {
 		return true;
 	}
