@@ -1,33 +1,50 @@
 ﻿#pragma strict
 
+var testVelocity : Vector2;
+
 var parentTransform : Transform;
-
-var pushResponse : float = 1;
-var pushStrength : float = 1;
-
+var pushInfluence : float = 1;
+var pushedWeight : float = 1;
 var pushPerpendicular : boolean;
 
-private var addedVelocity : Vector2;
 private var _transform : Transform;
 
 private var insideCounter : int;
 
+private var colliderRadius : float;
+
 function Awake() {
 	_transform = transform;
+	
+	var collider : Collider2D = GetComponent(Collider2D);
+	if (collider == null) {
+		Debug.Log("Error: " + transform.root.gameObject.name + " has a collision detector object which does not have a collider");
+	}
+	
+	if (collider instanceof CircleCollider2D) {
+		var circleCollider : CircleCollider2D = collider as CircleCollider2D;
+		colliderRadius =  Mathf.Min(parentTransform.localScale.x, parentTransform.localScale.y)*
+				circleCollider.radius;
+	} else if (collider instanceof BoxCollider2D) {
+		var boxCollider : BoxCollider2D = collider as BoxCollider2D;
+		colliderRadius = Mathf.Min(boxCollider.size.x, boxCollider.size.y)*
+				Mathf.Min(parentTransform.localScale.x, parentTransform.localScale.y);
+	} else {
+		Debug.Log("Error: CollisionBehavior only supports circle and box colliders");
+	}
+	
 }
 
 
-function Update() {
-	parentTransform.position += pushResponse*Time.deltaTime*(new Vector3(addedVelocity.x, addedVelocity.y, 0));
-	//parentTransform.position += new Vector3(0.01,0,0);
-	addedVelocity = new Vector2(0,0);	
+function Update() {					
+	parentTransform.position += Time.deltaTime*testVelocity;	
 }
 
 
 function OnTriggerStay2D(other : Collider2D) {
+
 	if (other.gameObject.CompareTag("collisionDetector")) {		
 		insideCounter++;
-		//	if (other.gameObject.CompareTag("collisionDetector")) {
 		var otherCollisionBehavior = other.GetComponent(CollisionBehavior);
 		
 		if (otherCollisionBehavior == null) {
@@ -35,22 +52,47 @@ function OnTriggerStay2D(other : Collider2D) {
 			return;
 		}
 		var positionDifference : Vector3 = otherCollisionBehavior.getPosition() - _transform.position;
-		positionDifference.z = 0;
-		positionDifference = positionDifference.normalized;
-		var currentPushStrength = pushStrength;
+		positionDifference.z = 0;	
+		
+		var absPositionDifference : float;
 		var pushImpulse : Vector2;
+		var displacementDirection : Vector3;
+		var adjustedPushInfluence : float;
+		var overlapDistance : float;
+		
 		if (!pushPerpendicular) {		
-			pushImpulse = currentPushStrength*(new Vector2(positionDifference.x, positionDifference.y));
+			absPositionDifference = positionDifference.magnitude;		
+			if (absPositionDifference == 0) {
+				// in the unlikely case that both objects are exactly on top of each other
+				// an arbitrary direction is chosen			
+				positionDifference = new Vector3(Random.Range(-1,1), Random.Range(-1,1), 0);
+			}
+			overlapDistance = colliderRadius + otherCollisionBehavior.getColliderRadius() - absPositionDifference;
+			adjustedPushInfluence = pushInfluence / (pushInfluence + otherCollisionBehavior.pushInfluence);
+			displacementDirection = positionDifference.normalized;
+			pushImpulse = adjustedPushInfluence*overlapDistance*(new Vector2(displacementDirection.x, displacementDirection.y));
 		} else {
-			var pushDirection : float = Mathf.Sign(Vector3.Cross(parentTransform.right, positionDifference).z);
-			pushImpulse = currentPushStrength*pushDirection*parentTransform.up;
+			var pushDirection : Vector2 = new Vector2(parentTransform.up.x, parentTransform.up.y);
+			displacementDirection = positionDifference.normalized;
+			absPositionDifference = Mathf.Abs(Vector2.Dot(displacementDirection, pushDirection));
+			var directionSign : float = Mathf.Sign(Vector2.Dot(displacementDirection, pushDirection));
+			overlapDistance = colliderRadius + otherCollisionBehavior.getColliderRadius() - absPositionDifference;
+			adjustedPushInfluence = pushInfluence / (pushInfluence + otherCollisionBehavior.pushInfluence);
+			pushImpulse = directionSign*adjustedPushInfluence*overlapDistance*pushDirection;
+			Debug.Log(transform.root.gameObject.name);
 		}
-		otherCollisionBehavior.physicalPush(pushImpulse);	
+		otherCollisionBehavior.displaceTransform(pushImpulse);	
+		
 	}
 }
 
-function physicalPush(impulse : Vector2) {
-	addedVelocity += impulse;
+function displaceTransform(impulse : Vector2) {
+	parentTransform.position.x += pushedWeight*impulse.x;	
+	parentTransform.position.y += pushedWeight*impulse.y;
+}
+
+function getColliderRadius() : float {
+	return colliderRadius;
 }
 
 function getPosition() : Vector3 {
