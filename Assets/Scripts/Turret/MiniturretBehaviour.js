@@ -1,25 +1,34 @@
-﻿#pragma strict
+﻿/*
+ * Defines the behaviour of the moving Miniturret.
+ * Every scanDelay period raycasts 360 degrees with the step of scanIntervalDegree with scanRadius distance,
+ * calculates the average position of all zombies in the radius, starts moving forward and shooting for movingTime
+ * and turning until the angle between the facing direction and the target is less than stopMovingAngleThreshold.
+ */
 
-private var angle : float;
-private var lastShotTime : float;
+#pragma strict
 
-var bulletPrefab : GameObject;
-
-var bulletSpawnOffsets : Vector2[];
+// turret main properties
 var firePower : float;
 var bulletSpeed : float;
 var rateOfFire : float;
+
+private var lastShotTime : float;
+
+var bulletPrefab : GameObject;
+var bulletSpawnOffsets : Vector2[]; // bullet spawn offset from the midpoint of the barrels
 var firingSound : AudioClip;
 
 var scanDelay : float;
 private var nextScanTime : float;
 var scanRadius : float;
 var scanIntervalDegree : float;
+
+// for smoothing out turning over frames
 var angularWeight : float;
 var actualAngle : float;
 var targetAngle : float;
-var maxStep : float;
 
+// moving variables
 var acceleration : float;
 private var currentAcceleration : float;
 var deceleration : float;
@@ -30,13 +39,10 @@ var movingTime : float;
 private var movingEndTime : float;
 var stopMovingAngleThreshold : float;
 
-var theoreticalDirection : Vector3;
-
 private var zombieAveragePosition : Vector3;
 
 function Start () {
 	nextScanTime = Time.time;
-	theoreticalDirection = transform.right;
 	movingEndTime = 0;
 	actualSpeed = 0;
 }
@@ -49,7 +55,6 @@ function Update () {
 	}
 
 	targetAngle = ZedUtils.getAngle(transform.position, zombieAveragePosition); 
-
 	actualAngle = ZedUtils.proportionallyAdjustAngle(actualAngle, targetAngle, angularWeight);
 	transform.eulerAngles.z = actualAngle;
 	Debug.DrawRay(transform.position, transform.right, Color.yellow);
@@ -88,10 +93,9 @@ function decelerate() {
 
 function fire(direction : Vector3) {
 	if (Time.time > lastShotTime + 1/rateOfFire ) {
+		// for both 2 barrels
 		for (var i : int = 0; i < 2; i++) {
-			// var instantiationPosition : Vector2 = transform.position + bulletSpawnOffsets[i];
 			var instantiationPosition : Vector2 = transform.position + ZedUtils.rotateVector(bulletSpawnOffsets[i], transform.eulerAngles.z);
-			
 
 			var newBullet : GameObject = Instantiate(bulletPrefab, 
 					instantiationPosition,

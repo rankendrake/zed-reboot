@@ -1,4 +1,10 @@
-﻿#pragma strict
+﻿/*
+ * Holds both the visuals and functionality of the High Scores screen (but not the High Scores database).
+ * Interacts with HighScoreManager.
+ */
+
+#pragma strict
+
 import System.Collections.Generic;
 
 var zedFont : Font;
@@ -9,7 +15,7 @@ var headerFontSize : int;
 var numberFontSize : int;
 
 var defaultScreenWidth : int = 1400; // for font size calculation
-private var screenToDefaultScreenRatio : float;
+private var screenToDefaultScreenRatio : float; // for scaling across different resolutions
 
 var boxWidth : float;  // fraction of Screen.width
 var boxHeight : float; // fraction of Screen.width
@@ -18,9 +24,6 @@ var boxYScreenFraction : float;
 var clearButtonHeight : float;
 var newGameButtonHeight : float;
 
-// var highScoreName : String;
-// var aname : String = "";
-// var score : String = "";
 private var highscore : List.<Scores>;
 private var centeredStyle : GUIStyle;
 
@@ -30,7 +33,6 @@ function Awake() {
 }
 
 function OnGUI() {
-
 	GUI.skin = null;
 	GUI.skin.font = zedFont;
 	GUI.skin.button.fontSize = labelFontSize;

@@ -1,10 +1,11 @@
-﻿#pragma strict
-
-/*
+﻿/*
  * Simulates reaction time for AI characters on a 
  * single (changing) floating point variable.
  *
+ * CURRENTLY NOT USED
  */
+
+#pragma strict
  
 import System.Collections.Generic;
 
@@ -12,8 +13,7 @@ class ReactionTimer extends UnityEngine.Object {
 	var reactionTime : float;
 	var timeStepLength : float;
 	
-	// number of stored values of that variable from
-	// the past
+	// number of stored values of that variable from the past
 	var timeStepCount : int;
 	
 
@@ -23,7 +23,7 @@ class ReactionTimer extends UnityEngine.Object {
 	
 	
 	// initValue is the value which will be returned 
-	//immediately after creation
+	// immediately after creation
 	function ReactionTimer(reactionTime : float, timeStepCount : int, initValue : float) {
 		this.reactionTime = reactionTime;
 		this.timeStepCount = timeStepCount;
@@ -41,7 +41,8 @@ class ReactionTimer extends UnityEngine.Object {
 			
 			 timeStamps.Add(Time.time);
 			 values.Add(currentValue);
-		}		
+		}
+
 		// optional smoothing implementation for in-between values
 		// ...
 		// ...

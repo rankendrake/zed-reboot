@@ -1,17 +1,22 @@
-﻿#pragma strict
+﻿/*
+ * Holds both the visuals and functionality of the Main Menu.
+ */
+
+#pragma strict
+
 var zedFont : Font;
 var buttonFontSizeMultiplier : float;
 var titleFontSizeMultiplier : float;
 var defaultFontSize : float = 16; // for font size calculation
 var defaultScreenWidth : int = 1600; // for font size calculation
-private var screenToDefaultScreenRatio : float;
+private var screenToDefaultScreenRatio : float; // for scaling across different resolutions
 
 var titleWidth : float;
 var titleHeight : float;
 var buttonWidth : float;  // fraction of Screen.width
 var buttonHeight : float; // fraction of Screen.width
-var titleLabelY : float;
-var startButtonY : float; // fraction of Screen.height
+var titleLabelY : float; // fraction of Screen.height
+var startButtonY : float; 
 var howToPlayButtonY : float;
 var highScoreButtonY : float;
 var quitButtonY : float;
@@ -25,6 +30,7 @@ function Awake() {
 }
 
 function OnGUI() {
+	GUI.skin = null;
 	GUI.skin.font = zedFont;
 	GUI.skin.label.fontSize = defaultFontSize*titleFontSizeMultiplier*screenToDefaultScreenRatio;
 	GUI.skin.button.fontSize = defaultFontSize*buttonFontSizeMultiplier*screenToDefaultScreenRatio;

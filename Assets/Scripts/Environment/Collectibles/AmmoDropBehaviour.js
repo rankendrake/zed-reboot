@@ -1,4 +1,11 @@
-﻿#pragma strict
+﻿/*
+ * Behaviour of an ammo drop.
+ *
+ * CURRENTLY NOT USED
+ */ 
+
+
+#pragma strict
 
 var numberOfClips : int;
 var maxStartSpeed : float;
@@ -18,6 +25,7 @@ function Update () {
 	_transform.position += Time.deltaTime*velocity;
 	
 	// (to do: not frame independent yet)
+	// can be done similarly as the CoinBehaviour script
 	velocity = velocity*drag;
 }
 

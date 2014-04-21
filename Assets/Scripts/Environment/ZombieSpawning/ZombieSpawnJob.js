@@ -1,10 +1,10 @@
-﻿#pragma strict
-import System.Collections.Generic;
-
-/*
+﻿/*
  * Used by the ZombieSpawning.js-Script. 
  * Combines all necessary information about a job
  */
+
+#pragma strict
+import System.Collections.Generic;
 
 class ZombieSpawnJob extends UnityEngine.Object {
 	enum LocationMode {

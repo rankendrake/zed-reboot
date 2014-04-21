@@ -1,4 +1,8 @@
-﻿#pragma strict
+﻿/*
+ * General interface for any type of weapon. Helps with weapon management in e.g. WeaponArsenal of environment.
+ */
+
+#pragma strict
 
 class Weapon extends UnityEngine.Object {
 	var id : String;

@@ -1,3 +1,7 @@
+/*
+ * The main HUD has the weapon, bullet, health, skillpoint and money information.
+ */
+
 #pragma strict
 
 var zedFont : Font;
@@ -44,8 +48,11 @@ function OnGUI() {
 	GUI.skin.font = zedFont;
 	GUI.skin.label.fontSize = labelFontSize;
 
+	// Gets current weapon's clip size
 	weapon = zedResources.weapons[zedResources.currentWeaponIndex];
 	clipSize = weapon.getClipSize();
+
+	// Draws the health bar background for the current health bar
 	GUI.color = Color(0.0, 0.0, 0.0, 0.2);
 	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 200, 18), healthBar, ScaleMode.StretchToFill); 
 	
@@ -72,6 +79,7 @@ function OnGUI() {
 	GUI.skin.label.fontSize = prevFontSize;
 	centeredStyle = prevStyle;
 
+	// Current health bar
 	GUI.DrawTexture(Rect(Screen.width/2 - 100, Screen.height - 30, 9, 18), healthSymbol, ScaleMode.StretchToFill); 
 	GUI.DrawTexture(Rect(Screen.width/2 - 80,  Screen.height - 30, 2*zedResources.getHealth(), 18), healthBar, ScaleMode.StretchToFill); 
 	
@@ -90,11 +98,7 @@ function OnGUI() {
 			melee = true;
 		}
 		
-		
 		if (!melee) {
-
-
-		
 			// Clip image
 			if (weapon.getJustReloaded() || !weapon.getId().Equals(lastWeaponId)) {
 				reloadClip();
@@ -107,13 +111,13 @@ function OnGUI() {
 			// Clip image overlay
 			GUI.DrawTexture(Rect(Screen.width/2 - clipBullets.length*9/2 - 12, 85, 24, 38), leftBracket, ScaleMode.ScaleAndCrop, true);
 
-			
 			var i : int;
 			bullets = weapon.getBulletsInClip();
 			for (i = 0; i < bullets; i++) {
 				GUI.DrawTexture(Rect(Screen.width/2 - clipBullets.length*9/2 - 12 + 5 + i*9, 90, 9, 28), clipBullets[i], ScaleMode.ScaleAndCrop, true);
 			}
 			GUI.DrawTexture(Rect(Screen.width/2 + clipBullets.length*9/2 - 24, 85, 24, 38), rightBracket, ScaleMode.ScaleAndCrop, true);
+
 			// Clip image background
 			GUI.color = Color(0.0, 0.0, 0.0, 0.10);
 			for (i = 0; i < clipBullets.length; i++) {
@@ -135,7 +139,6 @@ function reloadClip() {
 	}
 	weapon.falsifyJustReloaded();
 }
-
 
 function getRandomBulletTexture() : Texture2D {
 	var bulletNumber : int = Mathf.FloorToInt(Random.Range(0, bulletSkins.Length-0.01));

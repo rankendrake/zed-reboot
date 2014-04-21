@@ -46,17 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AnimatorLayerWeightToOne.js" />
-     <Compile Include="Assets\BarrelTurner.js" />
-     <Compile Include="Assets\CogTurner.js" />
-     <Compile Include="Assets\Crosshair.js" />
-     <Compile Include="Assets\HowToPlay.js" />
-     <Compile Include="Assets\LaserSight.js" />
-     <Compile Include="Assets\MiniturretBehaviour.js" />
-     <Compile Include="Assets\NamePrompt.js" />
-     <Compile Include="Assets\ParticleLayerOrder.js" />
      <Compile Include="Assets\Scripts\CollisionBehavior.js" />
-     <Compile Include="Assets\Scripts\Environment\Collectibles\CoinBehaviour.js" />
+     <Compile Include="Assets\Scripts\Environment\Collectibles\AmmoDropBehaviour.js" />
+     <Compile Include="Assets\Scripts\Environment\Collectibles\CoinDropBehaviour.js" />
      <Compile Include="Assets\Scripts\Environment\EnvironmentAttributes.js" />
      <Compile Include="Assets\Scripts\Environment\PerkInitializer.js" />
      <Compile Include="Assets\Scripts\Environment\PerkMenu.js" />
@@ -67,13 +59,17 @@
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnEngine.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnJob.js" />
      <Compile Include="Assets\Scripts\Environment\ZombieSpawning\ZombieSpawnSequence.js" />
+     <Compile Include="Assets\Scripts\Menu\HighScores.js" />
+     <Compile Include="Assets\Scripts\Menu\HowToPlay.js" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.js" />
-     <Compile Include="Assets\Scripts\Miscellaneous\HighScores.js" />
+     <Compile Include="Assets\Scripts\Miscellaneous\NamePrompt.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ReactionTimer.js" />
      <Compile Include="Assets\Scripts\Miscellaneous\ZedUtils.js" />
-     <Compile Include="Assets\Scripts\Pickup\PickupAddAmmo.js" />
+     <Compile Include="Assets\Scripts\Turret\BarrelTurner.js" />
+     <Compile Include="Assets\Scripts\Turret\CogTurner.js" />
+     <Compile Include="Assets\Scripts\Turret\MiniturretBehaviour.js" />
      <Compile Include="Assets\Scripts\Visuals\CameraController.js" />
-     <Compile Include="Assets\Scripts\Visuals\CameraMovement.js" />
+     <Compile Include="Assets\Scripts\Visuals\Crosshair.js" />
      <Compile Include="Assets\Scripts\Visuals\HudFps.js" />
      <Compile Include="Assets\Scripts\Visuals\HudMain.js" />
      <Compile Include="Assets\Scripts\Weapon\BulletMovement.js" />
@@ -82,7 +78,9 @@
      <Compile Include="Assets\Scripts\Weapon\ProjectileWeapon.js" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.js" />
      <Compile Include="Assets\Scripts\Weapon\WeaponArsenal.js" />
+     <Compile Include="Assets\Scripts\Zed\AnimatorLayerWeightToOne.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\LaserPerk.js" />
+     <Compile Include="Assets\Scripts\Zed\Perk\LaserSight.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\MovementPerk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\Perk.js" />
      <Compile Include="Assets\Scripts\Zed\Perk\PerkList.js" />
@@ -99,6 +97,7 @@
      <Compile Include="Assets\Scripts\Zombie\Behaviours\PackZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\Behaviours\ZombieBehaviour.js" />
      <Compile Include="Assets\Scripts\Zombie\LeaderDetector.js" />
+     <Compile Include="Assets\Scripts\Zombie\ParticleLayerOrder.js" />
      <Compile Include="Assets\Scripts\Zombie\TargetDetector.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieImpact.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieMovement.js" />
@@ -106,8 +105,6 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
-     <Compile Include="Assets\SwordImpact.js" />
-     <Compile Include="Assets\Tiling.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

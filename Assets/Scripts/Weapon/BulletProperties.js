@@ -1,4 +1,8 @@
-﻿#pragma strict
+﻿/*
+ * An interface for the bullet's power and owner object.
+ */
+
+#pragma strict
 
 var power : float;
 private var owner : GameObject;

@@ -1,4 +1,9 @@
-﻿#pragma strict
+﻿/*
+ * The mechanics behind a sword strike using a raycast from the base to the tip of the sword at every animation frame.
+ * The sword deals damage on time as long as the sword is inside an enemy.
+ */
+
+#pragma strict
 
 class MeleeWeapon extends Weapon {
 	private var weaponAnimator : Animator;
@@ -78,7 +83,6 @@ class MeleeWeapon extends Weapon {
 		if (!isStriking()) {
 			return;
 		}	
-		
 		
 		var bodyAngle : float;
 		if (zedMovement != null) {

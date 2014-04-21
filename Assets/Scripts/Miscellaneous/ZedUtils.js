@@ -1,4 +1,8 @@
-﻿#pragma strict
+﻿/*
+ * Holds within general functions for mainly maths calculations for all scripts.
+ */
+
+#pragma strict
 
 class ZedUtils {
 

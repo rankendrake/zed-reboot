@@ -1,4 +1,10 @@
-﻿#pragma strict
+﻿/*
+ * Defines the behaviour of the cogs on the ScannerTurret which rotate as the barrel is turned.
+ * Purely visual.
+ */
+
+#pragma strict
+
 var barrelName : String;
 private var barrel : Transform;
 var spinningSpeedMultiplier : float;

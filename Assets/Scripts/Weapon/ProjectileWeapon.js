@@ -1,10 +1,14 @@
-﻿#pragma strict
+﻿/*
+ * Holds within the general attributes and behaviour of a projectile weapon.
+ */
+
+#pragma strict
 
 class ProjectileWeapon extends Weapon {
 	var rateOfFire : float;
 	var firePower : float;
 	var bulletSpeed : float;
-	var spread : float;
+	var spread : float; // different from scatter. Think of shotgun.
 	var bulletsSpawned : int;
 	var clipSize : int;
 	var reloadTime : float;
@@ -12,8 +16,6 @@ class ProjectileWeapon extends Weapon {
 	var zedMovement : ZedMovement;
 	var zedResources : ZedResources;
 	var spawnOffset : Vector2;
-//	var firingSound : AudioSource;
-//	var reloadingSound : AudioSource;
 
 	var firingSound : AudioClip;
 	var reloadingSound : AudioClip;
@@ -76,6 +78,7 @@ class ProjectileWeapon extends Weapon {
 	// @Override
 	function strike() : boolean {
 		var successfulStrike : boolean = false;
+
 		// modifications by perks
 		var actualRateOfFire : float = rateOfFire;
 		var actualBulletSpeed : float = bulletSpeed;
@@ -84,7 +87,6 @@ class ProjectileWeapon extends Weapon {
 			actualBulletSpeed = actualBulletSpeed*perk.getFirePowerMultiplier();
 			actualRateOfFire = actualRateOfFire*perk.getRateOfFireMultiplier();
 		}
-		
 	
 		if (Time.time > reloadEndTime && 
 			Time.time > lastShotTime + 1.0/actualRateOfFire ) {
@@ -139,7 +141,7 @@ class ProjectileWeapon extends Weapon {
 	}
 	
 	function manualReload() {
-		if(bulletsInClip < clipSize) {
+		if (bulletsInClip < clipSize) {
 			reload();
 		}
 	}

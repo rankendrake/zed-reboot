@@ -1,4 +1,8 @@
-﻿#pragma strict
+/*
+ * Holds both the visuals and functionality of the How To Play screen accessed from Main Menu.
+ */
+
+#pragma strict
 import System.Collections.Generic;
 
 var zedFont : Font;
@@ -7,7 +11,7 @@ var flavourTextFontSize : int;
 var boxTexture : Texture2D;
 
 var defaultScreenWidth : int = 1400; // for font size calculation
-private var screenToDefaultScreenRatio : float;
+private var screenToDefaultScreenRatio : float; // for scaling across different resolutions
 
 var boxWidth : float;  // fraction of Screen.width
 var boxHeight : float; // fraction of Screen.width

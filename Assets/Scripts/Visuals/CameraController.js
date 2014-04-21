@@ -1,4 +1,8 @@
-﻿#pragma strict
+﻿/*
+ * Controls the smooth movement of the camera. Is bounded by the map. Can be attached to any other object than Zed as well.
+ */
+
+#pragma strict
 
 var target : Transform;
 
@@ -21,16 +25,12 @@ function Start(){
 }
 
 function Update () {
-
-	
 	var zedPosition : Vector3 = target.position;
 	var camPosition : Vector3 = transform.position;
-	
 	
 	var mouseScreenPosition : Vector3 = Input.mousePosition;
 	mouseScreenPosition.z = -transform.position.z;
 	var mouseWorldPosition : Vector3 = Camera.main.ScreenToWorldPoint(mouseScreenPosition);	
-	
 	
 	var targetPosition : Vector3 = (1 - mouseInfluenceWeight)*zedPosition + mouseInfluenceWeight*mouseWorldPosition;
 	
@@ -39,17 +39,11 @@ function Update () {
 	if (targetPosition.y > topBound) targetPosition.y = topBound;
 	if (targetPosition.y < bottomBound) targetPosition.y = bottomBound;
 	
-	
-
-	
 	var delta : Vector3 = (targetPosition - camPosition);
 	cameraSpeedX += acceleration*delta.x*Time.deltaTime;
 	cameraSpeedY += acceleration*delta.y*Time.deltaTime;
-	
 	cameraSpeedX *= Mathf.Exp(-damping*Time.deltaTime);
 	cameraSpeedY *= Mathf.Exp(-damping*Time.deltaTime);
 
 	transform.position += (new Vector3(cameraSpeedX*Time.deltaTime, cameraSpeedY*Time.deltaTime, 0));
-				
-
 }

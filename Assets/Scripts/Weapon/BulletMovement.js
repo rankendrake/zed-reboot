@@ -1,4 +1,9 @@
-﻿ #pragma strict
+﻿/*
+ * Moves the bullet according to its speed and takes care of collisions.
+ */
+
+#pragma strict
+
 import System.Collections.Generic;
 
 var _transform : Transform;
@@ -16,7 +21,6 @@ function Start () {
 }
 
 function Update () {
-	
 	// bullet always moves distance predicted in last frame
 	if (moving) {
 		move();		

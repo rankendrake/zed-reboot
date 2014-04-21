@@ -1,9 +1,10 @@
-﻿#pragma strict
-/*
+﻿/*
  * Specifies the actual sequence of zombies in the survival mode
  * may be attached to any GameObject, preferably environment
- *
  */
+
+#pragma strict
+
 var zombieSpawnEngine : ZombieSpawnEngine;
 var leaderZombiePrefab : GameObject;
 var packZombiePrefab : GameObject;

@@ -1,4 +1,9 @@
-﻿#pragma strict
+﻿/*
+ * Shows the FPS of the game as a label. Is not synchronized or even ever equivalent 
+ * with the unity built-in FPS meter, just convenient.
+ */
+
+#pragma strict
 
 var zedFont : Font;
 var labelFontSize : int;
@@ -19,7 +24,7 @@ function OnGUI(){
 	//displayAllTransforms();
 }				
 
-
+// displays all objects' names in the scene as an addition to the FPS
 function displayAllTransforms() {
 	var gameObjects : Object[] = GameObject.FindObjectsOfType(typeof(GameObject)); //returns Object[]
 	

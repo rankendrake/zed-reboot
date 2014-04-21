@@ -1,13 +1,17 @@
-﻿#pragma strict
+﻿/*
+ * Defines the behaviour of the visuals of the crosshair. Depends on the current scatter angle magnitude:
+ * crosshair is as wide as the bullets could ever reach angularly. Thus it also depends on how far the 
+ * mouse cursor currently is from Zed.
+ */
 
+#pragma strict
 
 var zedTransform : Transform;
 var zedResources : ZedResources;
 var minRadius : float;
-var crosshairTL : Texture2D;
-var crosshairTR : Texture2D;
+var crosshairTL : Texture2D; // top-left
+var crosshairTR : Texture2D; // top-right
 var crosshairScale : float;
-
 
 private var crosshairTextureSize : Vector2;
 private final var SQRT_2 : float = Mathf.Sqrt(2);
@@ -16,14 +20,8 @@ function Awake() {
 	crosshairTextureSize = (new Vector2(crosshairTL.width, crosshairTL.height))*crosshairScale;
 }
 
-
-function Update () {
-	//print (zedResources.getCurrentScatterAngle());
-	
-}
-
 function OnGUI() {
-	if(zedResources.getHealth() > 0) {
+	if (zedResources.getHealth() > 0) {
 		drawCrosshair();
 	}
 }
@@ -38,8 +36,7 @@ function drawCrosshair() {
 	var distanceToZed : float = zedDisplacement.magnitude;
 	
 	var radius : float = Mathf.Max(minRadius, zedResources.getCurrentScatterAngle()*distanceToZed);	 
-	radius = radius / SQRT_2; // if textures are drawn at 45 degrees, this needs to be scaled
-	
+	radius = radius/SQRT_2; // if textures are drawn at 45 degrees, this needs to be scaled
 	
 	// Draw crosshair elements
 	GUI.DrawTexture(new Rect(mouseScreenPosition.x - radius - 0.5*crosshairTextureSize.x, 

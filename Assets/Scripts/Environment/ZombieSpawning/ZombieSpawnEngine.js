@@ -1,11 +1,11 @@
-﻿#pragma strict
-import System.Collections.Generic;
-
-/*
+﻿/*
  * Zombie Spawn-Engine
  * Supposed to be able to handle multiple commands to predefine a sequence of
  * zombie spawning for a game level
  */
+
+#pragma strict
+import System.Collections.Generic;
 
 
 enum Edge { TOP, BOTTOM, LEFT, RIGHT }

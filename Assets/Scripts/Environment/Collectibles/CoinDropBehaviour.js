@@ -1,4 +1,9 @@
-﻿#pragma strict
+﻿/*
+ * Defines the behaviour of a coin as it is dropped. Has a trigger for picking a coin up.
+ */
+
+
+#pragma strict
 
 var coins : int;
 var maxStartSpeed : float;
@@ -10,7 +15,7 @@ var clinkSound : AudioClip;
 
 private var velocity : Vector2;
 private var angularSpeed : Vector3;
-private var stopped : boolean;
+private var stopped : boolean; // whether coin has stopped sliding away from the body
 
 function Start() {
 	velocity = new Vector2(Random.Range(-maxStartSpeed, maxStartSpeed), 

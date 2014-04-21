@@ -1,7 +1,11 @@
-﻿#pragma strict
+﻿/*
+ * Defines the behaviour of the ScannerTurret barrel.
+ */
+
+#pragma strict
 
 private var angle : float;
-private var direction : int;
+private var direction : int; // which way is the barrel currently turning - 0: clockwise, 1: ccw
 private var zombieTargeted : boolean;
 private var lastShotTime : float;
 
@@ -22,6 +26,7 @@ function Update () {
 	var hits : RaycastHit2D[] = Physics2D.RaycastAll(transform.position + fwd*barrelLength, fwd);
 
 	if (hits.Length == 0 || !hits[0].transform.gameObject.CompareTag("zombie")) {
+		// if a zombie is in line of sight, change direction of the barrel turning with 0.5 probability
 		if (zombieTargeted) {
 			if (Random.Range(0, 2) == 1) direction *= -1;
 			zombieTargeted = false;
@@ -36,8 +41,8 @@ function Update () {
 }
 
 function fire(direction : Vector3) {
-	if (Time.time > lastShotTime + 1/rateOfFire ) {
-			
+	// currently frame dependent (high rateOfFire + low FPS = less bullets)
+	if (Time.time > lastShotTime + 1/rateOfFire ) {			
 		var newBullet : GameObject = Instantiate(bulletPrefab, 
 				transform.position + direction*barrelLength, 
 				Quaternion.identity);

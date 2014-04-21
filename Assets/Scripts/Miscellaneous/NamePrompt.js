@@ -1,4 +1,10 @@
+/*
+ * As Zed dies, a prompt comes up asking for the player's name.
+ * Includes functionality for submitting the score and displaying the High Scores scene.
+ */
+
 #pragma strict
+
 var zedFont : Font;
 var flavourTextFontSize : int;
 var inputFontSize : int;
@@ -15,9 +21,9 @@ var zedStrike : ZedStrike;
 var zedMovement : ZedMovement;
 
 var defaultScreenWidth : int = 1400; // for font size calculation
-private var screenToDefaultScreenRatio : float;
+private var screenToDefaultScreenRatio : float; // for scaling across different resolutions
 
-var aname : String = "";
+var aname : String = ""; // can be set to any default name to have been written in the prompt automatically
 
 private var promptOpen : boolean = false;
 
@@ -27,8 +33,9 @@ function Awake() {
 	screenToDefaultScreenRatio = parseFloat(Screen.width)/defaultScreenWidth;
 }
 
-
 function OnGUI() {
+	GUI.skin = null;
+
 	if (promptOpen) {
 		// Create general box
 		changeFontSize(flavourTextFontSize, GUI.skin.box);
@@ -52,6 +59,8 @@ function OnGUI() {
 		GUI.SetNextControlName("inputField");
 
 		var chr : char = Event.current.character;
+		// makes sure an empty string is not submitted, but if there is text,
+		// the enter button works as a submit
         if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return) {
         	if (aname == String.Empty) {
         		Event.current.character = "\0"[0];
@@ -59,6 +68,7 @@ function OnGUI() {
         		hallOfFameButtonPressed();
         	}
         } else {
+        	// only accepts the following characters
         	if ((chr < "a"[0] || chr > "z"[0]) && 
         		(chr < "A"[0] || chr > "Z"[0]) && 
         		(chr < "0"[0] || chr > "9"[0]) && 
@@ -68,9 +78,6 @@ function OnGUI() {
     		}
         	aname = GUILayout.TextField(aname, maxInputLength, centeredStyle, GUILayout.Height(textFieldHeight*screenToDefaultScreenRatio));
         }
-
-
-
 
 		GUILayout.EndArea();
 
@@ -86,6 +93,7 @@ function OnGUI() {
 		}
 		GUILayout.EndArea();
 
+		// As the prompt opens, focus is automatically put on the textbox.
 		if (GUI.GetNameOfFocusedControl() == String.Empty) {
 		    GUI.FocusControl("inputField");
 		}
@@ -109,6 +117,7 @@ function changeFontSize(newsize : int, element : GUIStyle) {
     centeredStyle.alignment = TextAnchor.MiddleCenter;
 }
 
+// Saves the high score with other data.
 function hallOfFameButtonPressed() {
 	var timeInSeconds : float = Time.timeSinceLevelLoad;
 	var minutes : int = timeInSeconds / 60;
