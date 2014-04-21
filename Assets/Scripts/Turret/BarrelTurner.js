@@ -12,9 +12,14 @@ private var lastShotTime : float;
 var bulletPrefab : GameObject;
 var angularSpeed : float;
 var barrelLength : float;
+
+// Firing properties
 var firePower : float;
 var bulletSpeed : float;
 var rateOfFire : float;
+var bulletsSpawned : int; // for burst fire
+var bulletSpawningPositionDelta : Vector2;
+
 var firingSound : AudioClip;
 
 function Start () {
@@ -42,17 +47,22 @@ function Update () {
 
 function fire(direction : Vector3) {
 	// currently frame dependent (high rateOfFire + low FPS = less bullets)
-	if (Time.time > lastShotTime + 1/rateOfFire ) {			
-		var newBullet : GameObject = Instantiate(bulletPrefab, 
-				transform.position + direction*barrelLength, 
-				Quaternion.identity);
-		newBullet.transform.eulerAngles.z = transform.eulerAngles.z;
-		
-		newBullet.GetComponent(BulletProperties).setPower(firePower);
-		newBullet.GetComponent(BulletMovement).setSpeed(bulletSpeed);
-		
-		AudioSource.PlayClipAtPoint(firingSound, transform.position);
+	if (Time.time > lastShotTime + 1/rateOfFire ) {
+		for (var b : int = 0; b < bulletsSpawned; b++) {
+			var newBullet : GameObject = Instantiate(bulletPrefab, 
+					transform.position + direction*barrelLength, 
+					Quaternion.identity);
+			newBullet.transform.eulerAngles.z = transform.eulerAngles.z;
 
-		lastShotTime = Time.time;
+			var delta : Vector2 = ZedUtils.rotateVector(bulletSpawningPositionDelta, Random.Range(0, 360));
+			newBullet.transform.position += delta;
+			
+			newBullet.GetComponent(BulletProperties).setPower(firePower);
+			newBullet.GetComponent(BulletMovement).setSpeed(bulletSpeed);
+			
+			AudioSource.PlayClipAtPoint(firingSound, transform.position);
+
+			lastShotTime = Time.time;
+		}
 	}
 }
