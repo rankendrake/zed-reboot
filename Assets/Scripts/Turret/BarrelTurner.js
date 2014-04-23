@@ -56,7 +56,6 @@ function Update () {
 	}
 
 	Debug.DrawLine(transform.position + fwd*barrelLength, transform.position + fwd * 100, Color.blue, 0.1, false);
-	Debug.Log((getTrueInverseDirection()).ToString());
 
 	currentRecoil -= Mathf.Min(currentRecoil, recoilStabilizeAmount*Time.deltaTime);
 }
