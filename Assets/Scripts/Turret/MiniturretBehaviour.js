@@ -39,9 +39,12 @@ var movingTime : float;
 private var movingEndTime : float;
 var stopMovingAngleThreshold : float;
 
+var destructionTime : float;
+
 private var zombieAveragePosition : Vector3;
 
 function Start () {
+	TimedObjectDestructor.destroyGameObjectInSeconds(gameObject, destructionTime);
 	nextScanTime = Time.time;
 	movingEndTime = 0;
 	actualSpeed = 0;

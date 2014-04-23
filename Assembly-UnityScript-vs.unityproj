@@ -105,6 +105,7 @@
      <Compile Include="Assets\Scripts\Zombie\ZombieProperties.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieResources.js" />
      <Compile Include="Assets\Scripts\Zombie\ZombieStrike.js" />
+     <Compile Include="Assets\TurretDestroyer.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
