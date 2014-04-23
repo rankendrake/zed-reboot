@@ -77,8 +77,13 @@ class ZombieSpawnJob extends UnityEngine.Object {
 	
 	function spawnIfDue() {
 		if (Time.timeSinceLevelLoad > startTime) {
-			if ((zombiesLeftCount > 0) && (Time.timeSinceLevelLoad - lastSpawnTime) > spawnDelay) {			
-				lastSpawnTime = Time.timeSinceLevelLoad;
+			while ((zombiesLeftCount > 0) && (Time.timeSinceLevelLoad - lastSpawnTime) > spawnDelay) {			
+				if (lastSpawnTime == 0) {
+					lastSpawnTime = startTime + spawnDelay;
+				} else {
+					lastSpawnTime += spawnDelay;
+				}
+				
 				var spawnPosition2D : Vector2 = getPosition();
 				var spawnPosition : Vector3 = new Vector3(spawnPosition2D.x, 
 						spawnPosition2D.y, EnvironmentAttributes.zombieZCoordinate);
