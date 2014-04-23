@@ -118,3 +118,7 @@ function trimUnnecessaryComponents() {
 function dropCoin() {
 	Instantiate(coinPrefab, transform.position, Quaternion.identity);
 }
+
+function multiplyHealth(healthMultiplier : float) {
+	health *= healthMultiplier;
+}

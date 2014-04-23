@@ -17,6 +17,8 @@ private var lastCheckTime : float;
 
 private var spawnJobs : List.<ZombieSpawnJob>;
 
+private var HEALTH_INCREASE_TIMESTEP : float = 200;
+
 function Awake() {
 	spawnJobs = new List.<ZombieSpawnJob>();
 }
@@ -35,6 +37,7 @@ function handleSpawnJobs() {
 		if (spawnJobs[i].isExpired()) {
 			spawnJobs.RemoveAt(i);
 		} else {
+			spawnJobs[i].setHealthMultiplier(1 + (Time.timeSinceLevelLoad / HEALTH_INCREASE_TIMESTEP));
 			spawnJobs[i].spawnIfDue();
 			i++;
 		}

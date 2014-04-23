@@ -30,6 +30,8 @@ class ZombieSpawnJob extends UnityEngine.Object {
 	// for position
 	private var position : Vector2;
 	private var spread : Vector2;
+
+	private var healthMultiplier : float;
 	
 	function ZombieSpawnJob(prefab : GameObject, 
 			startTime : float, 
@@ -87,7 +89,8 @@ class ZombieSpawnJob extends UnityEngine.Object {
 				var spawnPosition2D : Vector2 = getPosition();
 				var spawnPosition : Vector3 = new Vector3(spawnPosition2D.x, 
 						spawnPosition2D.y, EnvironmentAttributes.zombieZCoordinate);
-				Instantiate(prefab, spawnPosition, Quaternion.identity);
+				var zombie : GameObject = Instantiate(prefab, spawnPosition, Quaternion.identity);
+				zombie.GetComponent(ZombieResources).multiplyHealth(healthMultiplier);
 				zombiesLeftCount--;
 				if (zombiesLeftCount > 0) {
 					var timeUntilEnd : float = endTime - Time.timeSinceLevelLoad;
@@ -144,4 +147,9 @@ class ZombieSpawnJob extends UnityEngine.Object {
 						Random.Range(-spread.y, spread.y)));		
 		} else return Vector2(0, 0);
 	}
+
+	function setHealthMultiplier(healthMultiplier : float) {
+		this.healthMultiplier = healthMultiplier;
+	}
 }
+
