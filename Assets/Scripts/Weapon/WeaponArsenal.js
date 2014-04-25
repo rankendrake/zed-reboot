@@ -53,9 +53,9 @@ function initializeArsenal () : Weapon[] {
 	
 	// initialize Sword strike data: time, angle, length (for raycast)
 	var swordData : float[] = [
-			0.00, -120.0, 1.00,
-			0.10,  -80.0, 1.00,
-			0.30,  100.0, 1.00,
+			0.00, -120.0, 1.12,
+			0.10,  -80.0, 1.12,
+			0.30,  100.0, 1.12,
 			0.35,  30.00, 0.00
 		];
 	(weapons[0] as MeleeWeapon).initAngleData(swordData);
