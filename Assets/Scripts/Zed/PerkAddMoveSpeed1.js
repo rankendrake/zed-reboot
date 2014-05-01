@@ -1,4 +1,8 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Defunct class. Use Perk now.
+*/
 
 var zed : GameObject;
 var factor : float = 1.25;

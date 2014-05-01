@@ -1,4 +1,9 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Script to control Zed’s Movement.
+*/ 
+
 var upperBody : GameObject;
 var zedResources : ZedResources;
 
