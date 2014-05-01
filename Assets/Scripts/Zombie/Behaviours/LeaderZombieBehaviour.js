@@ -1,4 +1,33 @@
-﻿#pragma strict
+#pragma strict
+
+/* 
+*  Behaviour class for Leader Zombies.
+*
+*  Leader Zombies, following Finite State Machine style, have 2 states:
+*  Searching, Attacking.
+*
+*  Searching State:
+*  Leaders will path towards a point approximating Zed’s position in simulation
+*  of picking up his scent. This point is updated at regular intervals.
+*
+*  State Change Condition:
+*  Target comes within targetVisualRange: Enter Attacking Mode.
+*
+*  Attacking State:
+*  Leaders will path towards the target and attack it once within range.
+*
+*  State Change Condition:
+*  Distance from target exceeds 1.5x targetVisualRange: Enter Searching Mode.
+*
+*
+*  Note: Leader Zombies can behave autonomously from Pack Zombies, and do not
+*  actively track the number of Pack Zombies currently following it. This can
+*  be extended upon in future implementation.
+*
+*/
+
+
+
 
 class LeaderZombieBehaviour extends ZombieBehaviour {
 

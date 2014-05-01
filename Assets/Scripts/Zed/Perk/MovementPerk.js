@@ -1,4 +1,8 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Movement Perk class to influence Zed’s movement.
+*/
 
 class MovementPerk extends Perk {
 	private var speedMultiplier : float;

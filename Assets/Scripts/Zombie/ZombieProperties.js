@@ -1,4 +1,8 @@
-﻿#pragma strict
+#pragma strict
+
+/* 
+*  Zombie properties class.
+*/
 
 var difficultyLevel : int;
 var maxHealth : float;

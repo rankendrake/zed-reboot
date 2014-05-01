@@ -1,4 +1,10 @@
-﻿#pragma strict
+#pragma strict
+
+/* Simple zombie behaviour.
+*  Just path towards zed, and attack zed.
+*  Future implementation should have Chaser Zombies selecting their targets
+*  based on their proximity.
+*/
 
 class ChaserZombieBehaviour extends ZombieBehaviour {
 

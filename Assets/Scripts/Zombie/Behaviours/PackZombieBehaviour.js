@@ -1,6 +1,36 @@
-﻿#pragma strict
+#pragma strict
 
 class PackZombieBehaviour extends ZombieBehaviour {
+
+/* Following Finite State Machine style, Pack Zombie has 3 states:
+*  Wandering, Following, Attacking.
+*  
+*  Wandering State:
+*  The Pack Zombie will path towards a randomly plotted point on the map.
+*  When the point is reached, it re-plots another point randomly and paths to it.
+*
+*  State Change conditions:
+*  Target comes within targetVisualRange: Enter Attack Mode
+*  Leader Zombie comes within leaderDetectionRange: Enter Following Mode.
+*
+*  Following State:
+*  The Pack Zombie will assign the leader it discovered as its current leader.
+*  It will path towards a random point relative to the leader to “assume position”
+*  alongside it.
+*  If the leader enters Attacking Mode, the Pack Zombie will switch its own mode to
+*  Attacking, and “receive” a speed boost.
+*
+*  State Change conditions:
+*  Leader dies: Enter Wandering Mode.
+*  Leader enters Attacking Mode: Enter Attacking Mode.
+*
+*  Attacking State:
+*  The Pack Zombie will path towards the target, and once within range, will attempt
+*  to attack it. It will not leave this mode until either the target dies or it dies.
+*  
+*  State Change conditions:
+*  Target dies: Enter Wandering Mode.
+*/
 
 enum PackZombieState {Wandering,Following,Attacking};
 

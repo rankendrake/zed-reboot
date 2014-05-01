@@ -1,4 +1,8 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Zombie strike class to manage zombie melee attack.
+*/
 
 private var zombieResources : ZombieResources;
 private var zombieProperties : ZombieProperties;

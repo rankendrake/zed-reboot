@@ -1,6 +1,24 @@
-﻿#pragma strict
+#pragma strict
 
 class BossZombieBehaviour extends ZombieBehaviour {
+
+/* Following Finite State Machine style, Boss Zombie has 3 behaviours:
+*  Attacking, Summon, AfterSummon.
+*
+*  Attacking State:
+*  Boss Zombie will path towards Zed, like a Chaser Zombie.
+*  After phaseChangedTime seconds, it will enter Summon mode.
+*
+*  Summon State:
+*  Boss Zombie will stand still and spawn quantitySpawned number of packZombies.
+*  It does this by initiating a spawn job around itself. Once done, it enters
+*  AfterSummon state.
+*
+*  AfterSummon State:
+*  AfterSummon is like a cooldown period, where Boss Zombie does not move. This
+*  state lasts for phaseChangedTime seconds.
+*
+*/
 
 enum BossZombieState {Attacking, Summon, AfterSummon};
 

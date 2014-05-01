@@ -1,4 +1,8 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Weapon Perk class to influence weapon properties.
+*/
 
 class WeaponPerk extends Perk {
 	private var rateOfFireMultiplier : float;

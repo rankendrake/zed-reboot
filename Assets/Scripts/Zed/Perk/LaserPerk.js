@@ -1,4 +1,8 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Laser perk for zed.
+*/
 
 class LaserPerk extends Perk {
 	private var active : boolean = true;

@@ -1,4 +1,9 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Manages zed-attack events for the weapon zed is holding.
+*/
+
 
 var zedResources : ZedResources;
 private var animator : Animator;

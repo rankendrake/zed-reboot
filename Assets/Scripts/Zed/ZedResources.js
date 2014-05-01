@@ -1,6 +1,10 @@
 #pragma strict
 import System.Collections.Generic;
 
+/*
+*  Zed’s resources, such as health, level, skillPoints, or money.
+*/
+
 private var experience : int;
 private var health : float;
 private var level : int;

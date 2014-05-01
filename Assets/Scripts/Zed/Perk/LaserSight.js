@@ -1,4 +1,9 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Laser sight for zed. Activated by activating the Laser Perk for zed.
+*/
+
 var zedResources : ZedResources;
 var lineRenderer : LineRenderer;
 var zedMovement : ZedMovement;

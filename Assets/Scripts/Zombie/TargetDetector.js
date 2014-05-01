@@ -1,4 +1,10 @@
-﻿#pragma strict
+#pragma strict
+
+/*
+*  Player-controlled object detector for zombies to detect and engage targets.
+*  Size of detector depends on the zombie type.
+*/
+
 
 var circleCollider : CircleCollider2D;
 var zombieBehaviour : ZombieBehaviour;
@@ -14,7 +20,6 @@ function Start() {
 
 function Update() {
 	transform.position = transform.parent.position;
-	transform.rotation = transform.parent.rotation;
 }
 
 function OnTriggerEnter2D(otherCollider : Collider2D) {
