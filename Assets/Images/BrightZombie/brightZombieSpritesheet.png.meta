@@ -1,6 +1,31 @@
 fileFormatVersion: 2
 guid: a73f2daee2b2a2844acce74deeff8263
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: brightZombieSpritesheet_0
+    21300002: brightZombieSpritesheet_1
+    21300004: brightZombieSpritesheet_2
+    21300006: brightZombieSpritesheet_3
+    21300008: brightZombieSpritesheet_4
+    21300010: brightZombieSpritesheet_5
+    21300012: brightZombieSpritesheet_6
+    21300014: brightZombieSpritesheet_7
+    21300016: brightZombieSpritesheet_8
+    21300018: brightZombieSpritesheet_9
+    21300020: brightZombieSpritesheet_10
+    21300022: brightZombieSpritesheet_11
+    21300024: brightZombieSpritesheet_12
+    21300026: brightZombieSpritesheet_13
+    21300028: brightZombieSpritesheet_14
+    21300030: brightZombieSpritesheet_15
+    21300032: brightZombieSpritesheet_16
+    21300034: brightZombieSpritesheet_17
+    21300036: brightZombieSpritesheet_18
+    21300038: brightZombieSpritesheet_19
+    21300040: brightZombieSpritesheet_20
+    21300042: brightZombieSpritesheet_21
+    21300044: brightZombieSpritesheet_22
+    21300046: brightZombieSpritesheet_23
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 850
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +76,7 @@ TextureImporter:
         height: 206
       alignment: 9
       pivot: {x: .4915227, y: .260002643}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_1
       rect:
         serializedVersion: 2
@@ -59,6 +86,7 @@ TextureImporter:
         height: 430
       alignment: 9
       pivot: {x: .258741438, y: .0911981612}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_2
       rect:
         serializedVersion: 2
@@ -68,6 +96,7 @@ TextureImporter:
         height: 429
       alignment: 9
       pivot: {x: .245976269, y: .0518306568}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_3
       rect:
         serializedVersion: 2
@@ -77,6 +106,7 @@ TextureImporter:
         height: 450
       alignment: 9
       pivot: {x: .14009589, y: .0452788621}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_4
       rect:
         serializedVersion: 2
@@ -86,6 +116,7 @@ TextureImporter:
         height: 463
       alignment: 9
       pivot: {x: .197870284, y: .0817755088}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_5
       rect:
         serializedVersion: 2
@@ -95,6 +126,7 @@ TextureImporter:
         height: 412
       alignment: 9
       pivot: {x: .163677186, y: .113337547}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_6
       rect:
         serializedVersion: 2
@@ -104,6 +136,7 @@ TextureImporter:
         height: 375
       alignment: 9
       pivot: {x: .130568832, y: .126457363}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_7
       rect:
         serializedVersion: 2
@@ -113,6 +146,7 @@ TextureImporter:
         height: 326
       alignment: 9
       pivot: {x: .0737986565, y: .141926214}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_8
       rect:
         serializedVersion: 2
@@ -122,6 +156,7 @@ TextureImporter:
         height: 245
       alignment: 9
       pivot: {x: .109664179, y: .136690348}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_9
       rect:
         serializedVersion: 2
@@ -131,6 +166,7 @@ TextureImporter:
         height: 244
       alignment: 9
       pivot: {x: .0866032839, y: .173555464}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_10
       rect:
         serializedVersion: 2
@@ -140,6 +176,7 @@ TextureImporter:
         height: 268
       alignment: 9
       pivot: {x: .056312602, y: .259157091}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_11
       rect:
         serializedVersion: 2
@@ -149,6 +186,7 @@ TextureImporter:
         height: 480
       alignment: 9
       pivot: {x: .884010613, y: .153917179}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_12
       rect:
         serializedVersion: 2
@@ -158,6 +196,7 @@ TextureImporter:
         height: 417
       alignment: 9
       pivot: {x: 1.06763744, y: .0488137826}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_13
       rect:
         serializedVersion: 2
@@ -167,6 +206,7 @@ TextureImporter:
         height: 459
       alignment: 9
       pivot: {x: 1.06497312, y: .0781308487}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_14
       rect:
         serializedVersion: 2
@@ -176,6 +216,7 @@ TextureImporter:
         height: 489
       alignment: 9
       pivot: {x: 1.17670822, y: .0843533352}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_15
       rect:
         serializedVersion: 2
@@ -185,6 +226,7 @@ TextureImporter:
         height: 497
       alignment: 9
       pivot: {x: 1.19619668, y: .0717012063}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_16
       rect:
         serializedVersion: 2
@@ -194,6 +236,7 @@ TextureImporter:
         height: 446
       alignment: 9
       pivot: {x: 1.10248947, y: .115101084}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_17
       rect:
         serializedVersion: 2
@@ -203,6 +246,7 @@ TextureImporter:
         height: 339
       alignment: 9
       pivot: {x: 1.16970563, y: .0705847293}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_18
       rect:
         serializedVersion: 2
@@ -212,6 +256,7 @@ TextureImporter:
         height: 295
       alignment: 9
       pivot: {x: 1.23305619, y: .0949872583}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_19
       rect:
         serializedVersion: 2
@@ -221,6 +266,7 @@ TextureImporter:
         height: 251
       alignment: 9
       pivot: {x: 1.31116271, y: .155302614}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_20
       rect:
         serializedVersion: 2
@@ -230,6 +276,7 @@ TextureImporter:
         height: 242
       alignment: 9
       pivot: {x: 1.37315977, y: .153832808}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_21
       rect:
         serializedVersion: 2
@@ -239,6 +286,7 @@ TextureImporter:
         height: 249
       alignment: 9
       pivot: {x: 1.27111495, y: .295932502}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_22
       rect:
         serializedVersion: 2
@@ -248,6 +296,7 @@ TextureImporter:
         height: 203
       alignment: 9
       pivot: {x: 1.15396178, y: .310576648}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieSpritesheet_23
       rect:
         serializedVersion: 2
@@ -257,5 +306,6 @@ TextureImporter:
         height: 154
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

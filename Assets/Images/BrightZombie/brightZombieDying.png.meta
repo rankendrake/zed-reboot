@@ -1,6 +1,14 @@
 fileFormatVersion: 2
 guid: 7415deececec40441976dfff7ccd24a3
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: brightZombieDying_0
+    21300002: brightZombieDying_1
+    21300004: brightZombieDying_2
+    21300006: brightZombieDying_3
+    21300008: brightZombieDying_4
+    21300010: brightZombieDying_5
+    21300012: brightZombieDying_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +43,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 850
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +59,7 @@ TextureImporter:
         height: 668
       alignment: 9
       pivot: {x: .447917759, y: .282782644}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieDying_1
       rect:
         serializedVersion: 2
@@ -59,6 +69,7 @@ TextureImporter:
         height: 741
       alignment: 9
       pivot: {x: .582453251, y: .220259815}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieDying_2
       rect:
         serializedVersion: 2
@@ -68,6 +79,7 @@ TextureImporter:
         height: 693
       alignment: 9
       pivot: {x: .45201692, y: .320530385}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieDying_3
       rect:
         serializedVersion: 2
@@ -77,6 +89,7 @@ TextureImporter:
         height: 959
       alignment: 9
       pivot: {x: .449711829, y: .339088529}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieDying_4
       rect:
         serializedVersion: 2
@@ -86,6 +99,7 @@ TextureImporter:
         height: 1090
       alignment: 9
       pivot: {x: .485514462, y: .360540479}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieDying_5
       rect:
         serializedVersion: 2
@@ -95,6 +109,7 @@ TextureImporter:
         height: 1165
       alignment: 9
       pivot: {x: .49255845, y: .355679661}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: brightZombieDying_6
       rect:
         serializedVersion: 2
@@ -104,5 +119,6 @@ TextureImporter:
         height: 1048
       alignment: 9
       pivot: {x: .483893752, y: .363742262}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

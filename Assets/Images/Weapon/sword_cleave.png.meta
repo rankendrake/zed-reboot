@@ -1,6 +1,16 @@
 fileFormatVersion: 2
 guid: 57598882962a42b4f991650b416e4d75
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: sword_cleave_0
+    21300002: sword_cleave_1
+    21300004: sword_cleave_2
+    21300006: sword_cleave_3
+    21300008: sword_cleave_4
+    21300010: sword_cleave_5
+    21300012: sword_cleave_6
+    21300014: sword_cleave_7
+    21300016: sword_cleave_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +45,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -54,6 +65,7 @@ TextureImporter:
         height: 17
       alignment: 9
       pivot: {x: .192233413, y: 1.83867693}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_1
       rect:
         serializedVersion: 2
@@ -63,6 +75,7 @@ TextureImporter:
         height: 17
       alignment: 9
       pivot: {x: .15949209, y: .495993853}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_2
       rect:
         serializedVersion: 2
@@ -72,6 +85,7 @@ TextureImporter:
         height: 67
       alignment: 9
       pivot: {x: .225590616, y: .469955027}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_3
       rect:
         serializedVersion: 2
@@ -81,6 +95,7 @@ TextureImporter:
         height: 161
       alignment: 9
       pivot: {x: .185530931, y: .389835626}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_4
       rect:
         serializedVersion: 2
@@ -90,6 +105,7 @@ TextureImporter:
         height: 223
       alignment: 9
       pivot: {x: .375814706, y: .345769972}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_5
       rect:
         serializedVersion: 2
@@ -99,6 +115,7 @@ TextureImporter:
         height: 133
       alignment: 9
       pivot: {x: .345769852, y: .385829657}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_6
       rect:
         serializedVersion: 2
@@ -108,6 +125,7 @@ TextureImporter:
         height: 40
       alignment: 9
       pivot: {x: .247623548, y: .437907398}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_7
       rect:
         serializedVersion: 2
@@ -117,6 +135,7 @@ TextureImporter:
         height: 85
       alignment: 9
       pivot: {x: .327743024, y: .556083679}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_cleave_8
       rect:
         serializedVersion: 2
@@ -126,5 +145,6 @@ TextureImporter:
         height: 190
       alignment: 9
       pivot: {x: .415874422, y: .676262915}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

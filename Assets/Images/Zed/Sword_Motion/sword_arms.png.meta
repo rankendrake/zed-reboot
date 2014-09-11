@@ -1,6 +1,21 @@
 fileFormatVersion: 2
 guid: 13954c15d9e9e9847824d2fb3103a2fa
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: sword_arms_0
+    21300002: sword_arms_1
+    21300004: sword_arms_2
+    21300006: sword_arms_3
+    21300008: sword_arms_4
+    21300010: sword_arms_5
+    21300012: sword_arms_6
+    21300014: sword_arms_7
+    21300016: sword_arms_8
+    21300018: sword_arms_9
+    21300020: sword_arms_10
+    21300022: sword_arms_11
+    21300024: sword_arms_12
+    21300026: sword_arms_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +50,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 500
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +66,7 @@ TextureImporter:
         height: 182
       alignment: 9
       pivot: {x: .749752283, y: .761357248}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_1
       rect:
         serializedVersion: 2
@@ -59,6 +76,7 @@ TextureImporter:
         height: 222
       alignment: 9
       pivot: {x: .581643283, y: .794827282}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_2
       rect:
         serializedVersion: 2
@@ -68,6 +86,7 @@ TextureImporter:
         height: 272
       alignment: 9
       pivot: {x: .524769366, y: .682733417}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_3
       rect:
         serializedVersion: 2
@@ -77,6 +96,7 @@ TextureImporter:
         height: 289
       alignment: 9
       pivot: {x: .56489259, y: .587992013}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_4
       rect:
         serializedVersion: 2
@@ -86,6 +106,7 @@ TextureImporter:
         height: 242
       alignment: 9
       pivot: {x: .574388802, y: .708553076}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_5
       rect:
         serializedVersion: 2
@@ -95,6 +116,7 @@ TextureImporter:
         height: 267
       alignment: 9
       pivot: {x: .694004476, y: .360619932}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_6
       rect:
         serializedVersion: 2
@@ -104,6 +126,7 @@ TextureImporter:
         height: 216
       alignment: 9
       pivot: {x: .755963743, y: .81060338}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_7
       rect:
         serializedVersion: 2
@@ -113,6 +136,7 @@ TextureImporter:
         height: 325
       alignment: 9
       pivot: {x: .815655828, y: .848281264}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_8
       rect:
         serializedVersion: 2
@@ -122,6 +146,7 @@ TextureImporter:
         height: 407
       alignment: 9
       pivot: {x: .819252491, y: .875909984}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_9
       rect:
         serializedVersion: 2
@@ -131,6 +156,7 @@ TextureImporter:
         height: 521
       alignment: 9
       pivot: {x: .728892982, y: .925209701}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_10
       rect:
         serializedVersion: 2
@@ -140,6 +166,7 @@ TextureImporter:
         height: 543
       alignment: 9
       pivot: {x: .615493298, y: .925767541}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_11
       rect:
         serializedVersion: 2
@@ -149,6 +176,7 @@ TextureImporter:
         height: 554
       alignment: 9
       pivot: {x: .503103912, y: .906729579}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_12
       rect:
         serializedVersion: 2
@@ -158,6 +186,7 @@ TextureImporter:
         height: 325
       alignment: 9
       pivot: {x: .566279292, y: .835904717}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: sword_arms_13
       rect:
         serializedVersion: 2
@@ -167,5 +196,6 @@ TextureImporter:
         height: 222
       alignment: 9
       pivot: {x: .709677756, y: .770412564}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
