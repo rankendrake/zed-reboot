@@ -14,7 +14,6 @@ class MeleeWeapon extends Weapon {
 	
 	private var zombieMovement : ZombieMovement2;
 	
-	
 	private var strikeStartTime : float;
 	private var strikeEndTime : float;
 	
@@ -41,6 +40,7 @@ class MeleeWeapon extends Weapon {
 		this.unsheathSound = unsheathSound;
 		zedMovement = zed.GetComponent(ZedMovement);
 		zombieMovement = zed.GetComponent(ZombieMovement2);
+		
 		if ((zedMovement == null) && (zombieMovement == null)) {
 			Debug.Log("Error in MeleeWeapon-Constructor. ZedMovement-script not found!");
 		}			
@@ -50,7 +50,7 @@ class MeleeWeapon extends Weapon {
 
 	// @Override
 	function strike() : boolean {
-		AudioSource.PlayClipAtPoint(slashSound,zed.transform.position);
+//		AudioSource.PlayClipAtPoint(slashSound,zed.transform.position);
 		strikeStartTime = Time.time;
 		strikeEndTime = Time.time + angleData[3*(angleDataPointCount-1)];
 		return true;
@@ -89,6 +89,8 @@ class MeleeWeapon extends Weapon {
 			bodyAngle = zedMovement.getUpperBodyAngle();
 		} else if (zombieMovement != null) {
 			bodyAngle = zombieMovement.getActualAngle(); 
+		} else if (zed.GetComponent(PolyNavAgent) != null){
+			bodyAngle = zed.transform.eulerAngles.z;
 		}
 		
 		var currentStrikeTime = Time.time - strikeStartTime;

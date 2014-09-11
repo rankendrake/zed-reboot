@@ -126,7 +126,17 @@ function evaluateZombieCollision(hitList : RaycastHit2D[], firstHitObject : Game
 			new Vector2(speed*_transform.up.x, speed*_transform.up.y), 
 			hitChildren);
 	} else {
-		Debug.Log("Hit Object does not have ZombieImpact component!");
+		var navZombieImpact : NavZombieImpact = firstHitObject.transform.root.gameObject.GetComponent(NavZombieImpact);
+		if (navZombieImpact == null) {
+			Debug.Log("Hit Object does not have ZombieImpact component!");
+		} else {
+			navZombieImpact.impact(
+				bulletProperties.getOwner(), 
+				bulletProperties.getPower(), 
+				new Vector2(speed*_transform.up.x, speed*_transform.up.y), 
+				hitChildren);
+		}
+		
 	}
 }
 
