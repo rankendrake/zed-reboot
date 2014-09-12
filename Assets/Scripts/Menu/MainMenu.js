@@ -42,7 +42,7 @@ function OnGUI() {
 			titleLabelY*Screen.height, 
 			titleWidth*Screen.width,
 			titleHeight*Screen.width); // height until first button
-	GUI.Label(buttonRect, GUIContent("Zed"), centeredStyle);
+	GUI.Label(buttonRect, GUIContent("zed"), centeredStyle);
 
 	// Start game
 	if (newButton(startButtonY, "Start Survival")) {

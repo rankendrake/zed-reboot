@@ -22,7 +22,7 @@ private var chanceToSpawnAsInterceptor : float = 0.25;
 private var isInterceptor : boolean;
 
 // Target-related data: Currently can only target Zed.
-private var target : GameObject;
+var target : GameObject;
 var targetVisualRange : float;
 
 // Position-related data
@@ -30,8 +30,8 @@ var nextPosition : Vector2;
 
 // Zombie scripts
 private var zombieResources : ZombieResources;
-private var zombieStrike : NavZombieStrike;
-private var navigator : PolyNavAgent;
+var zombieStrike : NavZombieStrike;
+var navigator : PolyNavAgent;
 private var animator : Animator;
 	
 // Mapbounds

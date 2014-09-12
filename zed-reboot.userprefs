@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zombie\ZombieStrike.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Zombie\Nav Scripts\Nav Behaviours\NavZombieBehaviour.js">
     <Files>
-      <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="37" Column="67" />
-      <File FileName="Assets\Scripts\Zombie\ZombieStrike.js" Line="43" Column="4" />
-      <File FileName="Assets\Scripts\Weapon\MeleeWeapon.js" Line="55" Column="1" />
-      <File FileName="Assets\Scripts\Zombie\Nav Scripts\NavZombieStrike.js" Line="44" Column="34" />
-      <File FileName="Assets\Scripts\Zombie\Nav Scripts\Nav Behaviours\NavZombieBehaviour.js" Line="53" Column="17" />
-      <File FileName="Assets\Scripts\Weapon\BulletMovement.js" Line="141" Column="1" />
+      <File FileName="Assets\Scripts\Zombie\Nav Scripts\Nav Behaviours\NavZombieBehaviour.js" Line="33" Column="1" />
+      <File FileName="Assets\Scripts\Zombie\ZombieResources.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
