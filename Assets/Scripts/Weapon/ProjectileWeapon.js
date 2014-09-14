@@ -47,7 +47,7 @@ class ProjectileWeapon extends Weapon {
 			scatterRelaxationFactor : float,
 			id : String,
 			bulletPrefab : GameObject, 
-			zed : GameObject,
+			owner : GameObject,
 			spawnOffset : Vector2,
 			firingSound : AudioClip,
 			reloadingSound : AudioClip) {
@@ -64,9 +64,9 @@ class ProjectileWeapon extends Weapon {
 		this.scatterRelaxationFactor = scatterRelaxationFactor;
 		this.id = id;
 		this.bulletPrefab = bulletPrefab;
-		this.zed = zed;
-		this.zedMovement = zed.GetComponent(ZedMovement);
-		this.zedResources = zed.GetComponent(ZedResources);
+		this.owner = owner;
+		this.zedMovement = owner.GetComponent(ZedMovement);
+		this.zedResources = owner.GetComponent(ZedResources);
 		this.spawnOffset = spawnOffset;
 		this.firingSound = firingSound;
 		this.reloadingSound = reloadingSound;
@@ -120,12 +120,12 @@ class ProjectileWeapon extends Weapon {
 				
 					
 					newBullet.GetComponent(BulletProperties).setPower(firePower);
-					newBullet.GetComponent(BulletProperties).setOwner(zed);
+					newBullet.GetComponent(BulletProperties).setOwner(owner);
 					newBullet.GetComponent(BulletMovement).setSpeed(actualBulletSpeed);
 									
 					increaseScatterAngle();
 					
-					AudioSource.PlayClipAtPoint(firingSound,zed.transform.position);
+					AudioSource.PlayClipAtPoint(firingSound,owner.transform.position);
 					lastShotTime = Time.time;
 				}
 
@@ -180,7 +180,7 @@ class ProjectileWeapon extends Weapon {
 	function playReloadSound() {
 //		Debug.Log("Reload sound going to play.");
 		var waitTime : float = reloadTime - reloadingSound.length;
-		AudioSource.PlayClipAtPoint(reloadingSound,zed.transform.position);
+		AudioSource.PlayClipAtPoint(reloadingSound,owner.transform.position);
 //		Debug.Log("Reload sound played.");
 	}
 	

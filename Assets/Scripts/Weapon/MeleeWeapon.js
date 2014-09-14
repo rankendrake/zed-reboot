@@ -12,8 +12,6 @@ class MeleeWeapon extends Weapon {
 	private var zedTransform : Transform;
 	private var zedMovement : ZedMovement;
 	
-	private var zombieMovement : ZombieMovement2;
-	
 	private var strikeStartTime : float;
 	private var strikeEndTime : float;
 	
@@ -29,23 +27,17 @@ class MeleeWeapon extends Weapon {
 	function MeleeWeapon(
 			power : int,
 			id : String,
-			zed : GameObject,
+			owner : GameObject,
 			slashSound : AudioClip,
 			unsheathSound : AudioClip) {
 
 		this.power = power;
 		this.id = id;
-		this.zed = zed;	
+		this.owner = owner;	
 		this.slashSound = slashSound;
 		this.unsheathSound = unsheathSound;
-		zedMovement = zed.GetComponent(ZedMovement);
-		zombieMovement = zed.GetComponent(ZombieMovement2);
 		
-		if ((zedMovement == null) && (zombieMovement == null)) {
-			Debug.Log("Error in MeleeWeapon-Constructor. ZedMovement-script not found!");
-		}			
-		
-		zedTransform = zed.transform;
+		zedTransform = owner.transform;
 	}
 
 	// @Override
@@ -85,13 +77,7 @@ class MeleeWeapon extends Weapon {
 		}	
 		
 		var bodyAngle : float;
-		if (zedMovement != null) {
-			bodyAngle = zedMovement.getUpperBodyAngle();
-		} else if (zombieMovement != null) {
-			bodyAngle = zombieMovement.getActualAngle(); 
-		} else if (zed.GetComponent(PolyNavAgent) != null){
-			bodyAngle = zed.transform.eulerAngles.z;
-		}
+		bodyAngle = owner.transform.eulerAngles.z;
 		
 		var currentStrikeTime = Time.time - strikeStartTime;
 		
@@ -133,11 +119,11 @@ class MeleeWeapon extends Weapon {
 	
 		for (var h : RaycastHit2D in hit) {
 			// distinguish cases wether zombies are hitting zed or vice versa
-			if (zombieMovement == null) {
+			if (owner.CompareTag("zed")) {
 				if (h.transform.gameObject.CompareTag("zombie")) {
 					h.transform.gameObject.GetComponent(ZombieImpact).swordImpact(power);
 				}
-			} else if (zedMovement == null) {
+			} else if (owner.CompareTag("zombie")) {
 				if (h.transform.gameObject.CompareTag("zed")) {
 					h.transform.gameObject.GetComponent(ZedResources).swordImpact(power);
 				}

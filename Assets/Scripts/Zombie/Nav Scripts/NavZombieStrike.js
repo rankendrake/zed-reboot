@@ -39,7 +39,7 @@ function hitTarget(target : GameObject) {
 	body.velocity = Vector3.zero;
 	if(Time.time - zombieProperties.getTimeBetweenHits() > timeOfLastHit) {
 		if(target.CompareTag("zed")) {
-			zedResources.reduceHealth(zombieProperties.getAttackDamage());
+			zombieResources.armWeapon.strike();	
 			timeOfLastHit = Time.time;							
 			animator.SetTrigger("attack");
 		}
@@ -51,4 +51,7 @@ function hitTarget(target : GameObject) {
 
 
 function Update() {
+	if (zombieResources.armWeapon.isStriking()) {
+		zombieResources.armWeapon.executeStrike();
+	}
 }
