@@ -1,4 +1,4 @@
-#pragma strict
+﻿#pragma strict
 
 /*
 *  Zombie strike class to manage zombie melee attack.
@@ -8,15 +8,15 @@ private var zombieResources : ZombieResources;
 private var zombieProperties : ZombieProperties;
 private var timeOfLastHit : float;
 private var zedResources : ZedResources;
-private var zombieMovement : ZombieMovement2;
+private var body : Rigidbody2D;
 
 var animator : Animator;
 
 function Awake() {
 	zombieProperties = GetComponent(ZombieProperties);
 	zombieResources = GetComponent(ZombieResources);
-	zombieMovement = GetComponent(ZombieMovement2);
 	animator = GetComponent(Animator);
+	body = GetComponent(Rigidbody2D);
 }
 
 function Start () {
@@ -36,8 +36,7 @@ function hitZed() {
 function hitTarget(target : GameObject) {
 	// This function requires zombieMovement to be used. PolyNav2D-enabled zombies do not use this.
 	// Thus this is called only if zombieMovement is used.
-	if(zombieMovement)
-		zombieMovement.bulletSlowdown(100);
+	body.velocity = Vector3.zero;
 	if(Time.time - zombieProperties.getTimeBetweenHits() > timeOfLastHit) {
 		if(target.CompareTag("zed")) {
 			zombieResources.armWeapon.strike();	

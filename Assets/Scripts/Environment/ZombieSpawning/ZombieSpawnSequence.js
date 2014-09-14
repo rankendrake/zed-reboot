@@ -6,9 +6,7 @@
 #pragma strict
 
 var zombieSpawnEngine : ZombieSpawnEngine;
-var leaderZombiePrefab : GameObject;
-var packZombiePrefab : GameObject;
-var chaserZombiePrefab : GameObject;
+var normalZombiePrefab : GameObject;
 var bossZombiePrefab : GameObject;
 
 function Start () {
@@ -41,23 +39,23 @@ function Start () {
 	zombieSpawnEngine.spawnContinuous(bossZombiePrefab, 0, 10000, 140, Edge.RIGHT);
 	zombieSpawnEngine.spawnContinuous(bossZombiePrefab, 120, 10000, 140, Edge.LEFT);
 
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 0, 50, 10, Edge.LEFT);
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 20, 100, 30, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 30, 1500, 200, Edge.TOP);
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 30, 1500, 200, Edge.BOTTOM);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 0, 50, 10, Edge.LEFT);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 20, 100, 30, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 30, 1500, 200, Edge.TOP);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 30, 1500, 200, Edge.BOTTOM);
 	
 		
-	zombieSpawnEngine.spawnContinuous(leaderZombiePrefab, 0, 1500, 100, Edge.LEFT);	
-	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(packZombiePrefab, 10, 10000, 1000, Edge.TOP);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 0, 1500, 100, Edge.LEFT);	
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 10, 10000, 1000, Edge.TOP);
 
 
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 80, 10000, 400, Edge.LEFT);
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 170, 10000, 600, Edge.RIGHT);
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 80, 10000, 400, Edge.TOP);
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.LEFT);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 170, 10000, 600, Edge.RIGHT);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 80, 10000, 400, Edge.TOP);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 230, 10000, 800, Edge.BOTTOM);
 
-	zombieSpawnEngine.spawnContinuous(chaserZombiePrefab, 400, 10000, 1200, Edge.TOP);
+	zombieSpawnEngine.spawnContinuous(normalZombiePrefab, 400, 10000, 1200, Edge.TOP);
 
 
 	

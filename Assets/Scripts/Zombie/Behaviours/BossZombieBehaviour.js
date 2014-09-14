@@ -20,7 +20,7 @@ class BossZombieBehaviour extends ZombieBehaviour {
 *
 */
 
-enum BossZombieState {Attacking, Summon, AfterSummon};
+enum BossZombieState {Attacking, Summon};
 
 // Standard/Spawning variables
 var speed : float;
@@ -33,8 +33,6 @@ private var target : GameObject;
 
 // Position-related data
 var nextPosition : Vector3;
-var positionDifference : Vector3;
-var reachedNextPosition : float;
 
 // Current State
 var currentState : BossZombieState;
@@ -42,60 +40,55 @@ var currentState : BossZombieState;
 // Zombie data
 private var zombieResources : ZombieResources;
 private var zombieStrike : ZombieStrike;
-private var zombieMovement2 : ZombieMovement2;
+private var navigator : PolyNavAgent;
 
 // Zombie-minion spawning data
 private var zombieSpawnEngine : ZombieSpawnEngine;
 var zombiePrefab : GameObject;
-var quantitySpawned : int = 4;
+var quantityToSpawn : int = 4;
 var zombieSpawningDuration : float = 3.0;
 var timeSpentAttacking : float = 10.0;
 var phaseChangedTime : float;
+var numSpawned : int;
 
 function Start () {
 	zombieSpawnEngine = GameObject.Find("environment").GetComponent(ZombieSpawnEngine) as ZombieSpawnEngine;
 	setTarget(GameObject.Find("zed"));
+	navigator = gameObject.GetComponent(PolyNavAgent);
 	zombieStrike = gameObject.GetComponent(ZombieStrike) as ZombieStrike;
-	zombieMovement2 = gameObject.GetComponent(ZombieMovement2) as ZombieMovement2;
 	zombieResources = gameObject.GetComponent(ZombieResources) as ZombieResources;
-	getTargetAngle(nextPosition);
-	zombieMovement2.updateTargetSpeed(speed);
 	phaseChangedTime = Time.time;
 	currentState = BossZombieState.Attacking;
 }
 
 function Update () {
-	positionDifference = nextPosition - transform.position;
 
 	if (currentState == BossZombieState.Attacking) {
 		// Set nextPosition to the target's position.
-		nextPosition = target.transform.position;
-		zombieMovement2.updateTargetSpeed(speed);
-		zombieMovement2.updateTargetAngle(getTargetAngle(nextPosition));
 		// If within range, attack target.
+		navigator.SetDestination(Vector2(target.transform.position.x, target.transform.position.y));
+		
 		if(Vector3.Magnitude(transform.position - target.transform.position) < strikeRange) {
 			zombieStrike.hitTarget(target);
 		}
 		if(Time.time > phaseChangedTime + timeSpentAttacking) {
 			currentState = BossZombieState.Summon;
 			phaseChangedTime = Time.time;
+			navigator.SetDestination(Vector2(transform.position.x, transform.position.y));
 		}
  	} else if (currentState == BossZombieState.Summon) {
-		zombieMovement2.updateTargetSpeed(0);
-		zombieSpawnEngine.spawnContinuous(zombiePrefab,Time.time,zombieSpawningDuration,quantitySpawned,transform.position,Vector2(1,1));
-		currentState = BossZombieState.AfterSummon;
-	} else if (currentState == BossZombieState.AfterSummon) {
-		if(Time.time > phaseChangedTime + zombieSpawningDuration) {
-			currentState = BossZombieState.Attacking;
-			phaseChangedTime = Time.time;
+		if(Time.time > phaseChangedTime + (zombieSpawningDuration / quantityToSpawn * numSpawned)) {
+			if(numSpawned >= quantityToSpawn) {
+				currentState = BossZombieState.Attacking;
+				phaseChangedTime = Time.time;
+				numSpawned = 0;
+			}
+			else {
+				zombieSpawnEngine.spawnSingle(zombiePrefab,Time.time,transform.position,Vector2(1,1));
+				numSpawned++;
+			}
 		}
 	}
-}
-	
-function getTargetAngle(destination : Vector3) {
-	positionDifference = destination - transform.position;
-	var targetDifference = positionDifference;
-	return Mathf.Rad2Deg*Mathf.Atan2(targetDifference.y, targetDifference.x)-90;
 }
 
 function setTarget(target : GameObject) {
