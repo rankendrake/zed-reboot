@@ -105,6 +105,12 @@ private function checkCollision() {
 			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
 				trailRenderer.time);
 		}
+		else if (firstHitObject.CompareTag("tallTerrain")) {
+			finalPosition = _transform.position + raycastHit2D[0].fraction*lastDeltaTime*speed*transform.right;				
+			moving = false;
+			TimedObjectDestructor.destroyGameObjectInSeconds(gameObject,
+				trailRenderer.time);
+		}
 	}	
 }
 
